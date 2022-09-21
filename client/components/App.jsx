@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Fruits from './Fruits'
 
+import Pokemon from './Pokemon'
 
 const Container = styled.div`
   display: flex;
@@ -14,8 +14,9 @@ const Container = styled.div`
 const App = () => {
   return (
     <Container>
-      <h1>I Love Fruit!</h1>
-      <Fruits />
+      <h1>I Love Pokemon!</h1>
+
+      <Pokemon />
     </Container>
   )
 }
