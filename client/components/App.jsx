@@ -1,6 +1,7 @@
 import React from 'react'
 import World from './World'
 import Phaser from 'phaser'
+import Battle from './Battle'
 
 const config = {
   type: Phaser.AUTO,
@@ -216,7 +217,8 @@ const App = () => {
   return (
     <div>
       <h1>Pokemon</h1>
-      <World />
+      <Battle />
+      {/* <World /> */}
     </div>
   )
 }
