@@ -48,10 +48,16 @@ h1 {
 }
 
 .insideTextBox {
-  margin-top: -100px;
-  margin-left: 30px;
+  position: absolute;
+  display: flex;
+  bottom: 20px;
+  left: 40px;
+  height: 110px;
+  width: 690px;
   z-index: 2;
   font-family: 'pkmn_rbygscregular';
+  /* border: 2px solid red; */
+  font-size: 24px;
 }
 
 .myPokemonImg {
@@ -80,6 +86,7 @@ h1 {
   image-rendering: pixelated;
   top: 300px;
   left: 370px;
+  z-index: 3;
 }
 
 .oppHealth {
@@ -88,6 +95,7 @@ h1 {
   image-rendering: pixelated;
   top: 20px;
   left: 20px;
+  z-index: 3;
 }
 
 .centering {
@@ -100,7 +108,7 @@ h1 {
   position: relative;
 }
 
-.buttons button {
+.fightButtons button {
   background: none;
 	color: inherit;
 	border: none;
@@ -111,38 +119,85 @@ h1 {
   font-family: 'pkmn_rbygscregular';
 }
 
+.fightButtons {
+  display: flex;
+  padding-left: 15px;
+  flex-wrap: wrap;
+}
+
 .myPkmnName, .oppPkmnName {
   font-size: 28px;
   font-family: 'pkmn_rbygscregular';
   position: absolute;
+  z-index: 4;
 }
 
 .oppPkmnName {
   top: 43px;
   left: 43px;
-  z-index: 3;
 }
 
 .myPkmnName {
   top: 323px;
   left: 430px;
-  z-index: 3;
 }
 
-.oppHealthBar, .myHealthBar {
+#oppHealthBar, #myHealthBar {
   background-color: green;
   width: 200px;
   height: 17px;
+  transition: width 0.5s;
+  z-index: 2;
 }
 
-.myHealthBar {
+#myHealthBar {
   position: absolute;
   top: 368px;
   left: 565px;
 }
 
-.oppHealthBar {
+#oppHealthBar {
   position: absolute;
   top: 88px;
   left: 180px;
+}
+
+.oppHealthBarBacking, .myHealthBarBacking {
+  background-color: rgb(164, 158, 123);
+  width: 200px;
+  height: 17px;
+  z-index: 1;
+}
+
+.oppHealthBarBacking{
+  position: absolute;
+  top: 88px;
+  left: 180px;
+}
+
+.myHealthBarBacking{
+  position: absolute;
+  top: 368px;
+  left: 565px;
+}
+
+.fightQuestion {
+  border-right: 2px dotted black;
+
+}
+
+.fightQuestion p {
+  padding: 5px;
+  margin-top:20px;
+  padding-left: 20px;
+  width: 300px
+}
+
+.myHP {
+  position: absolute;
+  font-family: 'pkmn_rbygscregular';
+  font-size: 22px;
+  top: 395px;
+  right: 40px;
+  z-index: 4;
 }
