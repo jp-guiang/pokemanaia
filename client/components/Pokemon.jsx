@@ -1,7 +1,3 @@
-// hello
-// bing
-// bing
-
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 
@@ -10,6 +6,7 @@ export default function Pokemon() {
   const [currentPage, setPage] = useState(0)
   const [pageLimit, setLimit] = useState(20)
   const [pokeDex, setPokeDex] = useState([])
+  const [team, setTeam] = useState([])
 
   useEffect(() => {
     getPokemon(currentPage, pageLimit)
@@ -27,7 +24,6 @@ export default function Pokemon() {
       .then((pokeData) => {
         const pokeDexTest = pokeData.map((poke, index) => {
           const test = { ...pageList[index], ...poke }
-          // console.log(test)
           return test
         })
         setPokeDex(pokeDexTest)
@@ -50,18 +46,43 @@ export default function Pokemon() {
     setPage(0)
   }
 
+  function setPokemon(pokemon) {
+    let tempTeam = [...team]
+    if (team.length < 6) {
+      tempTeam.push(pokemon)
+      setTeam(tempTeam)
+    }
+  }
+
+  function restartTeam() {
+    setTeam([])
+  }
+
   return (
     <>
-      <h1>Pokemon</h1>
+      <h1>Team Rocket</h1>
+      <button onClick={restartTeam}>Reset Team</button>
+      {team.map((pokemon) => (
+        <div key={pokemon.name}>
+          <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
+        </div>
+      ))}
+
       <button onClick={home}>Home</button>
       <button onClick={prevPage}>Previous Page</button>
       <button onClick={nextPage}>Next Page</button>
+
       {pokeDex.map((pokemon) => (
-        <div key={pokemon.name}>
-          <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
-          <p key={pokemon.name}>{pokemon.name}</p>
-        </div>
+        <a key={pokemon.name} onClick={() => setPokemon(pokemon)}>
+          <div key={pokemon.name}>
+            <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
+            <p key={pokemon.name}>{pokemon.name}</p>
+          </div>
+        </a>
       ))}
+      <button onClick={home}>Home</button>
+      <button onClick={prevPage}>Previous Page</button>
+      <button onClick={nextPage}>Next Page</button>
     </>
   )
 }
