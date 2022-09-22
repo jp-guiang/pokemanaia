@@ -53,10 +53,15 @@ export default function Pokemon() {
       setTeam(tempTeam)
     }
   }
+
+  function restartTeam() {
+    setTeam([])
+  }
+
   return (
     <>
       <h1>Team Rocket</h1>
-
+      <button onClick={restartTeam}>Reset Team</button>
       {team.map((pokemon) => (
         <div key={pokemon.name}>
           <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
@@ -78,7 +83,3 @@ export default function Pokemon() {
     </>
   )
 }
-
-// DONT DEELEET
-
-// team.map
