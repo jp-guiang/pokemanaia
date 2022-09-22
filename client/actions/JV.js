@@ -3,6 +3,7 @@ import { getPokemon, getPokeInfo } from '../apis/apiClient'
 export const SET_POKEMON = 'SET_POKEMON'
 export const SET_HP = 'SET_HP'
 export const SET_JV_HP = 'SET_JV_HP'
+export const SET_JV_ATK = 'SET_JV_ATK'
 
 export function setPokemon(pokemon) {
   return {
@@ -24,6 +25,14 @@ export function setOppHp(damage, pokemon) {
   return {
     type: SET_JV_HP,
     payload: damage,
+    pokemon,
+  }
+}
+
+export function setOppAtk(attack, pokemon) {
+  return {
+    type: SET_JV_ATK,
+    payload: attack,
     pokemon,
   }
 }
