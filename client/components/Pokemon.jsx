@@ -1,7 +1,3 @@
-// hello
-// bing
-// bing
-
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 
@@ -50,17 +46,24 @@ export default function Pokemon() {
     setPage(0)
   }
 
+  function setPokemon(e) {
+    console.log('pokemon has been clicked')
+  }
+
   return (
     <>
-      <h1>Pokemon</h1>
+      <h1>Click me</h1>
       <button onClick={home}>Home</button>
       <button onClick={prevPage}>Previous Page</button>
       <button onClick={nextPage}>Next Page</button>
+
       {pokeDex.map((pokemon) => (
-        <div key={pokemon.name}>
-          <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
-          <p key={pokemon.name}>{pokemon.name}</p>
-        </div>
+        <a key={pokemon.name} onClick={setPokemon}>
+          <div key={pokemon.name}>
+            <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
+            <p key={pokemon.name}>{pokemon.name}</p>
+          </div>
+        </a>
       ))}
     </>
   )
