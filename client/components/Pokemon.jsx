@@ -6,6 +6,7 @@ export default function Pokemon() {
   const [currentPage, setPage] = useState(0)
   const [pageLimit, setLimit] = useState(20)
   const [pokeDex, setPokeDex] = useState([])
+  const [team, setTeam] = useState([])
 
   useEffect(() => {
     getPokemon(currentPage, pageLimit)
@@ -23,7 +24,6 @@ export default function Pokemon() {
       .then((pokeData) => {
         const pokeDexTest = pokeData.map((poke, index) => {
           const test = { ...pageList[index], ...poke }
-          // console.log(test)
           return test
         })
         setPokeDex(pokeDexTest)
@@ -47,9 +47,12 @@ export default function Pokemon() {
   }
 
   function setPokemon(pokemon) {
-    return console.log(pokemon)
+    let tempTeam = [...team]
+    if (team.length < 6) {
+      tempTeam.push(pokemon)
+      setTeam(tempTeam)
+    }
   }
-  // console.log(pokeDex)
   return (
     <>
       <h1>Click me</h1>
@@ -69,4 +72,6 @@ export default function Pokemon() {
   )
 }
 
-//Check how many pokemon in local state, if >6 add and save
+// DONT DEELEET
+
+// team.map
