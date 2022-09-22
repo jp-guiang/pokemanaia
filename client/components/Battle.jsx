@@ -6,6 +6,8 @@ function Battle() {
   const myPokemon = useSelector((state) => state.myPokemon)
   const JVPokemon = useSelector((state) => state.JV)
   const dispatch = useDispatch()
+  const myPokemonImg = myPokemon[0].sprites.back_default
+  const oppPokemonImg = JVPokemon[0].sprites.front_default
 
   const [winState, setWinState] = useState('fight')
 
@@ -51,8 +53,28 @@ function Battle() {
   }, [myHP])
 
   return (
-    <div>
+    <div className="centering">
       <div className="battleScreen">
+        <div className="pokemonSprites">
+          <span className="oppPkmnName">{JVPokemon[0].name.toUpperCase()}</span>
+          <span className="myPkmnName">{myPokemon[0].name.toUpperCase()}</span>
+          <img
+            className="myHealth"
+            src="/images/myHealth.png"
+            alt="my health bar"
+          />
+          <img className="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
+          <img
+            className="oppPokemonImg"
+            src={oppPokemonImg}
+            alt="opponent Pokemon"
+          />
+          <img
+            className="oppHealth"
+            src="/images/oppHealth.png"
+            alt="opponent health bar"
+          />
+        </div>
         <img src="/images/image.png" alt="one outs in the carpark" />
         <img className="textbox" src="/images/textbox1.png" alt="textbox" />
         <div className="insideTextBox">
