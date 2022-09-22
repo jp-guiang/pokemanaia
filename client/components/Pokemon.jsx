@@ -55,7 +55,14 @@ export default function Pokemon() {
   }
   return (
     <>
-      <h1>Click me</h1>
+      <h1>Team Rocket</h1>
+
+      {team.map((pokemon) => (
+        <div key={pokemon.name}>
+          <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
+        </div>
+      ))}
+
       <button onClick={home}>Home</button>
       <button onClick={prevPage}>Previous Page</button>
       <button onClick={nextPage}>Next Page</button>
