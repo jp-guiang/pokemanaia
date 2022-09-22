@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 
-import fruits from './fruits'
+import myPokemon from './myPokemon'
+import JV from './JV'
+import david from './david'
 
 export default combineReducers({
-  fruits
+  myPokemon,
+  JV,
+  david,
 })
