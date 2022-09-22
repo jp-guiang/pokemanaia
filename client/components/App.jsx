@@ -1,6 +1,5 @@
 import React from 'react'
 import World from './World'
-import Phaser from 'phaser'
 import Battle from './Battle'
 
 const App = () => {
@@ -9,7 +8,7 @@ const App = () => {
       <h1>Pokemon</h1>
 
       <Battle />
-      {/* <World /> */}
+      <World />
     </div>
   )
 }

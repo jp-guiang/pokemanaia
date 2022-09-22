@@ -1,42 +1,54 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setOppHp } from '../actions/JV.js'
 
 function Battle() {
-  const [hp, setHp] = useState(35)
-  const [winState, setWinState] = useState('fight')
-  // grab your pokemon stats/moves from state
-  // grab opponent pokemon stats/moves from state
+  const myPokemon = useSelector((state) => state.myPokemon)
+  const JVPokemon = useSelector((state) => state.JV)
+  const dispatch = useDispatch()
 
-  const attack = 55
-  const defense = 40
-  const power = 50
-  let STAB = 1
+  const [winState, setWinState] = useState('fight')
+
+  const myHP = myPokemon[0].stats[0].base_stat
+  const myAttack = myPokemon[0].stats[1].base_stat
+  const myDefense = myPokemon[0].stats[2].base_stat
+
+  const oppHP = JVPokemon[0].stats[0].base_stat
+  const oppAttack = JVPokemon[0].stats[1].base_stat
+  const oppDefense = JVPokemon[0].stats[2].base_stat
+
   const effective1 = 1
   const effective2 = 1
 
-  function attackOpponent(type, power) {
+  function attackOpponent(type, power, opponent) {
+    let STAB = 1
     const critRnd = Math.random()
     const random = Math.round(Math.floor(Math.random() * 39 + 218) / 255)
     let critVal = (2 * 1 * 1) / 5 + 2
     if (critRnd <= 0.0625) {
       critVal = (2 * 1 * 2) / 5 + 2
     }
-    if (type == 'electric') {
-      STAB = STAB * 1.5
+    if (type == 'special') {
+      STAB = 1.5
+    } else if (type == 'normal') {
+      STAB = 1
     }
     const dmg =
-      ((critVal * power * (attack / defense)) / 50 + 2) *
+      ((critVal * power * (myAttack / oppDefense)) / 50 + 2) *
       STAB *
       effective1 *
       effective2 *
       random
-    setHp(hp - Math.round(dmg))
+    const finalHP = Math.round(JVPokemon[0].stats[0].base_stat - dmg)
+    dispatch(setOppHp(finalHP, opponent))
+    console.log('attackOpp: ', finalHP)
   }
 
   useEffect(() => {
-    if (hp <= 0) {
+    if (myHP <= 0) {
       setWinState('fainted')
     }
-  }, [hp])
+  }, [myHP])
 
   return (
     <div>
@@ -46,11 +58,13 @@ function Battle() {
         <div className="insideTextBox">
           <div>
             {winState}
-            {hp}
+            {oppHP}
           </div>
           <div className="buttons">
-            <button onClick={() => attackOpponent('normal', 50)}>Tackle</button>
-            <button onClick={() => attackOpponent('electric', 70)}>
+            <button onClick={() => attackOpponent('normal', 70, JVPokemon[0])}>
+              Tackle
+            </button>
+            <button onClick={() => attackOpponent('special', 70, JVPokemon[0])}>
               Electric Shock
             </button>
           </div>
