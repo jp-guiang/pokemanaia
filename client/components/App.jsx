@@ -1,23 +1,13 @@
 import React from 'react'
-import styled from 'styled-components'
-
-import Pokemon from './Pokemon'
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-`
+import World from './World'
 
 const App = () => {
   return (
-    <Container>
-      <h1>I Love Pokemon!</h1>
+    <div>
+      <h1>Pokemon</h1>
 
-      <Pokemon />
-    </Container>
+      <World />
+    </div>
   )
 }
 
