@@ -80,6 +80,9 @@ export default function Pokemon() {
           </div>
         </a>
       ))}
+      <button onClick={home}>Home</button>
+      <button onClick={prevPage}>Previous Page</button>
+      <button onClick={nextPage}>Next Page</button>
     </>
   )
 }
