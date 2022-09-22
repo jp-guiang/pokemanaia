@@ -47,10 +47,10 @@ function Battle() {
   }
 
   useEffect(() => {
-    if (myHP <= 0) {
+    if (oppHP <= 0) {
       setWinState('fainted')
     }
-  }, [myHP])
+  }, [oppHP])
 
   return (
     <div className="centering">
@@ -58,6 +58,7 @@ function Battle() {
         <div className="pokemonSprites">
           <span className="oppPkmnName">{JVPokemon[0].name.toUpperCase()}</span>
           <span className="myPkmnName">{myPokemon[0].name.toUpperCase()}</span>
+          <div className="myHealthBar"></div>
           <img
             className="myHealth"
             src="/images/myHealth.png"
@@ -69,15 +70,19 @@ function Battle() {
             src={oppPokemonImg}
             alt="opponent Pokemon"
           />
+          <div className="oppHealthBar"></div>
           <img
             className="oppHealth"
             src="/images/oppHealth.png"
             alt="opponent health bar"
           />
         </div>
-        <img src="/images/image.png" alt="one outs in the carpark" />
+        <img src="/images/carpark.png" alt="one outs in the carpark" />
         <img className="textbox" src="/images/textbox1.png" alt="textbox" />
         <div className="insideTextBox">
+          <div>
+            <p>What will {myPokemon[0].name.toUpperCase()} do?</p>
+          </div>
           <div>
             {winState}
             {oppHP}
