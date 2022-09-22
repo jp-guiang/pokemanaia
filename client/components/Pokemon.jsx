@@ -1,3 +1,7 @@
+// hello
+// bing
+// bing
+
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 
@@ -45,7 +49,7 @@ export default function Pokemon() {
   function home() {
     setPage(0)
   }
-  console.log(pokeDex)
+
   return (
     <>
       <h1>Pokemon</h1>
