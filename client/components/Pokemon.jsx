@@ -46,10 +46,10 @@ export default function Pokemon() {
     setPage(0)
   }
 
-  function setPokemon(e) {
-    console.log('pokemon has been clicked')
+  function setPokemon(pokemon) {
+    return console.log(pokemon)
   }
-
+  // console.log(pokeDex)
   return (
     <>
       <h1>Click me</h1>
@@ -58,7 +58,7 @@ export default function Pokemon() {
       <button onClick={nextPage}>Next Page</button>
 
       {pokeDex.map((pokemon) => (
-        <a key={pokemon.name} onClick={setPokemon}>
+        <a key={pokemon.name} onClick={() => setPokemon(pokemon)}>
           <div key={pokemon.name}>
             <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
             <p key={pokemon.name}>{pokemon.name}</p>
@@ -68,3 +68,5 @@ export default function Pokemon() {
     </>
   )
 }
+
+//Check how many pokemon in local state, if >6 add and save
