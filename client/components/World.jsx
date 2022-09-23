@@ -9,14 +9,9 @@ let player
 let showDebug = false
 
 function preload() {
-  this.load.image(
-    'tiles',
-    'https://mikewesthad.github.io/phaser-3-tilemap-blog-posts/post-1/assets/tilesets/tuxmon-sample-32px-extruded.png'
-  )
-  this.load.tilemapTiledJSON(
-    'map',
-    'https://mikewesthad.github.io/phaser-3-tilemap-blog-posts/post-1/assets/tilemaps/tuxemon-town.json'
-  )
+  this.load.image('tiles', 'big_tileset4.png')
+
+  this.load.tilemapTiledJSON('map', 'pleasework.json')
 
   // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
   // the player animations (walking left, walking right, etc.) in one image. For more info see:
@@ -35,7 +30,7 @@ function create() {
 
   // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
   // Phaser's cache (i.e. the name you used in preload)
-  const tileset = map.addTilesetImage('tuxmon-sample-32px-extruded', 'tiles')
+  const tileset = map.addTilesetImage('big_tileset4', 'tiles')
 
   // Parameters: layer name (or index) from Tiled, tileset, x, y
   const belowLayer = map.createLayer('Below Player', tileset, 0, 0)
@@ -43,6 +38,7 @@ function create() {
   const aboveLayer = map.createLayer('Above Player', tileset, 0, 0)
 
   worldLayer.setCollisionByProperty({ collides: true })
+  aboveLayer.setCollisionByProperty({ collides: true })
 
   // By default, everything gets depth sorted on the screen in the order we created things. Here, we
   // want the "Above Player" layer to sit on top of the player, so we explicitly give it a depth.
@@ -65,6 +61,7 @@ function create() {
 
   // Watch the player and worldLayer for collisions, for the duration of the scene:
   this.physics.add.collider(player, worldLayer)
+  this.physics.add.collider(player, aboveLayer)
 
   // Create the player's walking animations from the texture atlas. These are stored in the global
   // animation manager so any sprite can access them.
