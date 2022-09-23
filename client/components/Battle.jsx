@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setOppHp, setOppAtk } from '../actions/JV.js'
-import { setPokeHp, setMyDef } from '../actions/myPokemon.js'
+import { setOppHp, setOppAtk, setOppDef } from '../actions/JV.js'
+import { setPokeHp, setMyDef, setMyAtk } from '../actions/myPokemon.js'
 
 function Battle() {
   const myPokemon = useSelector((state) => state.myPokemon[0])
@@ -23,11 +23,16 @@ function Battle() {
   const effective1 = 1
   const effective2 = 1
 
+  const [count, setCount] = useState(0)
+
   const [winState, setWinState] = useState('fight')
   const [initOppHP, setInitOppHP] = useState(oppHP)
   const [initMyHP, setInitMyHP] = useState(myHP)
   const [oppHPBar, setOppHPBar] = useState(200)
   const [myHPBar, setMyHPBar] = useState(200)
+  const [fightText, setFightText] = useState(
+    `What will ${myPokemon.name.toUpperCase()} do?`
+  )
 
   function attackOpponent(type, power, opponent) {
     let STAB = 1
@@ -39,8 +44,24 @@ function Battle() {
     }
     if (type == 'special') {
       STAB = 1.5
+      setFightText(
+        `${myPokemon.name.toUpperCase()} used ${myType.toUpperCase()} ATTACK`
+      )
+      document.getElementById('orb').style.visibility = 'visible'
+      document.getElementById('orb').style.left = '570px'
+      document.getElementById('orb').style.top = '130px'
+      setTimeout(() => {
+        document.getElementById('orb').style.left = '200px'
+        document.getElementById('orb').style.top = '300px'
+        document.getElementById('orb').style.visibility = 'hidden'
+      }, 550)
     } else if (type == 'normal') {
       STAB = 1
+      setFightText(`${myPokemon.name.toUpperCase()} used TACKLE`)
+      document.getElementById('myPokemonImg').style.left = '145px'
+      setTimeout(() => {
+        document.getElementById('myPokemonImg').style.left = '25px'
+      }, 350)
     }
     const dmg =
       ((critVal * power * (myAttack / oppDefense)) / 50 + 2) *
@@ -50,25 +71,51 @@ function Battle() {
       random
     const finalHP = Math.round(JVPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initOppHP) * 200)
-    setOppHPBar(oppHPBar - percentDmg)
-    dispatch(setOppHp(finalHP, opponent))
-    // setTimeout(() => {
-    attackMyPkmn('normal', 70, myPokemon)
-    // }, 500)
+    setTimeout(() => {
+      setOppHPBar(oppHPBar - percentDmg)
+      dispatch(setOppHp(finalHP, opponent))
+    }, 700)
+    setTimeout(() => {
+      const atkRndm = Math.random()
+      if (atkRndm >= 0.4) {
+        attackMyPkmn(70, myPokemon)
+      } else if (atkRndm < 0.4 && atkRndm >= 0.2) {
+        lowerMyAtk(myPokemon)
+      } else if (atkRndm < 0.2) {
+        raiseOppDefense(JVPokemon)
+      }
+    }, 1500)
   }
 
-  function attackMyPkmn(type, power, myPkmn) {
+  function attackMyPkmn(power, myPkmn) {
     let STAB = 1
     const critRnd = Math.random()
+    const type = Math.random()
     const random = Math.round(Math.floor(Math.random() * 39 + 218) / 255)
     let critVal = (2 * 1 * 1) / 5 + 2
     if (critRnd <= 0.0625) {
       critVal = (2 * 1 * 2) / 5 + 2
     }
-    if (type == 'special') {
+    if (type < 0.5) {
       STAB = 1.5
-    } else if (type == 'normal') {
+      setFightText(
+        `${JVPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
+      )
+      document.getElementById('ball').style.visibility = 'visible'
+      document.getElementById('ball').style.left = '200px'
+      document.getElementById('ball').style.top = '300px'
+      setTimeout(() => {
+        document.getElementById('ball').style.left = '570px'
+        document.getElementById('ball').style.top = '130px'
+        document.getElementById('ball').style.visibility = 'hidden'
+      }, 550)
+    } else if (type >= 0.5) {
+      setFightText(`${JVPokemon.name.toUpperCase()} used TACKLE`)
       STAB = 1
+      document.getElementById('oppPokemonImg').style.left = '430px'
+      setTimeout(() => {
+        document.getElementById('oppPokemonImg').style.left = '505px'
+      }, 350)
     }
     const dmg =
       ((critVal * power * (myAttack / oppDefense)) / 50 + 2) *
@@ -78,21 +125,91 @@ function Battle() {
       random
     const finalHP = Math.round(myPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initMyHP) * 200)
-    setMyHPBar(myHPBar - percentDmg)
+    setTimeout(() => {
+      setMyHPBar(myHPBar - percentDmg)
+    }, 700)
     dispatch(setPokeHp(finalHP, myPkmn))
+    setTimeout(() => {
+      if (critRnd <= 0.0625) {
+        setFightText('Critical hit!')
+      }
+    }, 700)
+    setTimeout(() => {
+      setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+    }, 1500)
   }
 
   function lowerOppAtk(target) {
     if (JVPokemon.stats[1].base_stat > 8) {
       const attack = JVPokemon.stats[1].base_stat - 7
       dispatch(setOppAtk(attack, target))
+      setFightText(`${myPokemon.name.toUpperCase()} used GROWL`)
+      document.getElementById('myGrowl').style.visibility = 'visible'
+      setTimeout(() => {
+        document.getElementById('myGrowl').style.visibility = 'hidden'
+      }, 1250)
     }
+    setTimeout(() => {
+      const atkRndm = Math.random()
+      if (atkRndm >= 0.4) {
+        attackMyPkmn(70, myPokemon)
+      } else if (atkRndm < 0.4 && atkRndm >= 0.2) {
+        lowerMyAtk(myPokemon)
+      } else if (atkRndm < 0.2) {
+        raiseOppDefense(JVPokemon)
+      }
+    }, 1500)
   }
 
   function raiseDefense(target) {
-    if (myPokemon.stats[1].base_stat < 80) {
+    if (myPokemon.stats[2].base_stat < 80) {
       const defense = myPokemon.stats[1].base_stat + 7
       dispatch(setMyDef(defense, target))
+      setFightText(`${myPokemon.name.toUpperCase()} used DEFENSE CURL`)
+      document.getElementById('myShield').style.visibility = 'visible'
+      setTimeout(() => {
+        document.getElementById('myShield').style.visibility = 'hidden'
+      }, 1250)
+    }
+    setTimeout(() => {
+      const atkRndm = Math.random()
+      if (atkRndm >= 0.4) {
+        attackMyPkmn(70, myPokemon)
+      } else if (atkRndm < 0.4 && atkRndm >= 0.2) {
+        lowerMyAtk(myPokemon)
+      } else if (atkRndm < 0.2) {
+        raiseOppDefense(JVPokemon)
+      }
+    }, 1500)
+  }
+
+  function lowerMyAtk(target) {
+    if (myPokemon.stats[1].base_stat > 8) {
+      const attack = myPokemon.stats[1].base_stat - 7
+      dispatch(setMyAtk(attack, target))
+      setFightText(`${JVPokemon.name.toUpperCase()} used GROWL`)
+      document.getElementById('oppGrowl').style.visibility = 'visible'
+      setTimeout(() => {
+        document.getElementById('oppGrowl').style.visibility = 'hidden'
+      }, 1250)
+    }
+    setTimeout(() => {
+      setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+    }, 1500)
+  }
+
+  function raiseOppDefense(target) {
+    if (JVPokemon.stats[1].base_stat < 80) {
+      const defense = JVPokemon.stats[1].base_stat + 7
+      dispatch(setOppDef(defense, target))
+      setFightText(`${JVPokemon.name.toUpperCase()} used DEFENSE CURL`)
+      document.getElementById('oppShield').style.visibility = 'visible'
+      setTimeout(() => {
+        document.getElementById('oppShield').style.visibility = 'hidden'
+      }, 1250)
+      setTimeout(() => {
+        setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+      }, 1500)
     }
   }
 
@@ -122,6 +239,7 @@ function Battle() {
     } else if (myHP <= 0) {
       setWinState('lost')
     }
+    setCount(count + 1)
   }, [oppHP, myHP])
 
   return (
@@ -142,12 +260,22 @@ function Battle() {
             src="/images/myHealth.png"
             alt="my health bar"
           />
-          <img className="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
+          <img id="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
+          <img id="orb" src="/images/orb.png" alt="orb of light" />
+          <img id="ball" src="/images/ball.png" alt="ball of light" />
+          <img id="myGrowl" src="/images/growl.gif" alt="growl lines" />
+          <img id="oppGrowl" src="/images/growl.gif" alt="growl lines" />
           <img
-            className="oppPokemonImg"
-            src={oppPokemonImg}
-            alt="opponent Pokemon"
+            id="myShield"
+            src="/images/force-shield.gif"
+            alt="opponent forcefield"
           />
+          <img
+            id="oppShield"
+            src="/images/force-shield.gif"
+            alt="my forcefield"
+          />
+          <img id="oppPokemonImg" src={oppPokemonImg} alt="opponent Pokemon" />
           <div id="oppHealthBar"></div>
           <div className="oppHealthBarBacking"></div>
           <img
@@ -160,7 +288,7 @@ function Battle() {
         <img className="textbox" src="/images/textbox1.png" alt="textbox" />
         <div className="insideTextBox">
           <div className="fightQuestion">
-            <p>What will {myPokemon.name.toUpperCase()} do?</p>
+            <p>{fightText}</p>
           </div>
 
           <div className="fightButtons">

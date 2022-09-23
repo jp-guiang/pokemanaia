@@ -2,7 +2,8 @@ import { getPokemon, getPokeInfo } from '../apis/apiClient'
 
 export const SET_POKEMON = 'SET_POKEMON'
 export const SET_HP = 'SET_HP'
-export const SET_MY_DEF = 'SET_MTY_DEF'
+export const SET_MY_DEF = 'SET_MY_DEF'
+export const SET_MY_ATK = 'SET_MY_ATK'
 
 export function setPokemon(pokemon) {
   return {
@@ -32,6 +33,14 @@ export function setMyDef(defense, pokemon) {
   return {
     type: SET_MY_DEF,
     payload: defense,
+    pokemon,
+  }
+}
+
+export function setMyAtk(attack, pokemon) {
+  return {
+    type: SET_MY_ATK,
+    payload: attack,
     pokemon,
   }
 }
