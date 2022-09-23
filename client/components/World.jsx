@@ -63,7 +63,7 @@ function create() {
   // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
   player = this.physics.add
     .sprite(spawnPoint.x, spawnPoint.y, 'atlas', 'misa-front')
-    .setSize(30, 40)
+    .setSize(30, 32)
     .setOffset(0, 24)
 
   // Watch the player and worldLayer for collisions, for the duration of the scene:
@@ -130,7 +130,7 @@ function create() {
 
   // Help text that has a "fixed" position on the screen
   this.add
-    .text(16, 16, 'Arrow keys to move\nPress "D" to show hitboxes', {
+    .text(256, 16, 'Use Arrow keys to move', {
       font: '18px monospace',
       fill: '#000000',
       padding: { x: 20, y: 10 },
@@ -169,7 +169,7 @@ function openExternalLink() {
 }
 
 function update(time, delta) {
-  const speed = 200
+  const speed = 500
   const prevVelocity = player.body.velocity.clone()
 
   // Stop any previous movement from the last frame
