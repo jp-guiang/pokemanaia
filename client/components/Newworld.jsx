@@ -1,13 +1,10 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import Phaser from 'phaser'
 
-class World extends Component {
-  constructor(props) {
-    super(props)
-
-    // this.state.showWorld = props.showWorld
-  }
-  componentDidMount() {
+function Newworld(props) {
+  console.log(props)
+  useEffect(() => {
+    // if (!props.gameStarted) {
     const config = {
       type: Phaser.AUTO,
       width: 800,
@@ -28,10 +25,10 @@ class World extends Component {
         update: update,
       },
     }
+    let game = null
 
     game = new Phaser.Game(config)
-
-    let game = null
+    // }
 
     // this.game = new Phaser.Game(this.config)
     let cursors
@@ -112,8 +109,8 @@ class World extends Component {
 
       function collisionlistener() {
         console.log('action')
-        // this.props.showWorld(false)
-        console.log(component.props)
+        props.showWorld(false)
+        // console.log(component.props)
         this.physics.world.removeCollider(testOverlap)
         // this.physics.world.disable(zone)
       }
@@ -256,11 +253,9 @@ class World extends Component {
         else if (prevVelocity.y > 0) player.setTexture('atlas', 'misa-front')
       }
     }
-  }
+  }, [])
 
-  render() {
-    return <div id="game-container"></div>
-  }
+  return <div id="game-container"></div>
 }
 
-export default World
+export default Newworld

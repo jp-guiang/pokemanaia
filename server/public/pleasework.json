@@ -186,7 +186,7 @@
         }, 
         {
          "data":[0, 17537, 17538, 17539, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19462, 0, 0, 0, 13645, 13646, 13647, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19526, 19463, 0, 0, 13709, 13710, 13711, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1893, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19526, 19463, 0, 0, 13709, 13710, 13711, 0,
             0, 0, 17540, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13773, 13774, 13775, 0,
             0, 0, 0, 0, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 4745, 0, 0, 0, 0, 0, 0, 13837, 13838, 13839, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13901, 13902, 13903, 0,
@@ -277,6 +277,35 @@
         }, 
         {
          "draworder":"topdown",
+         "id":5,
+         "name":"Boss",
+         "objects":[
+                {
+                 "class":"",
+                 "gid":2533,
+                 "height":32,
+                 "id":282,
+                 "name":"testObject",
+                 "properties":[
+                        {
+                         "name":"onOverlap",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":32,
+                 "x":384,
+                 "y":97
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"Objects",
          "objects":[
@@ -289,17 +318,17 @@
                  "rotation":0,
                  "visible":true,
                  "width":0,
-                 "x":77.7568700512343,
-                 "y":65.3712156497438
+                 "x":77.7569,
+                 "y":65.3712
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":5,
- "nextobjectid":277,
+ "nextlayerid":7,
+ "nextobjectid":285,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -308,13 +337,13 @@
          "value":"clamped"
         }],
  "renderorder":"right-down",
- "tiledversion":"1.9.2",
+ "tiledversion":"1.9.1",
  "tileheight":32,
  "tilesets":[
         {
          "columns":64,
          "firstgid":1,
-         "image":"C:\/Users\/ashfi\/Downloads\/big_tileset4.png",
+         "image":"..\/..\/..\/phaser-3-tilemap-blog-posts\/examples\/post-1\/assets\/tilesets\/big_tileset4.png",
          "imageheight":16384,
          "imagewidth":2048,
          "margin":0,
