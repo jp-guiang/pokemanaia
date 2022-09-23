@@ -1,4 +1,4 @@
-import { SET_JV_HP, SET_JV_ATK } from '../actions/JV.js'
+import { SET_JV_HP, SET_JV_ATK, SET_JV_DEF } from '../actions/JV.js'
 
 const initialState = [
   {
@@ -57,6 +57,15 @@ const reducer = (state = initialState, action) => {
         if (jvPokemon.id == pokemon.id) {
           const tempPokemon = jvPokemon
           tempPokemon.stats[1].base_stat = payload
+          return tempPokemon
+        }
+        return jvPokemon
+      })
+    case SET_JV_DEF:
+      return state.map((jvPokemon) => {
+        if (jvPokemon.id == pokemon.id) {
+          const tempPokemon = jvPokemon
+          tempPokemon.stats[2].base_stat = payload
           return tempPokemon
         }
         return jvPokemon

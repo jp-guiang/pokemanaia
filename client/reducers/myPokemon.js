@@ -1,4 +1,4 @@
-import { SET_HP, SET_MY_DEF } from '../actions/myPokemon'
+import { SET_HP, SET_MY_DEF, SET_MY_ATK } from '../actions/myPokemon'
 
 const initialState = [
   {
@@ -53,6 +53,15 @@ const reducer = (state = initialState, action) => {
         return myPokemon
       })
     case SET_MY_DEF:
+      return state.map((myPokemon) => {
+        if (myPokemon.id == pokemon.id) {
+          const tempPokemon = myPokemon
+          tempPokemon.stats[2].base_stat = payload
+          return tempPokemon
+        }
+        return myPokemon
+      })
+    case SET_MY_ATK:
       return state.map((myPokemon) => {
         if (myPokemon.id == pokemon.id) {
           const tempPokemon = myPokemon
