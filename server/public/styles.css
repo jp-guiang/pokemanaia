@@ -203,7 +203,7 @@ h1 {
   font-size: 22px;
   top: 395px;
   right: 40px;
-  z-index: 4;
+  z-index: 6;
 }
 
 #orb {
@@ -268,8 +268,4 @@ h1 {
   top: 90px;
   left: 530px;
   z-index: 3;
-}
-
-.myHP {
-  z-index: 6;
 }
