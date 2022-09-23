@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
+// import '../../server/public/styles.css'
 
+// const HoverText = styled.p`
+//   color: #000;
+//   :hover {
+//     color: #ed1212;
+//     cursor: pointer;
+//   }
+// `
 export default function Pokemon({ hoverData: pokemon }) {
   const [isHovering, setIsHovering] = useState(false)
   const handleMouseOver = () => {
@@ -13,6 +21,7 @@ export default function Pokemon({ hoverData: pokemon }) {
     <>
       <div key={pokemon.name}>
         <img
+          style={isHovering ? { opacity: '50%' } : null}
           src={pokemon.sprites.front_default}
           alt={'pokemon'}
           onMouseOver={handleMouseOver}
