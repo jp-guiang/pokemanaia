@@ -21,12 +21,24 @@ export default function Pokemon({ hoverData: pokemon }) {
 
         {isHovering && (
           <div>
-            <h2>HP:{pokemon.stats[0].base_stat}</h2>
-            <h2>Attack:{pokemon.stats[1].base_stat}</h2>
-            <h2>Defense:{pokemon.stats[2].base_stat}</h2>
-            <h2>Special-attack:{pokemon.stats[3].base_stat}</h2>
-            <h2>Special-defense:{pokemon.stats[4].base_stat}</h2>
-            <h2>Speed:{pokemon.stats[5].base_stat}</h2>
+            <p>
+              <strong>HP:</strong> {pokemon.stats[0].base_stat}
+            </p>
+            <p>
+              <strong>Attack:</strong> {pokemon.stats[1].base_stat}
+            </p>
+            <p>
+              <strong>Defense:</strong> {pokemon.stats[2].base_stat}
+            </p>
+            <p>
+              <strong>Special-attack:</strong> {pokemon.stats[3].base_stat}
+            </p>
+            <p>
+              <strong>Special-defense:</strong> {pokemon.stats[4].base_stat}
+            </p>
+            <p>
+              <strong>Speed:</strong> {pokemon.stats[5].base_stat}
+            </p>
           </div>
         )}
         <p key={pokemon.name}>{pokemon.name}</p>
