@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Pokemon from './Pokemon'
+import Home from './Home'
 
 import World from './World'
 import Battle from './Battle'
@@ -15,8 +15,9 @@ const App = () => {
   return (
     <div>
       <h1>Choose your Pokemon!</h1>
-      {!showWorld && <Pokemon fn={aWholeNewWorld} />}
-      {showWorld && <World />}
+      {!showWorld && <Home fn={aWholeNewWorld} />}
+      {/* {showWorld && <World />} */}
+      {showWorld && <h1>fufdufeu</h1>}
       <h1>Pokemon</h1>
 
       {/* <Battle />
