@@ -67,6 +67,7 @@ export default function Pokemon(props) {
     if (team.length != 0) {
       dispatch(returnTeam(team))
       mapToggle()
+      console.log(team)
     }
   }
 
