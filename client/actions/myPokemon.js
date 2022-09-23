@@ -4,6 +4,7 @@ export const SET_POKEMON = 'SET_POKEMON'
 export const SET_HP = 'SET_HP'
 export const SET_MY_DEF = 'SET_MY_DEF'
 export const SET_MY_ATK = 'SET_MY_ATK'
+export const SET_TEAM = 'SET_TEAM'
 
 export function setPokemon(pokemon) {
   return {
@@ -42,5 +43,12 @@ export function setMyAtk(attack, pokemon) {
     type: SET_MY_ATK,
     payload: attack,
     pokemon,
+  }
+}
+
+export function returnTeam(team) {
+  return {
+    type: SET_TEAM,
+    payload: team,
   }
 }

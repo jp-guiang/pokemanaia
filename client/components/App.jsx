@@ -9,17 +9,17 @@ const App = () => {
   const [showWorld, setShowWorld] = useState(false)
 
   function aWholeNewWorld(event) {
-    event.preventDefault()
+    // event.preventDefault()
     setShowWorld(!showWorld)
-    console.log(team)
+    console.log('a whole new world')
   }
   return (
     <div>
-      <button onClick={aWholeNewWorld}>Confirm</button>
+      {/* <button onClick={aWholeNewWorld}>Confirm</button> */}
       <h1>Choose your Pokemon!</h1>
-      {!showWorld && <Pokemon />}
-      {/* {showWorld && <World />} */}
-      {showWorld && <p>TESTERSAERGAAG</p>}
+      {!showWorld && <Pokemon fn={aWholeNewWorld} />}
+      {showWorld && <World />}
+      {/* {showWorld && <p>TESTERSAERGAAG</p>} */}
       <h1>Pokemon</h1>
 
       {/* commenting these out for now cause pc breaky -jp */}
