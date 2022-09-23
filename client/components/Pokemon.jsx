@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
+import { useDispatch } from 'react-redux'
+import { returnTeam } from '../actions/team.actions'
+import Team from './Team'
 
 export default function Pokemon() {
   const [pageList, setPokemonList] = useState([])
@@ -7,6 +10,7 @@ export default function Pokemon() {
   const [pageLimit, setLimit] = useState(20)
   const [pokeDex, setPokeDex] = useState([])
   const [team, setTeam] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     getPokemon(currentPage, pageLimit)
@@ -58,15 +62,16 @@ export default function Pokemon() {
     setTeam([])
   }
 
+  function confirmTeam() {
+    dispatch(returnTeam(team))
+  }
+
   return (
     <>
       <h1>Team Rocket</h1>
       <button onClick={restartTeam}>Reset Team</button>
-      {team.map((pokemon) => (
-        <div key={pokemon.name}>
-          <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
-        </div>
-      ))}
+      <button onClick={confirmTeam}>Confirm Team</button>
+      <Team team={team} />
 
       <button onClick={home}>Home</button>
       <button onClick={prevPage}>Previous Page</button>
