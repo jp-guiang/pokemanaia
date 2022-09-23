@@ -9,14 +9,9 @@ let player
 let showDebug = false
 
 function preload() {
-  this.load.image(
-    'tiles',
-    'https://mikewesthad.github.io/phaser-3-tilemap-blog-posts/post-1/assets/tilesets/tuxmon-sample-32px-extruded.png'
-  )
-  this.load.tilemapTiledJSON(
-    'map',
-    'https://mikewesthad.github.io/phaser-3-tilemap-blog-posts/post-1/assets/tilemaps/tuxemon-town.json'
-  )
+  // this.load.image('tiles', 'tuxmon-sample-32px-extruded.png')
+  this.load.image('tiles', 'big_tileset4.png')
+  this.load.tilemapTiledJSON('map', 'tuxemon3.json')
 
   // An atlas is a way to pack multiple images together into one texture. I'm using it to load all
   // the player animations (walking left, walking right, etc.) in one image. For more info see:
@@ -32,10 +27,18 @@ function preload() {
 
 function create() {
   const map = this.make.tilemap({ key: 'map' })
+  // this.atlas = this.game.add.sprite(
+  //   this.game.world.centerX,
+  //   this.game.world.centerY
+  // )
+
+  // this.atlas.anchor.setTo(0.5, 0.5)
+  // this.atlas.scale.setTo(0.5, 0.5)
 
   // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
   // Phaser's cache (i.e. the name you used in preload)
-  const tileset = map.addTilesetImage('tuxmon-sample-32px-extruded', 'tiles')
+  // const tileset = map.addTilesetImage('tuxmon-sample-32px-extruded', 'tiles')
+  const tileset = map.addTilesetImage('big_tileset4', 'tiles')
 
   // Parameters: layer name (or index) from Tiled, tileset, x, y
   const belowLayer = map.createLayer('Below Player', tileset, 0, 0)
@@ -69,6 +72,7 @@ function create() {
   // Create the player's walking animations from the texture atlas. These are stored in the global
   // animation manager so any sprite can access them.
   const anims = this.anims
+
   anims.create({
     key: 'misa-left-walk',
     frames: anims.generateFrameNames('atlas', {
@@ -147,6 +151,20 @@ function create() {
       faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
     })
   })
+}
+
+function openExternalLink() {
+  var tweet = 'I am testing a button from within a Phaser example'
+
+  var url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweet)
+
+  var s = window.open(url, '_blank')
+
+  if (s && s.focus) {
+    s.focus()
+  } else if (!s) {
+    window.location.href = url
+  }
 }
 
 function update(time, delta) {

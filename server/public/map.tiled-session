@@ -1,0 +1,105 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "#big_tileset2": {
+            "scaleInDock": 1
+        },
+        "#tileset-hoenn_ows_remake": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tileset-hoenn_ows_remake.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon1.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 316,
+                "y": 738.5
+            }
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon1.tmx#big_tileset3": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon1.tmx#big_tileset4": {
+            "scaleInDock": 1
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon1.tmx#tuxmon-sample-32px-extruded": {
+            "scaleInDock": 1
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon2.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 350,
+                "y": 761
+            }
+        },
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon2.tmx#big_tileset4": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 0.5
+        },
+        "/home/aaron/devacademy/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon-town.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 786,
+                "y": 719
+            }
+        },
+        "/home/aaron/devacademy/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon-town.tmx#tuxmon-sample-32px-extruded": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "big_tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.exportedFilePath": "/home/aaron/devacademy/bootcamp/team-rocket/server/public",
+    "last.externalTilesetPath": "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps",
+    "last.imagePath": "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilesets",
+    "map.height": 80,
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 40,
+    "openFiles": [
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon2.tmx"
+    ],
+    "project": "map.tiled-project",
+    "property.type": "object",
+    "recentFiles": [
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon2.tmx",
+        "/home/aaron/devacademy/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon-town.tmx",
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tuxemon1.tmx",
+        "/home/aaron/devacademy/bootcamp/phaser-3-tilemap-blog-posts/examples/post-1/assets/tilemaps/tileset-hoenn_ows_remake.tsx",
+        "big_tileset.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 32,
+        "width": 32
+    },
+    "tileset.useTransparentColor": false
+}
