@@ -3,6 +3,7 @@ import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
+import HoverPokemon from './HoverPokemon'
 
 export default function Pokemon(props) {
   const [pageList, setPokemonList] = useState([])
@@ -67,12 +68,14 @@ export default function Pokemon(props) {
     if (team.length != 0) {
       dispatch(returnTeam(team))
       mapToggle()
+      console.log(team)
     }
   }
 
   return (
     <>
       <h1>Team Rocket</h1>
+
       <button onClick={restartTeam}>Reset Team</button>
       <button onClick={confirmTeam}>Confirm Team</button>
       <Team team={team} />
@@ -83,10 +86,7 @@ export default function Pokemon(props) {
 
       {pokeDex.map((pokemon) => (
         <a key={pokemon.name} onClick={() => setPokemon(pokemon)}>
-          <div key={pokemon.name}>
-            <img src={pokemon.sprites.front_default} alt={'pokemon'}></img>
-            <p key={pokemon.name}>{pokemon.name}</p>
-          </div>
+          <HoverPokemon hoverData={pokemon} />
         </a>
       ))}
       <button onClick={home}>Home</button>
