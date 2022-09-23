@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
-import { returnTeam } from '../actions/team.actions'
+import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 
-export default function Pokemon() {
+export default function Pokemon(props) {
   const [pageList, setPokemonList] = useState([])
   const [currentPage, setPage] = useState(0)
   const [pageLimit, setLimit] = useState(20)
   const [pokeDex, setPokeDex] = useState([])
   const [team, setTeam] = useState([])
   const dispatch = useDispatch()
+  const mapToggle = props.fn
 
   useEffect(() => {
     getPokemon(currentPage, pageLimit)
@@ -63,7 +64,10 @@ export default function Pokemon() {
   }
 
   function confirmTeam() {
-    dispatch(returnTeam(team))
+    if (team.length != 0) {
+      dispatch(returnTeam(team))
+      mapToggle()
+    }
   }
 
   return (
