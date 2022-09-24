@@ -291,10 +291,10 @@ function World(props) {
       {/* {!battle ? themeSongPlay(true) : themeSongPlay(false)} */}
       {/* <button onClick={click ? }> */}
       Turn on themesong
-      <button onClick={battleSong}>play</button>
-      <button onClick={battleSongpause}>stop</button>
-      <button onClick={themeSongPlay}>play</button>
-      <button onClick={themeSongPause}>stop</button>
+      <button onClick={themeSongPlay}>Theme Song Play</button>
+      <button onClick={themeSongPause}>Stop</button>
+      <button onClick={battleSong}>Battle Song Play</button>
+      <button onClick={battleSongpause}>Stop</button>
       {battle && (
         <Battle battle={setBattle} battleSongpause={battleSongpause} />
       )}
