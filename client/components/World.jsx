@@ -8,7 +8,6 @@ let game = null
 function World() {
   const [battle, setBattle] = useState(false)
   const [volume, setVolume] = useState('0.2')
-  console.log('volume', volume)
 
   function battleSong() {
     battlesong.volume = 0.2
@@ -23,7 +22,6 @@ function World() {
     theme.volume = 0.2
     theme.currentTime = 0
     theme.play()
-    console.log('themePLAY')
   }
   function themeSongPause() {
     theme.pause()
@@ -37,7 +35,6 @@ function World() {
         game.scene.resume('default')
       }
     } else {
-      console.log('HELLO!', game)
       game.scene.pause('default')
       themeSongPause()
       battleSong()
