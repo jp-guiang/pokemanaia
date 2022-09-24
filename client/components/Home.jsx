@@ -98,12 +98,14 @@ export default function Home(props) {
         />
       </div>
 
-      <div>
+      <div className={'poke-list'}>
         {filteredData.map((pokemon, element) => (
           // <li key={item.name + element}>{item.name}</li>
-          <a key={pokemon.name + element} onClick={() => setPokemon(pokemon)}>
-            <Pokemon hoverData={pokemon} />
-          </a>
+          <div className={'pokemon'} key={pokemon.name + element}>
+            <a onClick={() => setPokemon(pokemon)}>
+              <Pokemon hoverData={pokemon} />
+            </a>
+          </div>
         ))}
       </div>
     </>
