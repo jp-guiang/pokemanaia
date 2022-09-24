@@ -8,9 +8,11 @@ import Footer from './Footer'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
+  const [gameStarted, setGameStarted] = useState(false)
 
   function aWholeNewWorld(event) {
     setShowWorld(!showWorld)
+    setGameStarted(true)
     console.log('a whole new world')
   }
 
@@ -21,7 +23,9 @@ const App = () => {
           <Home fn={aWholeNewWorld} />
         </div>
       )}
-      {showWorld && <Battle />}
+      {showWorld && (
+        <World gameStarted={gameStarted} showWorld={setShowWorld} />
+      )}
 
       {/* <Battle /> */}
       {/* <World /> */}

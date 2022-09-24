@@ -60,15 +60,15 @@ export default function Home(props) {
   function restartTeam() {
     setTeam([])
   }
-  function themeSongPlay() {
-    var audio = new Audio('themeSong.mp3')
-    audio.play()
-  }
+  // function themeSongPlay() {
+  //   var audio = new Audio('themeSong.mp3')
+  //   audio.play()
+  // }
   function confirmTeam() {
     if (team.length != 0) {
       dispatch(returnTeam(team))
       mapToggle()
-      themeSongPlay()
+      // themeSongPlay()
       console.log(team)
     }
   }
