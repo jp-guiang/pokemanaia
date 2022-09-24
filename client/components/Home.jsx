@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
+const clickPop = new Audio('clickConf.mp3')
 
 import TextField from '@mui/material/TextField'
 
@@ -54,6 +55,9 @@ export default function Home(props) {
     if (team.length < 6) {
       tempTeam.push(pokemon)
       setTeam(tempTeam)
+      clickPop.volume = 0.2
+      clickPop.currentTime = 0
+      clickPop.play()
     }
   }
 
