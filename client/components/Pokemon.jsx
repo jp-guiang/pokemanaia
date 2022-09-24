@@ -13,7 +13,9 @@ export default function Pokemon({ hoverData: pokemon }) {
     <>
       <div key={pokemon.name}>
         <img
-          style={isHovering ? { opacity: '50%' } : null}
+          style={
+            isHovering ? { opacity: '50%', width: '13%', height: 'auto' } : null
+          }
           src={pokemon.sprites.front_default}
           alt={'pokemon'}
           onMouseOver={handleMouseOver}

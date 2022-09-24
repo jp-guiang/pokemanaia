@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useInsertionEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
@@ -40,8 +40,17 @@ export default function Home(props) {
       })
   }, [currentPage])
 
+  useEffect(() => {
+    if (currentPage === 6) {
+      setLimit(11)
+    } else {
+      setLimit(20)
+    }
+  }, [currentPage])
+
   function nextPage() {
     if (currentPage != 7) setPage(currentPage + 1)
+    console.log(currentPage)
   }
 
   function prevPage() {
