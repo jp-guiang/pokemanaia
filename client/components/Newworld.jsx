@@ -1,14 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Phaser from 'phaser'
+import Battle from './Battle'
 
 function Newworld(props) {
   console.log(props)
+  const [battle, setBattle] = useState(false)
   useEffect(() => {
     // if (!props.gameStarted) {
     const config = {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
+      // zoom: 2,
       parent: 'game-container',
       pixelArt: false,
       physics: {
@@ -100,6 +103,7 @@ function Newworld(props) {
         .sprite(spawnPoint.x, spawnPoint.y, 'atlas', 'misa-front')
         .setSize(30, 32)
         .setOffset(0, 24)
+        .setScale(0.6, 0.6)
 
       // this.physics.add.overlap(player, testObject, collisionlistener)
 
@@ -109,8 +113,9 @@ function Newworld(props) {
 
       function collisionlistener() {
         console.log('action')
-        props.showWorld(false)
+        // props.showWorld(false)
         // console.log(component.props)
+        setBattle(true)
         this.physics.world.removeCollider(testOverlap)
         // this.physics.world.disable(zone)
       }
@@ -179,6 +184,7 @@ function Newworld(props) {
       })
 
       const camera = this.cameras.main
+      camera.zoom = 2
       camera.startFollow(player)
       camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 
@@ -255,7 +261,7 @@ function Newworld(props) {
     }
   }, [])
 
-  return <div id="game-container"></div>
+  return <div id="game-container">{battle && <Battle />}</div>
 }
 
 export default Newworld
