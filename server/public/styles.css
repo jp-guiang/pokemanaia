@@ -290,10 +290,55 @@ h1 {
 }
 
 .search {
-  padding-top: 20px;
-  width: 30%;
-
+  width: 500px;
+  font-family: 'pkmn_rbygscregular';
+  background: rgb(255, 247, 213);
+  align-self: flex-end;
+  margin: 30px;
 }
+
+.searchConfirm {
+ display: flex;
+ flex-direction: column;
+ align-self: flex-end;
+}
+
+.confirmButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly
+}
+
+.select {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 30px;
+}
+
+.selectTeam {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 360px;
+  height: 240px;
+  margin-left: 150px;
+  border: 5px solid #FFCB05;
+  border-radius: 30px;
+  background: rgb(255, 247, 213);
+}
+
+.selectTeam img {
+  height: 120px;
+  width: 120px;
+}
+
+.confirmButtons button {
+  font-family: 'pkmn_rbygscregular';
+  width: 200px;
+  padding: 10px;
+ }
 
 ul li {
   font-size: 20px;
@@ -319,12 +364,16 @@ ul li {
 }
 
 .less-wide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 1400px;
   border: 10px solid #FFCB05;
   background: rgb(251, 232, 155);
   border-radius: 50px;
   width: 1200px;
   margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .app {
@@ -344,4 +393,9 @@ ul li {
   align-items: center;
   width: 100%;
   background-color: #3466AF;
+}
+
+footer {
+  color: white;
+  margin: 20px;
 }

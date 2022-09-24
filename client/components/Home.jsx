@@ -87,18 +87,25 @@ export default function Home(props) {
   return (
     <div className="less-wide">
       <h1>Choose your Pokémon!</h1>
-      <button onClick={confirmTeam}>Confirm Team</button>
-      <button onClick={restartTeam}>Reset Team</button>
-      <Team team={team} />
-
-      <div className="search">
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="Search by Pokémon name"
-        />
+      <div className="select">
+        <div className="selectTeam">
+          <Team team={team} />
+        </div>
+        <div className="searchConfirm">
+          <div className="confirmButtons">
+            <button onClick={restartTeam}>Reset Team</button>
+            <button onClick={confirmTeam}>Confirm Team</button>
+          </div>
+          <div className="search">
+            <TextField
+              id="outlined-basic"
+              onChange={inputHandler}
+              variant="outlined"
+              fullWidth
+              label="Search by Pokémon name"
+            />
+          </div>
+        </div>
       </div>
       <div className="selectionGrid">
         <div className="poke-list">
