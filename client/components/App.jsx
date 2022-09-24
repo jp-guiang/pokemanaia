@@ -15,13 +15,13 @@ const App = () => {
   return (
     <div>
       <h1>Choose your Pokemon!</h1>
-      {!showWorld && <Home fn={aWholeNewWorld} />}
-      {/* {showWorld && <World />} */}
-      {showWorld && <h1>fufdufeu</h1>}
+
+      {!showWorld && <Pokemon fn={aWholeNewWorld} />}
+      {showWorld && <Battle />}
       <h1>Pokemon</h1>
 
-      {/* <Battle />
-      <World /> */}
+      {/* <Battle /> */}
+      {/* <World /> */}
     </div>
   )
 }
