@@ -398,7 +398,11 @@ function Battle(props) {
       </div>
 
       <div>{oppHP}</div>
-      <button onClick={() => props.battle(false) && props.battleSongpause}>
+      <button
+        onClick={() => {
+          props.battle(false)
+        }}
+      >
         back to map
       </button>
     </div>

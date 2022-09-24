@@ -1,19 +1,51 @@
 import React, { useEffect, useState } from 'react'
 import Phaser from 'phaser'
 import Battle from './Battle'
+var theme = new Audio('themeSong.mp3')
+var battlesong = new Audio('battleTheme.mp3')
+let game = null
 
 function World(props) {
-  console.log(props)
   const [battle, setBattle] = useState(false)
   const [click, setClick] = useState(false)
 
+  function battleSong() {
+    battlesong.currentTime = 0
+    battlesong.play()
+  }
+  function battleSongpause() {
+    battlesong.pause()
+  }
+
+  function themeSongPlay() {
+    theme.currentTime = 0
+    theme.play()
+    console.log('themePLAY')
+  }
+  function themeSongPause() {
+    theme.pause()
+  }
+
   useEffect(() => {
-    // if (!props.gameStarted) {
+    if (!battle) {
+      themeSongPlay()
+      battleSongpause()
+      if (game != null && game.scene.isPaused('default')) {
+        game.scene.resume('default')
+      }
+    } else {
+      console.log('HELLO!', game)
+      game.scene.pause('default')
+      themeSongPause()
+      battleSong()
+    }
+  }, [battle])
+
+  useEffect(() => {
     const config = {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
-      // zoom: 2,
       parent: 'game-container',
       pixelArt: false,
       physics: {
@@ -30,12 +62,8 @@ function World(props) {
         update: update,
       },
     }
-    let game = null
 
     game = new Phaser.Game(config)
-    // }
-
-    // this.game = new Phaser.Game(this.config)
     let cursors
     let player
     let showDebug = false
@@ -59,13 +87,6 @@ function World(props) {
 
     function create(component) {
       const map = this.make.tilemap({ key: 'map' })
-      // this.atlas = this.game.add.sprite(
-      //   this.game.world.centerX,
-      //   this.game.world.centerY
-      // )
-
-      // this.atlas.anchor.setTo(0.5, 0.5)
-      // this.atlas.scale.setTo(0.5, 0.5)
 
       // Parameters are the name you gave the tileset in Tiled and then the key of the tileset image in
       // Phaser's cache (i.e. the name you used in preload)
@@ -97,7 +118,6 @@ function World(props) {
       )
 
       testObject.onOverlap = true
-      console.log(testObject)
 
       // Create a sprite with physics enabled via the physics system. The image used for the sprite has
       // a bit of whitespace, so I'm using setSize & setOffset to control the size of the player's body.
@@ -115,26 +135,39 @@ function World(props) {
 
       function collisionlistener() {
         console.log('action')
-        // props.showWorld(false)
-        // console.log(component.props)
+        // themeSongPause()
         setBattle(true)
-        themeSongPause()
-        // battleThemePlay()
-        battleSong()
 
         this.physics.world.removeCollider(testOverlap)
-        // this.physics.world.disable(zone)
+      }
+
+      function collisionlistener2() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlap2)
       }
 
       this.physics.world.on('overlap', () => {
         console.log('overlap')
       })
       const zone = this.add.zone(400, 100).setSize(32, 32)
+      const zone2 = this.add.zone(500, 100).setSize(32, 32)
+
       this.physics.world.enable(zone)
+      this.physics.world.enable(zone2)
+
       const testOverlap = this.physics.add.overlap(
         player,
         zone,
         collisionlistener.bind(this)
+      )
+
+      const testOverlap2 = this.physics.add.overlap(
+        player,
+        zone2,
+        collisionlistener2.bind(this)
       )
 
       // Create the player's walking animations from the texture atlas. These are stored in the global
@@ -267,37 +300,17 @@ function World(props) {
     }
   }, [])
 
-  let battlesong = new Audio('battleTheme.mp3')
-  function battleSong() {
-    battlesong.play()
-  }
-  function battleSongpause() {
-    battlesong.pause()
-  }
-
-  var theme = new Audio('themeSong.mp3')
-  function themeSongPlay() {
-    theme.play()
-  }
-  function themeSongPause() {
-    theme.pause()
-  }
   return (
     <div>
       <div
         id="game-container"
         style={{ display: battle ? 'none' : null }}
       ></div>
-      {/* {!battle ? themeSongPlay(true) : themeSongPlay(false)} */}
-      {/* <button onClick={click ? }> */}
-
       <button onClick={themeSongPlay}>Theme Song Play</button>
       <button onClick={themeSongPause}>Stop</button>
       <button onClick={battleSong}>Battle Song Play</button>
       <button onClick={battleSongpause}>Stop</button>
-      {battle && (
-        <Battle battle={setBattle} battleSongpause={battleSongpause} />
-      )}
+      {battle && <Battle battle={setBattle} />}
     </div>
   )
 }
