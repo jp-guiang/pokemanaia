@@ -86,6 +86,7 @@ export default function Home(props) {
       dispatch(returnTeam(team))
       mapToggle()
       // themeSongPlay()
+      homeTheme.pause()
       console.log(team)
     }
   }
