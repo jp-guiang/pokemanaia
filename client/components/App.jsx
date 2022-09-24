@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
-import Pokemon from './Pokemon'
+import Home from './Home'
 
 import World from './World'
 import Battle from './Battle'
+import Footer from './Footer'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
@@ -14,19 +15,23 @@ const App = () => {
     setGameStarted(true)
     console.log('a whole new world')
   }
+
   return (
-    <div>
-      <h1>Choose your Pokemon!</h1>
-      {!showWorld && <Pokemon fn={aWholeNewWorld} />}
+    <div className="whole-app">
+      {!showWorld && (
+        <div>
+          <Home fn={aWholeNewWorld} />
+        </div>
+      )}
       {showWorld && (
-        <World gameStarted={gameStarted} showWorld={setShowWorld} />
+        <Battle gameStarted={gameStarted} showWorld={setShowWorld} />
       )}
 
-      <h1>Pokemon</h1>
-
-      {/* <Battle />
-      <World /> */}
-      {/* <Newworld /> */}
+      {/* <Battle /> */}
+      {/* <World /> */}
+      <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }

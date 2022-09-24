@@ -8,6 +8,9 @@
   font-display: swap;
 }
 
+p{  font-family: 'pkmn_rbygscregular';
+}
+
 html,
 body,
 #game-container {
@@ -36,7 +39,7 @@ h1 {
   height: auto;
   margin-top: -27px;
   image-rendering: pixelated;
-  z-index: 2;
+  z-index: 4;
 }
 
 .battleScreen {
@@ -45,6 +48,7 @@ h1 {
   width: 800px;
   height: auto;
   margin-bottom: 100px;
+  overflow: hidden;
 }
 
 .insideTextBox {
@@ -54,9 +58,8 @@ h1 {
   left: 40px;
   height: 110px;
   width: 690px;
-  z-index: 2;
+  z-index: 5;
   font-family: 'pkmn_rbygscregular';
-  /* border: 2px solid red; */
   font-size: 24px;
 }
 
@@ -88,7 +91,7 @@ h1 {
   image-rendering: pixelated;
   top: 300px;
   left: 370px;
-  z-index: 3;
+  z-index: 4;
 }
 
 .oppHealth {
@@ -97,7 +100,7 @@ h1 {
   image-rendering: pixelated;
   top: 20px;
   left: 20px;
-  z-index: 3;
+  z-index: 4;
 }
 
 #game-container {
@@ -133,6 +136,8 @@ h1 {
 
 .fightButtons {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding-left: 15px;
   flex-wrap: wrap;
 }
@@ -141,7 +146,7 @@ h1 {
   font-size: 28px;
   font-family: 'pkmn_rbygscregular';
   position: absolute;
-  z-index: 4;
+  z-index: 5;
 }
 
 .oppPkmnName {
@@ -211,7 +216,7 @@ h1 {
   font-size: 22px;
   top: 395px;
   right: 40px;
-  z-index: 4;
+  z-index: 6;
 }
 
 #orb {
@@ -276,4 +281,77 @@ h1 {
   top: 90px;
   left: 530px;
   z-index: 3;
+}
+
+/* search bar css */
+.main {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 40px;
+  color: rgb(1, 1, 59);
+}
+
+.search {
+  padding-top: 20px;
+  width: 30%;
+
+}
+
+ul li {
+  font-size: 20px;
+} 
+
+.poke-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pokemon{
+  width:150px;
+  /* border-style:solid;
+  border-width: 1px;
+  border-color: black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.less-wide {
+  width: 1400px;
+  border: 10px solid #FFCB05;
+  background: rgb(251, 232, 155);
+  border-radius: 50px;
+  width: 1200px;
+  margin-top: 100px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectionGrid {
+  display: flex;
+  flex-direction: row
+}
+
+.whole-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #3466AF;
 }
