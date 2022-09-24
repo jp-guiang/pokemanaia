@@ -5,6 +5,8 @@ import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
 
+import TextField from '@mui/material/TextField'
+
 export default function Home(props) {
   const [pageList, setPokemonList] = useState([])
   const [currentPage, setPage] = useState(0)
@@ -13,6 +15,13 @@ export default function Home(props) {
   const [team, setTeam] = useState([])
   const dispatch = useDispatch()
   const mapToggle = props.fn
+  const [inputText, setInputText] = useState('')
+
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value.toLowerCase()
+    setInputText(lowerCase)
+  }
 
   useEffect(() => {
     getPokemon(currentPage, pageLimit)
@@ -82,6 +91,17 @@ export default function Home(props) {
     }
   }
 
+  const filteredData = pokeDex.filter((el) => {
+    //if no input the return the original
+    if (inputText === '') {
+      return el.name
+    }
+    //return the item which contains the user input
+    else {
+      return el.name.toLowerCase().includes(inputText)
+    }
+  })
+
   return (
     <>
       <h1>Team Rocket</h1>
@@ -94,11 +114,28 @@ export default function Home(props) {
       <button onClick={prevPage}>Previous Page</button>
       <button onClick={nextPage}>Next Page</button>
 
+      <div className="search">
+        <TextField
+          id="outlined-basic"
+          onChange={inputHandler}
+          variant="outlined"
+          fullWidth
+          label="Search"
+        />
+      </div>
+
+      <ul>
+        {filteredData.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+
       {pokeDex.map((pokemon) => (
         <a key={pokemon.name} onClick={() => setPokemon(pokemon)}>
           <Pokemon hoverData={pokemon} />
         </a>
       ))}
+
       <button onClick={home}>Home</button>
       <button onClick={prevPage}>Previous Page</button>
       <button onClick={nextPage}>Next Page</button>
