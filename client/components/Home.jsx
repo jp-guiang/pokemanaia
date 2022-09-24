@@ -9,8 +9,8 @@ import TextField from '@mui/material/TextField'
 
 export default function Home(props) {
   const [pageList, setPokemonList] = useState([])
-  const [currentPage, setPage] = useState(0)
-  const [pageLimit, setLimit] = useState(20)
+
+  const [pageLimit] = useState(151)
   const [pokeDex, setPokeDex] = useState([])
   const [team, setTeam] = useState([])
   const dispatch = useDispatch()
@@ -24,7 +24,7 @@ export default function Home(props) {
   }
 
   useEffect(() => {
-    getPokemon(currentPage, pageLimit)
+    getPokemon(pageLimit)
       .then((list) => {
         setPokemonList(list.results)
         return list.results
@@ -47,29 +47,7 @@ export default function Home(props) {
       .catch((err) => {
         console.error(err.message)
       })
-  }, [currentPage])
-
-  // Make limit 11 so we dont see Gen 2 pokemon
-  // I hope you understand pokemon references JV lol
-  useEffect(() => {
-    if (currentPage === 6) {
-      setLimit(11)
-    } else {
-      setLimit(20)
-    }
-  }, [currentPage])
-
-  function nextPage() {
-    if (currentPage != 7) setPage(currentPage + 1)
-  }
-
-  function prevPage() {
-    if (currentPage != 0) setPage(currentPage - 1)
-  }
-
-  function home() {
-    setPage(0)
-  }
+  }, [])
 
   function setPokemon(pokemon) {
     let tempTeam = [...team]
@@ -110,10 +88,6 @@ export default function Home(props) {
       <button onClick={confirmTeam}>Confirm Team</button>
       <Team team={team} />
 
-      <button onClick={home}>Home</button>
-      <button onClick={prevPage}>Previous Page</button>
-      <button onClick={nextPage}>Next Page</button>
-
       <div className="search">
         <TextField
           id="outlined-basic"
@@ -124,21 +98,14 @@ export default function Home(props) {
         />
       </div>
 
-      <ul>
-        {filteredData.map((item, element) => (
-          <li key={item.name + element}>{item.name}</li>
+      <div>
+        {filteredData.map((pokemon, element) => (
+          // <li key={item.name + element}>{item.name}</li>
+          <a key={pokemon.name + element} onClick={() => setPokemon(pokemon)}>
+            <Pokemon hoverData={pokemon} />
+          </a>
         ))}
-      </ul>
-
-      {pokeDex.map((pokemon) => (
-        <a key={pokemon.name} onClick={() => setPokemon(pokemon)}>
-          <Pokemon hoverData={pokemon} />
-        </a>
-      ))}
-
-      <button onClick={home}>Home</button>
-      <button onClick={prevPage}>Previous Page</button>
-      <button onClick={nextPage}>Next Page</button>
+      </div>
     </>
   )
 }

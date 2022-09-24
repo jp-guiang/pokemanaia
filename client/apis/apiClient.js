@@ -1,13 +1,9 @@
 import request from 'superagent'
 const rootUrl = '/api/v1'
 
-export function getPokemon(currentPage, limit) {
+export function getPokemon(limit) {
   return request
-    .get(
-      `https://pokeapi.co/api/v2/pokemon?offset=${
-        currentPage * 20
-      }&limit=${limit}`
-    )
+    .get(`https://pokeapi.co/api/v2/pokemon?&limit=${limit}`)
     .then((res) => {
       return res.body
     })
