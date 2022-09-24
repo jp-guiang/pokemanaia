@@ -13,15 +13,9 @@ const App = () => {
     setShowWorld(!showWorld)
     console.log('a whole new world')
   }
-  function themeSongPlay() {
-    var audio = new Audio('themeSong.mp3')
-    audio.play()
-  }
 
   return (
     <div className="whole-app">
-      {themeSongPlay()}
-      <h1>Choose your Pokémon!</h1>
       {!showWorld && (
         <div>
           <Home fn={aWholeNewWorld} />

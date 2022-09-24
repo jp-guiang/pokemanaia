@@ -86,6 +86,7 @@ export default function Home(props) {
 
   return (
     <div className="less-wide">
+      <h1>Choose your Pokémon!</h1>
       <button onClick={confirmTeam}>Confirm Team</button>
       <button onClick={restartTeam}>Reset Team</button>
       <Team team={team} />
