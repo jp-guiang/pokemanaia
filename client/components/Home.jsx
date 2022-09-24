@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useInsertionEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
@@ -40,6 +40,8 @@ export default function Home(props) {
       })
   }, [currentPage])
 
+  // Make limit 11 so we dont see Gen 2 pokemon
+  // I hope you understand pokemon references JV lol
   useEffect(() => {
     if (currentPage === 6) {
       setLimit(11)
@@ -50,7 +52,6 @@ export default function Home(props) {
 
   function nextPage() {
     if (currentPage != 7) setPage(currentPage + 1)
-    console.log(currentPage)
   }
 
   function prevPage() {
