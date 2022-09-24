@@ -5,6 +5,7 @@ import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
 const clickPop = new Audio('clickConf.mp3')
+const homeTheme = new Audio('homeTheme.mp3')
 
 import TextField from '@mui/material/TextField'
 
@@ -14,6 +15,7 @@ export default function Home(props) {
   const [pageLimit] = useState(151)
   const [pokeDex, setPokeDex] = useState([])
   const [team, setTeam] = useState([])
+  const [volume, setVolume] = useState('0.2')
   const dispatch = useDispatch()
   const mapToggle = props.fn
   const [inputText, setInputText] = useState('')
@@ -23,6 +25,16 @@ export default function Home(props) {
     var lowerCase = e.target.value.toLowerCase()
     setInputText(lowerCase)
   }
+  function themeSongPlay() {
+    homeTheme.volume = 0.2
+    homeTheme.currentTime = 0
+    homeTheme.play()
+  }
+
+  useEffect(() => {
+    themeSongPlay()
+    homeTheme.volume = volume
+  }, [])
 
   useEffect(() => {
     getPokemon(pageLimit)
@@ -63,6 +75,7 @@ export default function Home(props) {
 
   function restartTeam() {
     setTeam([])
+    themeSongPlay()
   }
   // function themeSongPlay() {
   //   var audio = new Audio('themeSong.mp3')
@@ -90,6 +103,12 @@ export default function Home(props) {
 
   return (
     <div className="less-wide">
+      <input
+        type="range"
+        min="0"
+        max="100"
+        onChange={(e) => setVolume((homeTheme.volume = e.target.value / 100))}
+      ></input>
       <h1>Choose your Pokémon!</h1>
       <div className="select">
         <div className="selectTeam">
