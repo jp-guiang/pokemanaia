@@ -125,8 +125,8 @@ export default function Home(props) {
       </div>
 
       <ul>
-        {filteredData.map((item) => (
-          <li key={item}>{item}</li>
+        {filteredData.map((item, element) => (
+          <li key={item.name + element}>{item.name}</li>
         ))}
       </ul>
 
