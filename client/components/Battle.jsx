@@ -1,30 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setOppHp, setOppAtk, setOppDef, swapOutJV } from '../actions/JV.js'
+import { setOppHp, setOppAtk, setOppDef } from '../actions/JV.js'
 import { setPokeHp, setMyDef, setMyAtk, swapOut } from '../actions/myPokemon.js'
 
 function Battle(props) {
+  const fakeProps = 'JV'
+  let oppPokemon
+  let oppTeam
+
+  switch (fakeProps) {
+    case 'JV':
+      oppPokemon = useSelector((state) => state.JV[oppIndex])
+      oppTeam = useSelector((state) => state.JV.length)
+      break
+    case 'David':
+      oppPokemon = useSelector((state) => state.david[oppIndex])
+      oppTeam = useSelector((state) => state.david.length)
+  }
+
   const [oppCount, setOppCount] = useState(0)
   const [myCount, setMyCount] = useState(0)
   const [oppIndex, setOppIndex] = useState(0)
   const [myIndex, setMyIndex] = useState(0)
   const myPokemon = useSelector((state) => state.myPokemon[myIndex])
-  const JVPokemon = useSelector((state) => state.JV[oppIndex])
-  const JVTeam = useSelector((state) => state.JV.length)
   const team = useSelector((state) => state.myPokemon.length)
   const dispatch = useDispatch()
   const myPokemonImg = myPokemon.sprites.back_default
-  const oppPokemonImg = JVPokemon.sprites.front_default
+  const oppPokemonImg = oppPokemon.sprites.front_default
 
   const myHP = myPokemon.stats[0].base_stat
   const myAttack = myPokemon.stats[1].base_stat
   const myDefense = myPokemon.stats[2].base_stat
   const myType = myPokemon.types[0].type.name
 
-  const oppHP = JVPokemon.stats[0].base_stat
-  const oppAttack = JVPokemon.stats[1].base_stat
-  const oppDefense = JVPokemon.stats[2].base_stat
-  const oppType = JVPokemon.types[0].type.name
+  const oppHP = oppPokemon.stats[0].base_stat
+  const oppAttack = oppPokemon.stats[1].base_stat
+  const oppDefense = oppPokemon.stats[2].base_stat
+  const oppType = oppPokemon.types[0].type.name
 
   const effective1 = 1
   const effective2 = 1
@@ -74,7 +86,7 @@ function Battle(props) {
       effective1 *
       effective2 *
       random
-    const finalHP = Math.round(JVPokemon.stats[0].base_stat - dmg)
+    const finalHP = Math.round(oppPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initOppHP) * 200)
     setTimeout(() => {
       if (finalHP > 0) {
@@ -91,7 +103,7 @@ function Battle(props) {
     }, 700)
     if (finalHP < 1) {
       setTimeout(() => {
-        setFightText(`${JVPokemon.name.toUpperCase()} has fainted`)
+        setFightText(`${oppPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('oppPokemonImg').style.left = '800px'
       }, 2500)
     } else {
@@ -102,7 +114,7 @@ function Battle(props) {
         } else if (atkRndm < 0.3 && atkRndm >= 0.15) {
           lowerMyAtk(myPokemon)
         } else if (atkRndm < 0.15) {
-          raiseOppDefense(JVPokemon)
+          raiseOppDefense(oppPokemon)
         }
       }, 1500)
     }
@@ -120,7 +132,7 @@ function Battle(props) {
     if (type < 0.5) {
       STAB = 1.5
       setFightText(
-        `${JVPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
+        `${oppPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
       )
       document.getElementById('ball').style.visibility = 'visible'
       document.getElementById('ball').style.left = '200px'
@@ -131,7 +143,7 @@ function Battle(props) {
         document.getElementById('ball').style.visibility = 'hidden'
       }, 550)
     } else if (type >= 0.5) {
-      setFightText(`${JVPokemon.name.toUpperCase()} used TACKLE`)
+      setFightText(`${oppPokemon.name.toUpperCase()} used TACKLE`)
       STAB = 1
       document.getElementById('oppPokemonImg').style.left = '430px'
       setTimeout(() => {
@@ -171,8 +183,8 @@ function Battle(props) {
   }
 
   function lowerOppAtk(target) {
-    if (JVPokemon.stats[1].base_stat > 8) {
-      const attack = JVPokemon.stats[1].base_stat - 7
+    if (oppPokemon.stats[1].base_stat > 8) {
+      const attack = oppPokemon.stats[1].base_stat - 7
       dispatch(setOppAtk(attack, target))
       setFightText(`${myPokemon.name.toUpperCase()} used GROWL`)
       document.getElementById('myGrowl').style.visibility = 'visible'
@@ -187,7 +199,7 @@ function Battle(props) {
       } else if (atkRndm < 0.4 && atkRndm >= 0.2) {
         lowerMyAtk(myPokemon)
       } else if (atkRndm < 0.2) {
-        raiseOppDefense(JVPokemon)
+        raiseOppDefense(oppPokemon)
       }
     }, 1500)
   }
@@ -209,7 +221,7 @@ function Battle(props) {
       } else if (atkRndm < 0.3 && atkRndm >= 0.15) {
         lowerMyAtk(myPokemon)
       } else if (atkRndm < 0.15) {
-        raiseOppDefense(JVPokemon)
+        raiseOppDefense(oppPokemon)
       }
     }, 1500)
   }
@@ -218,7 +230,7 @@ function Battle(props) {
     if (myPokemon.stats[1].base_stat > 8) {
       const attack = myPokemon.stats[1].base_stat - 7
       dispatch(setMyAtk(attack, target))
-      setFightText(`${JVPokemon.name.toUpperCase()} used GROWL`)
+      setFightText(`${oppPokemon.name.toUpperCase()} used GROWL`)
       document.getElementById('oppGrowl').style.visibility = 'visible'
       setTimeout(() => {
         document.getElementById('oppGrowl').style.visibility = 'hidden'
@@ -230,10 +242,10 @@ function Battle(props) {
   }
 
   function raiseOppDefense(target) {
-    if (JVPokemon.stats[1].base_stat < 200) {
-      const defense = JVPokemon.stats[1].base_stat + 7
+    if (oppPokemon.stats[1].base_stat < 200) {
+      const defense = oppPokemon.stats[1].base_stat + 7
       dispatch(setOppDef(defense, target))
-      setFightText(`${JVPokemon.name.toUpperCase()} used DEFENSE CURL`)
+      setFightText(`${oppPokemon.name.toUpperCase()} used DEFENSE CURL`)
       document.getElementById('oppShield').style.visibility = 'visible'
       setTimeout(() => {
         document.getElementById('oppShield').style.visibility = 'hidden'
@@ -292,7 +304,7 @@ function Battle(props) {
     if (oppHP <= 0) {
       setTimeout(() => {
         setOppCount(oppCount + 1)
-        if (oppCount < JVTeam - 1) {
+        if (oppCount < oppTeam - 1) {
           setOppIndex(oppIndex + 1)
           nextOppPokemon()
         }
@@ -310,9 +322,9 @@ function Battle(props) {
   }, [oppHP, myHP])
 
   useEffect(() => {
-    if (oppCount == JVTeam) {
+    if (oppCount == oppTeam) {
       setTimeout(() => {
-        setFightText(`JV has been defeated!`)
+        setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
           setFightText(`You won 500 Dev Academy Points`)
         }, 2000)
@@ -326,15 +338,15 @@ function Battle(props) {
   }, [oppCount, myCount])
 
   useEffect(() => {
-    setFightText(`Go ${JVPokemon.name.toUpperCase()}!`)
-  }, [JVPokemon])
+    setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
+  }, [oppPokemon])
 
   useEffect(() => {
     setFightText(`Go ${myPokemon.name.toUpperCase()}!`)
   }, [myPokemon])
 
   return (
-    <div id="centering">
+    <div className="centering">
       <div className="battleScreen">
         <div className="pokemonSprites">
           <div className="myHP">
@@ -342,7 +354,7 @@ function Battle(props) {
               {myHP > 0 ? myHP : 0} / {initMyHP}
             </span>
           </div>
-          <span className="oppPkmnName">{JVPokemon.name.toUpperCase()}</span>
+          <span className="oppPkmnName">{oppPokemon.name.toUpperCase()}</span>
           <span className="myPkmnName">{myPokemon.name.toUpperCase()}</span>
           <div id="myHealthBar"></div>
           <div className="myHealthBarBacking"></div>
@@ -383,13 +395,13 @@ function Battle(props) {
           </div>
 
           <div className="fightButtons">
-            <button onClick={() => attackOpponent('normal', 70, JVPokemon)}>
+            <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
               TACKLE
             </button>
-            <button onClick={() => attackOpponent('special', 70, JVPokemon)}>
+            <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
               {myType.toUpperCase()} ATTACK
             </button>
-            <button onClick={() => lowerOppAtk(JVPokemon)}>GROWL</button>
+            <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
             <button onClick={() => raiseDefense(myPokemon)}>
               DEFENSE CURL
             </button>

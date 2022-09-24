@@ -316,7 +316,11 @@ h1 {
 .confirmButtons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+}
+
+.confirmButtons button:active {
+  transform:scale(0.95)
 }
 
 .select {
@@ -360,8 +364,12 @@ ul li {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
+.pokemon:active {
+  transform: scale(0.9);
+}
 
 .pokemon{
   width:150px;
@@ -403,6 +411,17 @@ ul li {
   align-items: center;
   width: 100%;
   background-color: #3466AF;
+}
+
+.stats {
+  position: absolute;
+  margin-top: -150px;
+  margin-left: 90px;
+  font-size: 14px;
+  background: rgb(255, 247, 213, 0.8);
+ padding: 5px;
+ border-radius: 20px;
+ color:#1e3b67
 }
 
 footer {
