@@ -43,6 +43,7 @@
     "@mui/material": "^5.10.6",
     "@vscode/sqlite3": "^5.0.7",
     "express": "^4.17.1",
+    "kill-port": "^2.0.1",
     "knex": "^1.0.2",
     "pg": "^8.5.1",
     "phaser": "^3.55.2",

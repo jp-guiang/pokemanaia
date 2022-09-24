@@ -4,6 +4,7 @@ import Home from './Home'
 
 import World from './World'
 import Battle from './Battle'
+import Footer from './Footer'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
@@ -12,10 +13,15 @@ const App = () => {
     setShowWorld(!showWorld)
     console.log('a whole new world')
   }
+  function themeSongPlay() {
+    var audio = new Audio('themeSong.mp3')
+    audio.play()
+  }
+
   return (
-    <div>
-      <h1>Choose your Pokemon!</h1>
-      <h1>Pokemon</h1>
+    <div className="whole-app">
+      {themeSongPlay()}
+      <h1>Choose your Pokémon!</h1>
       {!showWorld && (
         <div>
           <Home fn={aWholeNewWorld} />
@@ -25,6 +31,9 @@ const App = () => {
 
       {/* <Battle /> */}
       {/* <World /> */}
+      <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }

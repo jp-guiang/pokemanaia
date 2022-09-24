@@ -36,7 +36,11 @@ export default function Pokemon({ hoverData: pokemon }) {
             })}
           </div>
         )}
-        <p key={pokemon.name}>{pokemon.name}</p>
+        <p key={pokemon.name}>
+          <strong>
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+          </strong>
+        </p>
       </div>
     </>
   )

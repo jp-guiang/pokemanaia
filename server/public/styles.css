@@ -8,6 +8,9 @@
   font-display: swap;
 }
 
+p{  font-family: 'pkmn_rbygscregular';
+}
+
 html,
 body,
 #game-container {
@@ -299,14 +302,43 @@ ul li {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
+  align-items: center;
+  justify-content: center;
 }
 
 
 .pokemon{
-  
-  width:300px;
-  border-style:solid;
+  width:150px;
+  /* border-style:solid;
   border-width: 1px;
-  border-color: black;
+  border-color: black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.less-wide {
+  width: 1400px;
+  border: 10px solid #FFCB05;
+  background: rgb(251, 232, 155);
+  border-radius: 50px;
+  width: 1200px
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.selectionGrid {
+  display: flex;
+  flex-direction: row
+}
+
+.whole-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%
 }
