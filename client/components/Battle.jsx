@@ -396,15 +396,11 @@ function Battle(props) {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
-      <div>
-        {winState}
-        {oppHP}
-        <button onClick={() => props.battle(false)}>back to map</button>
-      </div>
-=======
+
       <div>{oppHP}</div>
->>>>>>> dev
+      <button onClick={() => props.battle(false) && props.battleSongpause}>
+        back to map
+      </button>
     </div>
   )
 }

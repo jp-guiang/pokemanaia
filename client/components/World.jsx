@@ -5,6 +5,8 @@ import Battle from './Battle'
 function World(props) {
   console.log(props)
   const [battle, setBattle] = useState(false)
+  const [click, setClick] = useState(false)
+
   useEffect(() => {
     // if (!props.gameStarted) {
     const config = {
@@ -116,6 +118,10 @@ function World(props) {
         // props.showWorld(false)
         // console.log(component.props)
         setBattle(true)
+        themeSongPause()
+        // battleThemePlay()
+        battleSong()
+
         this.physics.world.removeCollider(testOverlap)
         // this.physics.world.disable(zone)
       }
@@ -261,13 +267,37 @@ function World(props) {
     }
   }, [])
 
+  let battlesong = new Audio('battleTheme.mp3')
+  function battleSong() {
+    battlesong.play()
+  }
+  function battleSongpause() {
+    battlesong.pause()
+  }
+
+  var theme = new Audio('themeSong.mp3')
+  function themeSongPlay() {
+    theme.play()
+  }
+  function themeSongPause() {
+    theme.pause()
+  }
   return (
     <div>
       <div
         id="game-container"
         style={{ display: battle ? 'none' : null }}
       ></div>
-      {battle && <Battle battle={setBattle} />}
+      {/* {!battle ? themeSongPlay(true) : themeSongPlay(false)} */}
+      {/* <button onClick={click ? }> */}
+      Turn on themesong
+      <button onClick={battleSong}>play</button>
+      <button onClick={battleSongpause}>stop</button>
+      <button onClick={themeSongPlay}>play</button>
+      <button onClick={themeSongPause}>stop</button>
+      {battle && (
+        <Battle battle={setBattle} battleSongpause={battleSongpause} />
+      )}
     </div>
   )
 }
