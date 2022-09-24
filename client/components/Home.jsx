@@ -60,11 +60,15 @@ export default function Home(props) {
   function restartTeam() {
     setTeam([])
   }
-
+  function themeSongPlay() {
+    var audio = new Audio('themeSong.mp3')
+    audio.play()
+  }
   function confirmTeam() {
     if (team.length != 0) {
       dispatch(returnTeam(team))
       mapToggle()
+      themeSongPlay()
       console.log(team)
     }
   }
@@ -81,11 +85,10 @@ export default function Home(props) {
   })
 
   return (
-    <>
-      <h1>Team Rocket</h1>
-
-      <button onClick={restartTeam}>Reset Team</button>
+    <div className="less-wide">
+      <h1>Choose your Pokémon!</h1>
       <button onClick={confirmTeam}>Confirm Team</button>
+      <button onClick={restartTeam}>Reset Team</button>
       <Team team={team} />
 
       <div className="search">
@@ -94,20 +97,21 @@ export default function Home(props) {
           onChange={inputHandler}
           variant="outlined"
           fullWidth
-          label="Search"
+          label="Search by Pokémon name"
         />
       </div>
-
-      <div className={'poke-list'}>
-        {filteredData.map((pokemon, element) => (
-          // <li key={item.name + element}>{item.name}</li>
-          <div className={'pokemon'} key={pokemon.name + element}>
-            <a onClick={() => setPokemon(pokemon)}>
-              <Pokemon hoverData={pokemon} />
-            </a>
-          </div>
-        ))}
+      <div className="selectionGrid">
+        <div className="poke-list">
+          {filteredData.map((pokemon, element) => (
+            // <li key={item.name + element}>{item.name}</li>
+            <div className="pokemon" key={pokemon.name + element}>
+              <a onClick={() => setPokemon(pokemon)}>
+                <Pokemon hoverData={pokemon} />
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
