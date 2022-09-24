@@ -4,7 +4,6 @@ import Pokemon from './Pokemon'
 
 import World from './World'
 import Battle from './Battle'
-import Newworld from './Newworld'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
@@ -20,7 +19,7 @@ const App = () => {
       <h1>Choose your Pokemon!</h1>
       {!showWorld && <Pokemon fn={aWholeNewWorld} />}
       {showWorld && (
-        <Newworld gameStarted={gameStarted} showWorld={setShowWorld} />
+        <World gameStarted={gameStarted} showWorld={setShowWorld} />
       )}
 
       <h1>Pokemon</h1>

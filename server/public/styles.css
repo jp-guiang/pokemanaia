@@ -15,13 +15,13 @@ body,
   padding: 0;
 }
 
-#game-container {
+/* #game-container {
   min-width: 100vw;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 #game-container>canvas {
   border-radius: 5px;
@@ -100,10 +100,20 @@ h1 {
   z-index: 3;
 }
 
-.centering {
+#game-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+#centering {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .battleScreen {

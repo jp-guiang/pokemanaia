@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import Phaser from 'phaser'
+import Battle from './Battle'
 
-class World extends Component {
-  constructor(props) {
-    super(props)
-
-    // this.state.showWorld = props.showWorld
-  }
-  componentDidMount() {
+function World(props) {
+  console.log(props)
+  const [battle, setBattle] = useState(false)
+  useEffect(() => {
+    // if (!props.gameStarted) {
     const config = {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
+      // zoom: 2,
       parent: 'game-container',
       pixelArt: false,
       physics: {
@@ -28,10 +28,10 @@ class World extends Component {
         update: update,
       },
     }
+    let game = null
 
     game = new Phaser.Game(config)
-
-    let game = null
+    // }
 
     // this.game = new Phaser.Game(this.config)
     let cursors
@@ -103,6 +103,7 @@ class World extends Component {
         .sprite(spawnPoint.x, spawnPoint.y, 'atlas', 'misa-front')
         .setSize(30, 32)
         .setOffset(0, 24)
+        .setScale(0.6, 0.6)
 
       // this.physics.add.overlap(player, testObject, collisionlistener)
 
@@ -112,8 +113,9 @@ class World extends Component {
 
       function collisionlistener() {
         console.log('action')
-        // this.props.showWorld(false)
-        console.log(component.props)
+        // props.showWorld(false)
+        // console.log(component.props)
+        setBattle(true)
         this.physics.world.removeCollider(testOverlap)
         // this.physics.world.disable(zone)
       }
@@ -182,6 +184,7 @@ class World extends Component {
       })
 
       const camera = this.cameras.main
+      camera.zoom = 2
       camera.startFollow(player)
       camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 
@@ -256,11 +259,17 @@ class World extends Component {
         else if (prevVelocity.y > 0) player.setTexture('atlas', 'misa-front')
       }
     }
-  }
+  }, [])
 
-  render() {
-    return <div id="game-container"></div>
-  }
+  return (
+    <div>
+      <div
+        id="game-container"
+        style={{ display: battle ? 'none' : null }}
+      ></div>
+      {battle && <Battle battle={setBattle} />}
+    </div>
+  )
 }
 
 export default World

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setOppHp, setOppAtk, setOppDef } from '../actions/JV.js'
 import { setPokeHp, setMyDef, setMyAtk } from '../actions/myPokemon.js'
 
-function Battle() {
+function Battle(props) {
   const myPokemon = useSelector((state) => state.myPokemon[0])
   const JVPokemon = useSelector((state) => state.JV[0])
   const dispatch = useDispatch()
@@ -243,7 +243,7 @@ function Battle() {
   }, [oppHP, myHP])
 
   return (
-    <div className="centering">
+    <div id="centering">
       <div className="battleScreen">
         <div className="pokemonSprites">
           <div className="myHP">
@@ -308,6 +308,7 @@ function Battle() {
       <div>
         {winState}
         {oppHP}
+        <button onClick={() => props.battle(false)}>back to map</button>
       </div>
     </div>
   )
