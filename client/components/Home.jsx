@@ -82,11 +82,9 @@ export default function Home(props) {
 
   return (
     <>
-      <h1>Team Rocket</h1>
-
+      <Team team={team} />
       <button onClick={restartTeam}>Reset Team</button>
       <button onClick={confirmTeam}>Confirm Team</button>
-      <Team team={team} />
 
       <div className="search">
         <TextField
