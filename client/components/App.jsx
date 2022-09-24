@@ -24,7 +24,8 @@ const App = () => {
         </div>
       )}
       {showWorld && (
-        <World gameStarted={gameStarted} showWorld={setShowWorld} />
+        // <World gameStarted={gameStarted} showWorld={setShowWorld} />
+        <Battle />
       )}
 
       {/* <Battle /> */}
