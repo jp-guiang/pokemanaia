@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Pokemon({ hoverData: pokemon }) {
+export default function Pokemon({ hoverData: pokemon, fn: setPokemon }) {
   const [isHovering, setIsHovering] = useState(false)
   const handleMouseOver = () => {
     setIsHovering(true)
@@ -19,28 +19,33 @@ export default function Pokemon({ hoverData: pokemon }) {
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
         ></img>
-
-        {isHovering && (
-          <div>
-            {pokemon.stats.map((info) => {
-              return (
-                <p key={info.stat.name}>
-                  <strong>
-                    {info.stat.name.charAt(0).toUpperCase() +
-                      info.stat.name.slice(1)}
-                    :
-                  </strong>{' '}
-                  {info.base_stat}
-                </p>
-              )
-            })}
-          </div>
-        )}
         <p key={pokemon.name}>
           <strong>
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </strong>
         </p>
+        {isHovering && (
+          <div className="stats">
+            {pokemon.stats.map((info) => {
+              if (
+                info.stat.name == 'attack' ||
+                info.stat.name == 'defense' ||
+                info.stat.name == 'hp'
+              ) {
+                return (
+                  <p key={info.stat.name}>
+                    <strong>
+                      {info.stat.name.charAt(0).toUpperCase() +
+                        info.stat.name.slice(1)}
+                      :
+                    </strong>{' '}
+                    {info.base_stat}
+                  </p>
+                )
+              }
+            })}
+          </div>
+        )}
       </div>
     </>
   )
