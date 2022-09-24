@@ -60,11 +60,15 @@ export default function Home(props) {
   function restartTeam() {
     setTeam([])
   }
-
+  // function themeSongPlay() {
+  //   var audio = new Audio('themeSong.mp3')
+  //   audio.play()
+  // }
   function confirmTeam() {
     if (team.length != 0) {
       dispatch(returnTeam(team))
       mapToggle()
+      // themeSongPlay()
       console.log(team)
     }
   }
@@ -81,31 +85,40 @@ export default function Home(props) {
   })
 
   return (
-    <>
-      <Team team={team} />
-      <button onClick={restartTeam}>Reset Team</button>
-      <button onClick={confirmTeam}>Confirm Team</button>
-
-      <div className="search">
-        <TextField
-          id="outlined-basic"
-          onChange={inputHandler}
-          variant="outlined"
-          fullWidth
-          label="Search"
-        />
-      </div>
-
-      <div className={'poke-list'}>
-        {filteredData.map((pokemon, element) => (
-          // <li key={item.name + element}>{item.name}</li>
-          <div className={'pokemon'} key={pokemon.name + element}>
-            <a onClick={() => setPokemon(pokemon)}>
-              <Pokemon hoverData={pokemon} />
-            </a>
+    <div className="less-wide">
+      <h1>Choose your Pokémon!</h1>
+      <div className="select">
+        <div className="selectTeam">
+          <Team team={team} />
+        </div>
+        <div className="searchConfirm">
+          <div className="confirmButtons">
+            <button onClick={restartTeam}>Reset Team</button>
+            <button onClick={confirmTeam}>Confirm Team</button>
           </div>
-        ))}
+          <div className="search">
+            <TextField
+              id="outlined-basic"
+              onChange={inputHandler}
+              variant="outlined"
+              fullWidth
+              label="Search by Pokémon name"
+            />
+          </div>
+        </div>
       </div>
-    </>
+      <div className="selectionGrid">
+        <div className="poke-list">
+          {filteredData.map((pokemon, element) => (
+            // <li key={item.name + element}>{item.name}</li>
+            <div className="pokemon" key={pokemon.name + element}>
+              <a onClick={() => setPokemon(pokemon)}>
+                <Pokemon hoverData={pokemon} />
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }

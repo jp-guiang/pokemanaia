@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setOppHp, setOppAtk, setOppDef } from '../actions/JV.js'
 import { setPokeHp, setMyDef, setMyAtk, swapOut } from '../actions/myPokemon.js'
 
-function Battle() {
+function Battle(props) {
   const fakeProps = 'JV'
   let oppPokemon
   let oppTeam
@@ -408,7 +408,15 @@ function Battle() {
           </div>
         </div>
       </div>
+
       <div>{oppHP}</div>
+      <button
+        onClick={() => {
+          props.battle(false)
+        }}
+      >
+        back to map
+      </button>
     </div>
   )
 }
