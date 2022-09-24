@@ -5,11 +5,13 @@ var theme = new Audio('themeSong.mp3')
 var battlesong = new Audio('battleTheme.mp3')
 let game = null
 
-function World(props) {
+function World() {
   const [battle, setBattle] = useState(false)
-  const [click, setClick] = useState(false)
+  const [volume, setVolume] = useState('0.2')
+  console.log('volume', volume)
 
   function battleSong() {
+    battlesong.volume = 0.2
     battlesong.currentTime = 0
     battlesong.play()
   }
@@ -18,6 +20,7 @@ function World(props) {
   }
 
   function themeSongPlay() {
+    theme.volume = 0.2
     theme.currentTime = 0
     theme.play()
     console.log('themePLAY')
@@ -40,6 +43,11 @@ function World(props) {
       battleSong()
     }
   }, [battle])
+
+  useEffect(() => {
+    theme.volume = volume
+    battlesong.volume = volume
+  }, [])
 
   useEffect(() => {
     const config = {
@@ -310,6 +318,18 @@ function World(props) {
       <button onClick={themeSongPause}>Stop</button>
       <button onClick={battleSong}>Battle Song Play</button>
       <button onClick={battleSongpause}>Stop</button>
+      <input
+        type="range"
+        min="0"
+        max="100"
+        onChange={(e) =>
+          setVolume(
+            battle
+              ? (battlesong.volume = e.target.value / 100)
+              : (theme.volume = e.target.value / 100)
+          )
+        }
+      ></input>
       {battle && <Battle battle={setBattle} />}
     </div>
   )
