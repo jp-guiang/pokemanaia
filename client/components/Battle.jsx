@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
 import { setJVHp, setJVAtk, setJVDef } from '../actions/JV.js'
 import { setDvdHp, setDvdAtk, setDvdDef } from '../actions/david.js'
+import { setKrsHp, setKrsAtk, setKrsDef } from '../actions/krissy.js'
+import { setJshHp, setJshAtk, setJshDef } from '../actions/josh.js'
+import { setSrhHp, setSrhAtk, setSrhDef } from '../actions/sarah.js'
+import { setJoeHp, setJoeAtk, setJoeDef } from '../actions/joseph.js'
+import { setGrdHp, setGrdAtk, setGrdDef } from '../actions/gerard.js'
+import { setRhnHp, setRhnAtk, setRhnDef } from '../actions/rohan.js'
 import { setPokeHp, setMyDef, setMyAtk, swapOut } from '../actions/myPokemon.js'
+const tackle = new Audio('/fightsounds/Tackle.mp3')
+const growl = new Audio('/fightsounds/Growl.mp3')
+const defenseCurl = new Audio('/fightsounds/DefenseCurl.mp3')
+const special = new Audio('/fightsounds/LightScreen.mp3')
+const cry1 = new Audio('/fightsounds/absol.mp3')
+const cry2 = new Audio('/fightsounds/aipom.mp3')
+const cry3 = new Audio('/fightsounds/alomomola.mp3')
+const cry4 = new Audio('/fightsounds/azumarill.mp3')
 
 function Battle(props) {
   const fakeProps = 'David'
@@ -27,12 +40,37 @@ function Battle(props) {
       oppPokemon = useSelector((state) => state.david[oppIndex])
       oppTeam = useSelector((state) => state.david.length)
       break
+    case 'Krissy':
+      oppPokemon = useSelector((state) => state.krissy[oppIndex])
+      oppTeam = useSelector((state) => state.krissy.length)
+      break
+    case 'Josh':
+      oppPokemon = useSelector((state) => state.josh[oppIndex])
+      oppTeam = useSelector((state) => state.josh.length)
+      break
+    case 'Sarah':
+      oppPokemon = useSelector((state) => state.sarah[oppIndex])
+      oppTeam = useSelector((state) => state.sarah.length)
+      break
+    case 'Joseph':
+      oppPokemon = useSelector((state) => state.joseph[oppIndex])
+      oppTeam = useSelector((state) => state.joseph.length)
+      break
+    case 'Gerard':
+      oppPokemon = useSelector((state) => state.gerard[oppIndex])
+      oppTeam = useSelector((state) => state.gerard.length)
+      break
+    case 'Rohan':
+      oppPokemon = useSelector((state) => state.rohan[oppIndex])
+      oppTeam = useSelector((state) => state.rohan.length)
+      break
     default:
       oppPokemon = useSelector((state) => state.JV[oppIndex])
       oppTeam = useSelector((state) => state.JV.length)
   }
+
   const myPokemonImg = myPokemon.sprites.back_default
-  const oppPokemonImg = JVPokemon.sprites.front_default
+  const oppPokemonImg = oppPokemon.sprites.front_default
 
   const myHP = myPokemon.stats[0].base_stat
   const myAttack = myPokemon.stats[1].base_stat
@@ -53,7 +91,7 @@ function Battle(props) {
   const [oppHPBar, setOppHPBar] = useState(200)
   const [myHPBar, setMyHPBar] = useState(200)
   const [fightText, setFightText] = useState(
-    `What will ${myPokemon.name.toUpperCase()} do?`
+    `Trainer ${fakeProps} wants to battle!`
   )
 
   let effective = 1
@@ -272,6 +310,32 @@ function Battle(props) {
     return effective
   }
 
+  function randomCry() {
+    const myRndm = Math.floor(Math.random() * 4 + 1)
+    switch (myRndm) {
+      case 1:
+        cry1.volume = 0.4
+        cry1.currentTime = 0
+        cry1.play()
+        break
+      case 2:
+        cry2.volume = 0.4
+        cry2.currentTime = 0
+        cry2.play()
+        break
+      case 3:
+        cry3.volume = 0.4
+        cry3.currentTime = 0
+        cry3.play()
+        break
+      case 4:
+        cry4.volume = 0.4
+        cry4.currentTime = 0
+        cry4.play()
+        break
+    }
+  }
+
   function attackOpponent(type, power, opponent) {
     let multiplyer1 = 1
     let multiplyer2 = 1
@@ -286,6 +350,9 @@ function Battle(props) {
       critVal = (2 * 1 * 2) / 5 + 2
     }
     if (type == 'special') {
+      special.volume = 0.4
+      special.currentTime = 0
+      special.play()
       multiplyer1 = calcMultiplyer(myType, oppType)
       if (oppType2) {
         multiplyer2 = calcMultiplyer(myType, oppType2)
@@ -303,6 +370,9 @@ function Battle(props) {
         document.getElementById('orb').style.visibility = 'hidden'
       }, 550)
     } else if (type == 'normal') {
+      tackle.volume = 0.4
+      tackle.currentTime = 0
+      tackle.play()
       STAB = 1
       setFightText(`${myPokemon.name.toUpperCase()} used TACKLE`)
       document.getElementById('myPokemonImg').style.left = '145px'
@@ -316,7 +386,7 @@ function Battle(props) {
       multiplyer1 *
       multiplyer2 *
       random
-    const finalHP = Math.round(JVPokemon.stats[0].base_stat - dmg)
+    const finalHP = Math.round(oppPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initOppHP) * 200)
     setTimeout(() => {
       if (finalHP > 0) {
@@ -330,6 +400,24 @@ function Battle(props) {
           break
         case 'David':
           dispatch(setDvdHp(finalHP, opponent))
+          break
+        case 'Krissy':
+          dispatch(setKrsHp(finalHP, opponent))
+          break
+        case 'Josh':
+          dispatch(setJshHp(finalHP, opponent))
+          break
+        case 'Sarah':
+          dispatch(setSrhHp(finalHP, opponent))
+          break
+        case 'Joseph':
+          dispatch(setJoeHp(finalHP, opponent))
+          break
+        case 'Gerard':
+          dispatch(setGrdHp(finalHP, opponent))
+          break
+        case 'Rohan':
+          dispatch(setRhnHp(finalHP, opponent))
           break
       }
     }, 700)
@@ -346,7 +434,8 @@ function Battle(props) {
     }, 700)
     if (finalHP < 1) {
       setTimeout(() => {
-        setFightText(`${JVPokemon.name.toUpperCase()} has fainted`)
+        randomCry()
+        setFightText(`${oppPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('oppPokemonImg').style.left = '800px'
       }, 2500)
     } else {
@@ -357,7 +446,7 @@ function Battle(props) {
         } else if (atkRndm < 0.3 && atkRndm >= 0.15) {
           lowerMyAtk(myPokemon)
         } else if (atkRndm < 0.15) {
-          raiseOppDefense(JVPokemon)
+          raiseOppDefense(oppPokemon)
         }
       }, 1500)
     }
@@ -375,13 +464,16 @@ function Battle(props) {
       critVal = (2 * 1 * 2) / 5 + 2
     }
     if (type < 0.5) {
+      special.volume = 0.4
+      special.currentTime = 0
+      special.play()
       oppMultiplyer1 = calcMultiplyer(oppType, myType)
       if (myType2) {
         oppMultiplyer2 = calcMultiplyer(oppType, myType2)
       }
       STAB = 1.5
       setFightText(
-        `${JVPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
+        `${oppPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
       )
       document.getElementById('ball').style.visibility = 'visible'
       document.getElementById('ball').style.left = '200px'
@@ -392,7 +484,10 @@ function Battle(props) {
         document.getElementById('ball').style.visibility = 'hidden'
       }, 550)
     } else if (type >= 0.5) {
-      setFightText(`${JVPokemon.name.toUpperCase()} used TACKLE`)
+      tackle.volume = 0.4
+      tackle.currentTime = 0
+      tackle.play()
+      setFightText(`${oppPokemon.name.toUpperCase()} used TACKLE`)
       STAB = 1
       document.getElementById('oppPokemonImg').style.left = '430px'
       setTimeout(() => {
@@ -431,6 +526,7 @@ function Battle(props) {
     }, 1500)
     if (finalHP < 1) {
       setTimeout(() => {
+        randomCry()
         setFightText(`${myPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('myPokemonImg').style.left = '-400px'
       }, 2500)
@@ -439,6 +535,9 @@ function Battle(props) {
 
   function lowerOppAtk(target) {
     if (oppPokemon.stats[1].base_stat > 8) {
+      growl.volume = 0.4
+      growl.currentTime = 0
+      growl.play()
       const attack = oppPokemon.stats[1].base_stat - 7
       switch (fakeProps) {
         case 'JV':
@@ -446,6 +545,24 @@ function Battle(props) {
           break
         case 'David':
           dispatch(setDvdAtk(attack, target))
+          break
+        case 'Krissy':
+          dispatch(setKrsAtk(attack, target))
+          break
+        case 'Josh':
+          dispatch(setJshAtk(attack, target))
+          break
+        case 'Sarah':
+          dispatch(setSrhAtk(attack, target))
+          break
+        case 'Joseph':
+          dispatch(setJoeAtk(attack, target))
+          break
+        case 'Gerard':
+          dispatch(setGrdAtk(attack, target))
+          break
+        case 'Rhn':
+          dispatch(setRhnAtk(attack, target))
           break
       }
       setFightText(`${myPokemon.name.toUpperCase()} used GROWL`)
@@ -461,13 +578,16 @@ function Battle(props) {
       } else if (atkRndm < 0.4 && atkRndm >= 0.2) {
         lowerMyAtk(myPokemon)
       } else if (atkRndm < 0.2) {
-        raiseOppDefense(JVPokemon)
+        raiseOppDefense(oppPokemon)
       }
     }, 1500)
   }
 
   function raiseDefense(target) {
     if (myPokemon.stats[2].base_stat < 200) {
+      defenseCurl.volume = 0.4
+      defenseCurl.currentTime = 0
+      defenseCurl.play()
       const defense = myPokemon.stats[1].base_stat + 7
       dispatch(setMyDef(defense, target))
       setFightText(`${myPokemon.name.toUpperCase()} used DEFENSE CURL`)
@@ -483,16 +603,19 @@ function Battle(props) {
       } else if (atkRndm < 0.3 && atkRndm >= 0.15) {
         lowerMyAtk(myPokemon)
       } else if (atkRndm < 0.15) {
-        raiseOppDefense(JVPokemon)
+        raiseOppDefense(oppPokemon)
       }
     }, 1500)
   }
 
   function lowerMyAtk(target) {
     if (myPokemon.stats[1].base_stat > 8) {
+      growl.volume = 0.4
+      growl.currentTime = 0
+      growl.play()
       const attack = myPokemon.stats[1].base_stat - 7
       dispatch(setMyAtk(attack, target))
-      setFightText(`${JVPokemon.name.toUpperCase()} used GROWL`)
+      setFightText(`${oppPokemon.name.toUpperCase()} used GROWL`)
       document.getElementById('oppGrowl').style.visibility = 'visible'
       setTimeout(() => {
         document.getElementById('oppGrowl').style.visibility = 'hidden'
@@ -505,6 +628,9 @@ function Battle(props) {
 
   function raiseOppDefense(target) {
     if (oppPokemon.stats[1].base_stat < 200) {
+      defenseCurl.volume = 0.4
+      defenseCurl.currentTime = 0
+      defenseCurl.play()
       const defense = oppPokemon.stats[1].base_stat + 7
       switch (fakeProps) {
         case 'JV':
@@ -512,6 +638,24 @@ function Battle(props) {
           break
         case 'David':
           dispatch(setDvdDef(defense, target))
+          break
+        case 'Krissy':
+          dispatch(setKrsDef(defense, target))
+          break
+        case 'Josh':
+          dispatch(setJshDef(defense, target))
+          break
+        case 'Sarah':
+          dispatch(setSrhDef(defense, target))
+          break
+        case 'Joseph':
+          dispatch(setJoeDef(defense, target))
+          break
+        case 'Gerard':
+          dispatch(setGrdDef(defense, target))
+          break
+        case 'Rohan':
+          dispatch(setRhnDef(defense, target))
           break
       }
       setFightText(`${oppPokemon.name.toUpperCase()} used DEFENSE CURL`)
@@ -573,7 +717,7 @@ function Battle(props) {
     if (oppHP <= 0) {
       setTimeout(() => {
         setOppCount(oppCount + 1)
-        if (oppCount < JVTeam - 1) {
+        if (oppCount < oppTeam - 1) {
           setOppIndex(oppIndex + 1)
           nextOppPokemon()
         }
@@ -591,98 +735,121 @@ function Battle(props) {
   }, [oppHP, myHP])
 
   useEffect(() => {
-    if (oppCount == JVTeam) {
+    if (oppCount == oppTeam) {
       setTimeout(() => {
-        setFightText(`JV has been defeated!`)
+        setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
           setFightText(`You won 500 Dev Academy Points`)
         }, 2000)
+        setTimeout(() => {
+          props.battle(false)
+        }, 6000)
       }, 2000)
     } else if (myCount == team) {
       setTimeout(() => {
         setFightText(`You have been defeated...`)
       }, 2000)
+      setTimeout(() => {
+        props.battle(false)
+      }, 8000)
     }
     setCount(count + 1)
   }, [oppCount, myCount])
 
   useEffect(() => {
-    setFightText(`Go ${JVPokemon.name.toUpperCase()}!`)
-  }, [JVPokemon])
+    if (!fightText.includes('battle')) {
+      setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
+    }
+  }, [oppPokemon])
 
   useEffect(() => {
-    setFightText(`Go ${myPokemon.name.toUpperCase()}!`)
+    if (!fightText.includes('battle')) {
+      setFightText(`Go ${myPokemon.name.toUpperCase()}!`)
+    } else {
+      setTimeout(() => {
+        setFightText(`Go ${myPokemon.name.toUpperCase()}!`)
+      }, 3000)
+    }
   }, [myPokemon])
+
+  useEffect(() => {
+    document.getElementById('pokeball').style.width = '0px'
+    document.getElementById('pokeball').style.height = '0px'
+    setTimeout(() => {
+      randomCry()
+      setTimeout(() => {
+        randomCry()
+      }, 1000)
+    }, 500)
+  }, [])
 
   return (
     <div className="centering">
-      <div className="gameBorder">
-        <div className="battery">
-          <div className="batteryLight" />
-          <p>BATTERY</p>
-        </div>
-        <div className="battleScreen">
-          <div className="pokemonSprites">
-            <div className="myHP">
-              <span>
-                {myHP > 0 ? myHP : 0} / {initMyHP}
-              </span>
-            </div>
-            <span className="oppPkmnName">{oppPokemon.name.toUpperCase()}</span>
-            <span className="myPkmnName">{myPokemon.name.toUpperCase()}</span>
-            <div id="myHealthBar"></div>
-            <div className="myHealthBarBacking"></div>
+      <div className="battleScreen">
+        <div className="pokemonSprites">
+          <div className="myHP">
+            <span>
+              {myHP > 0 ? myHP : 0} / {initMyHP}
+            </span>
+          </div>
+          <span className="oppPkmnName">{oppPokemon.name.toUpperCase()}</span>
+          <span className="myPkmnName">{myPokemon.name.toUpperCase()}</span>
+          <div id="myHealthBar"></div>
+          <div className="myHealthBarBacking"></div>
+          <div className="pokeballDiv">
             <img
-              className="myHealth"
-              src="/images/myHealth.png"
-              alt="my health bar"
-            />
-            <img id="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
-            <img id="orb" src="/images/orb.png" alt="orb of light" />
-            <img id="ball" src="/images/ball.png" alt="ball of light" />
-            <img id="myGrowl" src="/images/growl.gif" alt="growl lines" />
-            <img id="oppGrowl" src="/images/growl.gif" alt="growl lines" />
-            <img
-              id="myShield"
-              src="/images/force-shield.gif"
-              alt="opponent forcefield"
-            />
-            <img
-              id="oppShield"
-              src="/images/force-shield.gif"
-              alt="my forcefield"
-            />
-            <img
-              id="oppPokemonImg"
-              src={oppPokemonImg}
-              alt="opponent Pokemon"
-            />
-            <div id="oppHealthBar"></div>
-            <div className="oppHealthBarBacking"></div>
-            <img
-              className="oppHealth"
-              src="/images/oppHealth.png"
-              alt="opponent health bar"
+              id="pokeball"
+              src="/images/image03.gif"
+              alt="spinning pokball"
             />
           </div>
-          <img src="/images/carpark.png" alt="one outs in the carpark" />
-          <img className="textbox" src="/images/textbox1.png" alt="textbox" />
-          <div className="insideTextBox">
-            <div className="fightQuestion">
-              <p>{fightText}</p>
-            </div>
-            <div className="fightButtons">
-              <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
-                TACKLE
-              </button>
-              <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
-                {myType.toUpperCase()} ATTACK
-              </button>
-              <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
-              <button onClick={() => raiseDefense(myPokemon)}>
-                DEFENSE CURL
-              </button>
-            </div>
+          <img
+            className="myHealth"
+            src="/images/myHealth.png"
+            alt="my health bar"
+          />
+          <img id="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
+          <img id="orb" src="/images/orb.png" alt="orb of light" />
+          <img id="ball" src="/images/ball.png" alt="ball of light" />
+          <img id="myGrowl" src="/images/growl.gif" alt="growl lines" />
+          <img id="oppGrowl" src="/images/growl.gif" alt="growl lines" />
+          <img
+            id="myShield"
+            src="/images/force-shield.gif"
+            alt="opponent forcefield"
+          />
+          <img
+            id="oppShield"
+            src="/images/force-shield.gif"
+            alt="my forcefield"
+          />
+          <img id="oppPokemonImg" src={oppPokemonImg} alt="opponent Pokemon" />
+          <div id="oppHealthBar"></div>
+          <div className="oppHealthBarBacking"></div>
+          <img
+            className="oppHealth"
+            src="/images/oppHealth.png"
+            alt="opponent health bar"
+          />
+        </div>
+        <img src="/images/carpark.png" alt="one outs in the carpark" />
+        <img className="textbox" src="/images/textbox1.png" alt="textbox" />
+        <div className="insideTextBox">
+          <div className="fightQuestion">
+            <p>{fightText}</p>
+          </div>
+
+          <div className="fightButtons">
+            <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
+              TACKLE
+            </button>
+            <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
+              {myType.toUpperCase()} ATTACK
+            </button>
+            <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
+            <button onClick={() => raiseDefense(myPokemon)}>
+              DEFENSE CURL
+            </button>
           </div>
         </div>
       </div>

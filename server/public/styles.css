@@ -47,8 +47,6 @@ h1 {
   flex-direction: column;
   width: 800px;
   height: auto;
-  margin-bottom: 50px;
-  margin-top: 50px;
   overflow: hidden;
 }
 
@@ -436,6 +434,8 @@ ul li {
   justify-content: center;
   align-items: center;
   position: relative;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 footer {
@@ -462,3 +462,22 @@ footer {
   font-size: 18px;
   color:#1e3b67;
 }
+
+.pokeballDiv {
+  position: absolute;
+  height: 600px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pokeball {
+  position: absolute;
+  width: 1800px;
+  height: 1800px;
+  z-index: 7;
+  transition: width 2s, height 2s;
+  image-rendering: pixelated;
+}
+
