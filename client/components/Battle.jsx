@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { setJVHp, setJVAtk, setJVDef } from '../actions/JV.js'
 import { setDvdHp, setDvdAtk, setDvdDef } from '../actions/david.js'
 import { setPokeHp, setMyDef, setMyAtk, swapOut } from '../actions/myPokemon.js'
@@ -30,9 +31,8 @@ function Battle(props) {
       oppPokemon = useSelector((state) => state.JV[oppIndex])
       oppTeam = useSelector((state) => state.JV.length)
   }
-
   const myPokemonImg = myPokemon.sprites.back_default
-  const oppPokemonImg = oppPokemon.sprites.front_default
+  const oppPokemonImg = JVPokemon.sprites.front_default
 
   const myHP = myPokemon.stats[0].base_stat
   const myAttack = myPokemon.stats[1].base_stat
@@ -316,7 +316,7 @@ function Battle(props) {
       multiplyer1 *
       multiplyer2 *
       random
-    const finalHP = Math.round(oppPokemon.stats[0].base_stat - dmg)
+    const finalHP = Math.round(JVPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initOppHP) * 200)
     setTimeout(() => {
       if (finalHP > 0) {
@@ -346,7 +346,7 @@ function Battle(props) {
     }, 700)
     if (finalHP < 1) {
       setTimeout(() => {
-        setFightText(`${oppPokemon.name.toUpperCase()} has fainted`)
+        setFightText(`${JVPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('oppPokemonImg').style.left = '800px'
       }, 2500)
     } else {
@@ -357,7 +357,7 @@ function Battle(props) {
         } else if (atkRndm < 0.3 && atkRndm >= 0.15) {
           lowerMyAtk(myPokemon)
         } else if (atkRndm < 0.15) {
-          raiseOppDefense(oppPokemon)
+          raiseOppDefense(JVPokemon)
         }
       }, 1500)
     }
@@ -381,7 +381,7 @@ function Battle(props) {
       }
       STAB = 1.5
       setFightText(
-        `${oppPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
+        `${JVPokemon.name.toUpperCase()} used ${oppType.toUpperCase()} ATTACK`
       )
       document.getElementById('ball').style.visibility = 'visible'
       document.getElementById('ball').style.left = '200px'
@@ -392,7 +392,7 @@ function Battle(props) {
         document.getElementById('ball').style.visibility = 'hidden'
       }, 550)
     } else if (type >= 0.5) {
-      setFightText(`${oppPokemon.name.toUpperCase()} used TACKLE`)
+      setFightText(`${JVPokemon.name.toUpperCase()} used TACKLE`)
       STAB = 1
       document.getElementById('oppPokemonImg').style.left = '430px'
       setTimeout(() => {
@@ -461,7 +461,7 @@ function Battle(props) {
       } else if (atkRndm < 0.4 && atkRndm >= 0.2) {
         lowerMyAtk(myPokemon)
       } else if (atkRndm < 0.2) {
-        raiseOppDefense(oppPokemon)
+        raiseOppDefense(JVPokemon)
       }
     }, 1500)
   }
@@ -483,7 +483,7 @@ function Battle(props) {
       } else if (atkRndm < 0.3 && atkRndm >= 0.15) {
         lowerMyAtk(myPokemon)
       } else if (atkRndm < 0.15) {
-        raiseOppDefense(oppPokemon)
+        raiseOppDefense(JVPokemon)
       }
     }, 1500)
   }
@@ -492,7 +492,7 @@ function Battle(props) {
     if (myPokemon.stats[1].base_stat > 8) {
       const attack = myPokemon.stats[1].base_stat - 7
       dispatch(setMyAtk(attack, target))
-      setFightText(`${oppPokemon.name.toUpperCase()} used GROWL`)
+      setFightText(`${JVPokemon.name.toUpperCase()} used GROWL`)
       document.getElementById('oppGrowl').style.visibility = 'visible'
       setTimeout(() => {
         document.getElementById('oppGrowl').style.visibility = 'hidden'
@@ -573,7 +573,7 @@ function Battle(props) {
     if (oppHP <= 0) {
       setTimeout(() => {
         setOppCount(oppCount + 1)
-        if (oppCount < oppTeam - 1) {
+        if (oppCount < JVTeam - 1) {
           setOppIndex(oppIndex + 1)
           nextOppPokemon()
         }
@@ -591,9 +591,9 @@ function Battle(props) {
   }, [oppHP, myHP])
 
   useEffect(() => {
-    if (oppCount == oppTeam) {
+    if (oppCount == JVTeam) {
       setTimeout(() => {
-        setFightText(`${fakeProps} has been defeated!`)
+        setFightText(`JV has been defeated!`)
         setTimeout(() => {
           setFightText(`You won 500 Dev Academy Points`)
         }, 2000)
@@ -607,8 +607,8 @@ function Battle(props) {
   }, [oppCount, myCount])
 
   useEffect(() => {
-    setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
-  }, [oppPokemon])
+    setFightText(`Go ${JVPokemon.name.toUpperCase()}!`)
+  }, [JVPokemon])
 
   useEffect(() => {
     setFightText(`Go ${myPokemon.name.toUpperCase()}!`)
@@ -671,7 +671,6 @@ function Battle(props) {
             <div className="fightQuestion">
               <p>{fightText}</p>
             </div>
-
             <div className="fightButtons">
               <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
                 TACKLE
