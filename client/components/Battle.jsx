@@ -432,7 +432,7 @@ function Battle(props) {
     if (finalHP < 1) {
       setTimeout(() => {
         setFightText(`${myPokemon.name.toUpperCase()} has fainted`)
-        document.getElementById('myPokemonImg').style.left = '-300px'
+        document.getElementById('myPokemonImg').style.left = '-400px'
       }, 2500)
     }
   }
@@ -616,68 +616,77 @@ function Battle(props) {
 
   return (
     <div className="centering">
-      <div className="battleScreen">
-        <div className="pokemonSprites">
-          <div className="myHP">
-            <span>
-              {myHP > 0 ? myHP : 0} / {initMyHP}
-            </span>
-          </div>
-          <span className="oppPkmnName">{oppPokemon.name.toUpperCase()}</span>
-          <span className="myPkmnName">{myPokemon.name.toUpperCase()}</span>
-          <div id="myHealthBar"></div>
-          <div className="myHealthBarBacking"></div>
-          <img
-            className="myHealth"
-            src="/images/myHealth.png"
-            alt="my health bar"
-          />
-          <img id="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
-          <img id="orb" src="/images/orb.png" alt="orb of light" />
-          <img id="ball" src="/images/ball.png" alt="ball of light" />
-          <img id="myGrowl" src="/images/growl.gif" alt="growl lines" />
-          <img id="oppGrowl" src="/images/growl.gif" alt="growl lines" />
-          <img
-            id="myShield"
-            src="/images/force-shield.gif"
-            alt="opponent forcefield"
-          />
-          <img
-            id="oppShield"
-            src="/images/force-shield.gif"
-            alt="my forcefield"
-          />
-          <img id="oppPokemonImg" src={oppPokemonImg} alt="opponent Pokemon" />
-          <div id="oppHealthBar"></div>
-          <div className="oppHealthBarBacking"></div>
-          <img
-            className="oppHealth"
-            src="/images/oppHealth.png"
-            alt="opponent health bar"
-          />
+      <div className="gameBorder">
+        <div className="battery">
+          <div className="batteryLight" />
+          <p>BATTERY</p>
         </div>
-        <img src="/images/carpark.png" alt="one outs in the carpark" />
-        <img className="textbox" src="/images/textbox1.png" alt="textbox" />
-        <div className="insideTextBox">
-          <div className="fightQuestion">
-            <p>{fightText}</p>
+        <div className="battleScreen">
+          <div className="pokemonSprites">
+            <div className="myHP">
+              <span>
+                {myHP > 0 ? myHP : 0} / {initMyHP}
+              </span>
+            </div>
+            <span className="oppPkmnName">{oppPokemon.name.toUpperCase()}</span>
+            <span className="myPkmnName">{myPokemon.name.toUpperCase()}</span>
+            <div id="myHealthBar"></div>
+            <div className="myHealthBarBacking"></div>
+            <img
+              className="myHealth"
+              src="/images/myHealth.png"
+              alt="my health bar"
+            />
+            <img id="myPokemonImg" src={myPokemonImg} alt="my Pokemon" />
+            <img id="orb" src="/images/orb.png" alt="orb of light" />
+            <img id="ball" src="/images/ball.png" alt="ball of light" />
+            <img id="myGrowl" src="/images/growl.gif" alt="growl lines" />
+            <img id="oppGrowl" src="/images/growl.gif" alt="growl lines" />
+            <img
+              id="myShield"
+              src="/images/force-shield.gif"
+              alt="opponent forcefield"
+            />
+            <img
+              id="oppShield"
+              src="/images/force-shield.gif"
+              alt="my forcefield"
+            />
+            <img
+              id="oppPokemonImg"
+              src={oppPokemonImg}
+              alt="opponent Pokemon"
+            />
+            <div id="oppHealthBar"></div>
+            <div className="oppHealthBarBacking"></div>
+            <img
+              className="oppHealth"
+              src="/images/oppHealth.png"
+              alt="opponent health bar"
+            />
           </div>
+          <img src="/images/carpark.png" alt="one outs in the carpark" />
+          <img className="textbox" src="/images/textbox1.png" alt="textbox" />
+          <div className="insideTextBox">
+            <div className="fightQuestion">
+              <p>{fightText}</p>
+            </div>
 
-          <div className="fightButtons">
-            <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
-              TACKLE
-            </button>
-            <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
-              {myType.toUpperCase()} ATTACK
-            </button>
-            <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
-            <button onClick={() => raiseDefense(myPokemon)}>
-              DEFENSE CURL
-            </button>
+            <div className="fightButtons">
+              <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
+                TACKLE
+              </button>
+              <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
+                {myType.toUpperCase()} ATTACK
+              </button>
+              <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
+              <button onClick={() => raiseDefense(myPokemon)}>
+                DEFENSE CURL
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <div>{oppHP}</div>
     </div>
   )
 }
