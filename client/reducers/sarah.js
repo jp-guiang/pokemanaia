@@ -1,4 +1,4 @@
-import { SET_DVD_HP, SET_DVD_ATK, SET_DVD_DEF } from '../actions/david.js'
+import { SET_SRH_HP, SET_SRH_ATK, SET_SRH_DEF } from '../actions/sarah.js'
 
 const initialState = [
   {
@@ -43,33 +43,33 @@ const initialState = [
 const reducer = (state = initialState, action) => {
   const { type, payload, pokemon } = action
   switch (type) {
-    case SET_DVD_HP:
+    case SET_SRH_HP:
       console.log('hp')
-      return state.map((davidPokemon) => {
-        if (davidPokemon.id == pokemon.id) {
-          const tempPokemon = davidPokemon
+      return state.map((sarahPokemon) => {
+        if (sarahPokemon.id == pokemon.id) {
+          const tempPokemon = sarahPokemon
           tempPokemon.stats[0].base_stat = payload
           return tempPokemon
         }
-        return davidPokemon
+        return sarahPokemon
       })
-    case SET_DVD_ATK:
-      return state.map((davidPokemon) => {
-        if (davidPokemon.id == pokemon.id) {
-          const tempPokemon = davidPokemon
+    case SET_SRH_ATK:
+      return state.map((sarahPokemon) => {
+        if (sarahPokemon.id == pokemon.id) {
+          const tempPokemon = sarahPokemon
           tempPokemon.stats[1].base_stat = payload
           return tempPokemon
         }
-        return davidPokemon
+        return sarahPokemon
       })
-    case SET_DVD_DEF:
-      return state.map((davidPokemon) => {
-        if (davidPokemon.id == pokemon.id) {
-          const tempPokemon = davidPokemon
+    case SET_SRH_DEF:
+      return state.map((sarahPokemon) => {
+        if (sarahPokemon.id == pokemon.id) {
+          const tempPokemon = sarahPokemon
           tempPokemon.stats[2].base_stat = payload
           return tempPokemon
         }
-        return davidPokemon
+        return sarahPokemon
       })
     default:
       return state

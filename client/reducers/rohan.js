@@ -1,4 +1,4 @@
-import { SET_DVD_HP, SET_DVD_ATK, SET_DVD_DEF } from '../actions/david.js'
+import { SET_RHN_HP, SET_RHN_ATK, SET_RHN_DEF } from '../actions/rohan.js'
 
 const initialState = [
   {
@@ -43,7 +43,7 @@ const initialState = [
 const reducer = (state = initialState, action) => {
   const { type, payload, pokemon } = action
   switch (type) {
-    case SET_DVD_HP:
+    case SET_RHN_HP:
       console.log('hp')
       return state.map((davidPokemon) => {
         if (davidPokemon.id == pokemon.id) {
@@ -53,7 +53,7 @@ const reducer = (state = initialState, action) => {
         }
         return davidPokemon
       })
-    case SET_DVD_ATK:
+    case SET_RHN_ATK:
       return state.map((davidPokemon) => {
         if (davidPokemon.id == pokemon.id) {
           const tempPokemon = davidPokemon
@@ -62,7 +62,7 @@ const reducer = (state = initialState, action) => {
         }
         return davidPokemon
       })
-    case SET_DVD_DEF:
+    case SET_RHN_DEF:
       return state.map((davidPokemon) => {
         if (davidPokemon.id == pokemon.id) {
           const tempPokemon = davidPokemon

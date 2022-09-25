@@ -307,10 +307,17 @@ function World() {
 
   return (
     <div>
-      <div
-        id="game-container"
-        style={{ display: battle ? 'none' : null }}
-      ></div>
+      <div className="gameBorder">
+        <div className="battery">
+          <div className="batteryLight" />
+          <p>BATTERY</p>
+        </div>
+        <div
+          id="game-container"
+          style={{ display: battle ? 'none' : null }}
+        ></div>
+        {battle && <Battle battle={setBattle} />}
+      </div>
       <button onClick={themeSongPlay}>Theme Song Play</button>
       <button onClick={themeSongPause}>Stop</button>
       <button onClick={battleSong}>Battle Song Play</button>
@@ -327,7 +334,6 @@ function World() {
           )
         }
       ></input>
-      {battle && <Battle battle={setBattle} />}
     </div>
   )
 }

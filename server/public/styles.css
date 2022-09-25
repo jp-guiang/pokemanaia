@@ -47,7 +47,6 @@ h1 {
   flex-direction: column;
   width: 800px;
   height: auto;
-  margin-bottom: 100px;
   overflow: hidden;
 }
 
@@ -424,7 +423,61 @@ ul li {
  color:#1e3b67
 }
 
+.gameBorder {
+  border: 10px solid #FFCB05;
+  background: rgb(251, 232, 155);
+  border-radius: 50px;
+  width: 1200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
 footer {
   color: white;
   margin: 20px;
 }
+
+.battery {
+  position: absolute;
+  top: 250px;
+  left: 50px;
+}
+
+.batteryLight {
+  height: 20px;
+  width: 20px;
+  background-color: rgb(113, 223, 3);
+  border-radius: 50%;
+  margin-left: 20px;
+  filter: drop-shadow(0px 0px 8px chartreuse)
+}
+
+.battery p{
+  font-size: 18px;
+  color:#1e3b67;
+}
+
+.pokeballDiv {
+  position: absolute;
+  height: 600px;
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pokeball {
+  position: absolute;
+  width: 1800px;
+  height: 1800px;
+  z-index: 7;
+  transition: width 2s, height 2s;
+  image-rendering: pixelated;
+}
+

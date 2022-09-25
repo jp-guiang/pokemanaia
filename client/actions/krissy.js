@@ -1,9 +1,9 @@
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 
 export const SET_POKEMON = 'SET_POKEMON'
-export const SET_JV_HP = 'SET_JV_HP'
-export const SET_JV_ATK = 'SET_JV_ATK'
-export const SET_JV_DEF = 'SET_JV_DEF'
+export const SET_KRS_HP = 'SET_KRS_HP'
+export const SET_KRS_ATK = 'SET_KRS_ATK'
+export const SET_KRS_DEF = 'SET_KRS_DEF'
 
 export function setPokemon(pokemon) {
   return {
@@ -21,25 +21,25 @@ export function fetchPokemon() {
   }
 }
 
-export function setJVHp(damage, pokemon) {
+export function setKrsHp(damage, pokemon) {
   return {
-    type: SET_JV_HP,
+    type: SET_KRS_HP,
     payload: damage,
     pokemon,
   }
 }
 
-export function setJVAtk(attack, pokemon) {
+export function setKrsAtk(attack, pokemon) {
   return {
-    type: SET_JV_ATK,
+    type: SET_KRS_ATK,
     payload: attack,
     pokemon,
   }
 }
 
-export function setJVDef(defense, pokemon) {
+export function setKrsDef(defense, pokemon) {
   return {
-    type: SET_JV_DEF,
+    type: SET_KRS_DEF,
     payload: defense,
     pokemon,
   }
