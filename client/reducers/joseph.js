@@ -2,23 +2,23 @@ import { SET_JOE_HP, SET_JOE_ATK, SET_JOE_DEF } from '../actions/joseph.js'
 
 const initialState = [
   {
-    name: 'squirtle',
-    id: 7,
+    name: 'mr mime',
+    id: 122,
     stats: {
       0: {
-        base_stat: 44,
+        base_stat: 40,
         stat: {
           name: 'hp',
         },
       },
       1: {
-        base_stat: 48,
+        base_stat: 100,
         stat: {
           name: 'attack',
         },
       },
       2: {
-        base_stat: 65,
+        base_stat: 120,
         stat: {
           name: 'defense',
         },
@@ -26,14 +26,14 @@ const initialState = [
     },
     sprites: {
       back_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/122.png',
       front_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png',
     },
     types: {
       0: {
         type: {
-          name: 'water',
+          name: 'psychic',
         },
       },
     },
