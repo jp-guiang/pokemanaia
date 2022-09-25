@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState('')
   const [messageList, setMessageList] = useState([])
-  const [isVideoOn, setVideOn] = useState(false)
-  const [stream, setStream] = useState()
 
   const sendMessage = async (e) => {
     if (currentMessage !== '') {
@@ -26,6 +24,7 @@ function Chat({ socket, username, room }) {
   }
 
   useEffect(() => {
+    //this stops it from duplicating
     socket.off('receive_message')
     socket.on('receive_message', (data) => {
       setMessageList((list) => [...list, data])

@@ -5,47 +5,33 @@ import Chat from './Chat'
 const socket = io.connect('http://localhost:3001')
 function Pair() {
   const [username, setUsername] = useState('')
-  const [room, setRoom] = useState('')
+
   const [showChat, setShowChat] = useState(false)
 
   function joinRoom() {
-    if (username !== '' && room !== '') {
-      socket.emit('join_room', room)
-      setShowChat(true)
-    }
+    setShowChat(true)
   }
 
   return (
     <div>
-      <h1 className="bg-amber-400 text-8xl font-bold pb-8">BEE:</h1>
-      <div className="App bg-amber-100 flex flex-col justify-center items-center rounded">
+      <div className="">
         {!showChat ? (
           <>
-            <h3 className="bg-amber-400 text-3xl font-bold">Join a chat</h3>
+            <h3 className="">Join a chat</h3>
             <input
-              className="pl-2"
               type="text"
               name="name"
               placeholder="Enter your name..."
               onChange={(e) => setUsername(e.target.value)}
               onKeyPress={(e) => {
-                e.key === 'Enter' && setUsername(e.target.value)
+                e.key === 'Enter' && setUsername(e.target.value) && joinRoom()
               }}
             />
-            <input
-              className="pl-2"
-              type="text"
-              name="room"
-              placeholder="Room ID.."
-              onChange={(e) => setRoom(e.target.value)}
-              onKeyPress={(e) => {
-                e.key === 'Enter' && joinRoom()
-              }}
-            />
+
             <button onClick={joinRoom}>Join a room</button>
           </>
         ) : (
-          <Chat socket={socket} username={username} room={room} />
+          <Chat socket={socket} username={username} />
         )}
       </div>
     </div>

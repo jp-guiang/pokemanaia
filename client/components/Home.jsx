@@ -4,14 +4,24 @@ import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
-import Pair from './Pair'
 
+//------------------------------------ SOCKET IO
+import Pair from './Pair'
+import io from 'socket.io-client'
+
+const socket = io.connect('http://localhost:3001')
+//------------------------------------ SOCKET IO
 const clickPop = new Audio('clickConf.mp3')
 const homeTheme = new Audio('homeTheme.mp3')
 
 import TextField from '@mui/material/TextField'
 
 export default function Home(props) {
+  //------------------------------------ SOCKET IO
+  const [username, setUsername] = useState('')
+  const [room, setRoom] = useState('')
+  const [showChat, setShowChat] = useState(false)
+  //----------------------------------------SOCKET IO
   const [pageList, setPokemonList] = useState([])
 
   const [pageLimit] = useState(151)
