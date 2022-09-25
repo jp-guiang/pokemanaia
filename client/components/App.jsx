@@ -5,6 +5,7 @@ import Home from './Home'
 import World from './World'
 import Battle from './Battle'
 import Footer from './Footer'
+import Pair from './Pair'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
@@ -29,6 +30,7 @@ const App = () => {
 
       {/* <Battle /> */}
       {/* <World /> */}
+      <Pair />
       <footer>
         <Footer />
       </footer>

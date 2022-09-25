@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
 import Team from './Team'
 import Pokemon from './Pokemon'
+import Pair from './Pair'
+
 const clickPop = new Audio('clickConf.mp3')
 const homeTheme = new Audio('homeTheme.mp3')
 
@@ -111,6 +113,7 @@ export default function Home(props) {
         onChange={(e) => setVolume((homeTheme.volume = e.target.value / 100))}
       ></input>
       <h1>Choose your Pokémon!</h1>
+      <Pair />
       <div className="select">
         <div className="selectTeam">
           <Team team={team} />
