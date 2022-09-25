@@ -40,6 +40,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@vscode/sqlite3": "^5.0.7",
     "express": "^4.17.1",
@@ -47,6 +49,7 @@
     "knex": "^1.0.2",
     "pg": "^8.5.1",
     "phaser": "^3.55.2",
+    "react-router": "^6.4.1",
     "superagent": "^6.1.0"
   },
   "devDependencies": {

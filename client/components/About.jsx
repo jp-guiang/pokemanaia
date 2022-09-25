@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function About() {
+const About = () => {
   //TO DO
   //Add team image
   //Add about us text/style
@@ -31,3 +31,5 @@ export default function About() {
     </div>
   )
 }
+
+export default About

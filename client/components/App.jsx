@@ -5,10 +5,10 @@ import Home from './Home'
 import World from './World'
 import Battle from './Battle'
 import Footer from './Footer'
-import Navbar from './Navbar'
 import Profile from './Profile'
 import About from './About'
 import Credits from './Credits'
+import ResponsiveAppBar from './Navbar'
 import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -23,7 +23,13 @@ const App = () => {
 
   return (
     <div className="whole-app">
-      <Navbar />
+      <ResponsiveAppBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="Profile" element={<Profile />} />
+        <Route path="About" element={<About />} />
+        <Route path="Credits" element={<Credits />} />
+      </Routes>
       {!showWorld && (
         <div>
           <Home fn={aWholeNewWorld} />
@@ -36,12 +42,6 @@ const App = () => {
 
       {/* <Battle /> */}
       {/* <World /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/credits" element={<Credits />} />
-      </Routes>
 
       <footer>
         <Footer />
