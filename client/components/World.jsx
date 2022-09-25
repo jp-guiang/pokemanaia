@@ -154,14 +154,93 @@ function World() {
         this.physics.world.removeCollider(testOverlap2)
       }
 
+      function collisionlistenerSarah() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapSarah)
+      }
+
+      function collisionlistenerKrissy() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapKrissy)
+      }
+
+      function collisionlistenerJosh() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapJosh)
+      }
+
+      function collisionlistenerRohan() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapRohan)
+      }
+
+      function collisionlistenerGerard() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapGerard)
+      }
+
+      function collisionlistenerJoseph() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapJoseph)
+      }
+      function collisionlistenerDavid() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapDavid)
+      }
+      function collisionlistenerJv() {
+        console.log('action')
+        // themeSongPause()
+        setBattle(true)
+
+        this.physics.world.removeCollider(testOverlapJv)
+      }
+
       this.physics.world.on('overlap', () => {
         console.log('overlap')
       })
+
       const zone = this.add.zone(400, 100).setSize(32, 32)
       const zone2 = this.add.zone(500, 100).setSize(32, 32)
+      const zoneSarah = this.add.zone(1200, 560).setSize(32, 32)
+      const zoneKrissy = this.add.zone(1104, 80).setSize(32, 32)
+      const zoneJosh = this.add.zone(80, 592).setSize(32, 32)
+      const zoneRohan = this.add.zone(784, 1072).setSize(32, 32)
+      const zoneGerard = this.add.zone(848, 1072).setSize(32, 32)
+      const zoneJoseph = this.add.zone(912, 1072).setSize(32, 32)
+      const zoneDavid = this.add.zone(464, 1904).setSize(32, 32)
+      const zoneJv = this.add.zone(656, 2416).setSize(32, 32)
 
       this.physics.world.enable(zone)
       this.physics.world.enable(zone2)
+      this.physics.world.enable(zoneSarah)
+      this.physics.world.enable(zoneKrissy)
+      this.physics.world.enable(zoneJosh)
+      this.physics.world.enable(zoneRohan)
+      this.physics.world.enable(zoneGerard)
+      this.physics.world.enable(zoneJoseph)
+      this.physics.world.enable(zoneDavid)
+      this.physics.world.enable(zoneJv)
 
       const testOverlap = this.physics.add.overlap(
         player,
@@ -173,6 +252,47 @@ function World() {
         player,
         zone2,
         collisionlistener2.bind(this)
+      )
+
+      const testOverlapSarah = this.physics.add.overlap(
+        player,
+        zoneSarah,
+        collisionlistenerSarah.bind(this)
+      )
+      const testOverlapKrissy = this.physics.add.overlap(
+        player,
+        zoneKrissy,
+        collisionlistenerKrissy.bind(this)
+      )
+      const testOverlapJosh = this.physics.add.overlap(
+        player,
+        zoneJosh,
+        collisionlistenerJosh.bind(this)
+      )
+      const testOverlapRohan = this.physics.add.overlap(
+        player,
+        zoneRohan,
+        collisionlistenerRohan.bind(this)
+      )
+      const testOverlapGerard = this.physics.add.overlap(
+        player,
+        zoneGerard,
+        collisionlistenerGerard.bind(this)
+      )
+      const testOverlapJoseph = this.physics.add.overlap(
+        player,
+        zoneJoseph,
+        collisionlistenerJoseph.bind(this)
+      )
+      const testOverlapDavid = this.physics.add.overlap(
+        player,
+        zoneDavid,
+        collisionlistenerDavid.bind(this)
+      )
+      const testOverlapJv = this.physics.add.overlap(
+        player,
+        zoneJv,
+        collisionlistenerJv.bind(this)
       )
 
       // Create the player's walking animations from the texture atlas. These are stored in the global
@@ -236,13 +356,13 @@ function World() {
 
       // Help text that has a "fixed" position on the screen
       this.add
-        .text(256, 16, 'Use Arrow keys to move', {
+        .text(-90, 16, 'Use Arrow keys to move', {
           font: '18px monospace',
           fill: '#000000',
           padding: { x: 20, y: 10 },
           backgroundColor: '#ffffff',
         })
-        .setScrollFactor(0)
+        .setScrollFactor(2)
         .setDepth(30)
 
       // Debug graphics
