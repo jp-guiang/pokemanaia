@@ -6,15 +6,19 @@ import store from './store'
 import { theme } from './styled/theme'
 import GlobalStyle from './styled/globalStyles'
 import App from './components/App'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </Provider>,
+    <Router>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </Router>,
     document.getElementById('app')
   )
 })

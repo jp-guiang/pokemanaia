@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
 import { returnTeam } from '../actions/myPokemon'
+import { Link } from 'react-router-dom'
 import Team from './Team'
 import Pokemon from './Pokemon'
 const clickPop = new Audio('clickConf.mp3')
