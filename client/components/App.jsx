@@ -5,6 +5,7 @@ import Home from './Home'
 import World from './World'
 import Battle from './Battle'
 import Footer from './Footer'
+import Navbar from './Navbar'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
@@ -18,6 +19,7 @@ const App = () => {
 
   return (
     <div className="whole-app">
+      <Navbar />
       {!showWorld && (
         <div>
           <Home fn={aWholeNewWorld} />
