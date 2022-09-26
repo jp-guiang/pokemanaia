@@ -4,6 +4,7 @@ import Battle from './Battle'
 var theme = new Audio('themeSong.mp3')
 var battlesong = new Audio('battleTheme.mp3')
 let game = null
+let facilitator
 
 function World() {
   const [battle, setBattle] = useState(false)
@@ -157,6 +158,7 @@ function World() {
       function collisionlistenerSarah() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Sarah'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapSarah)
@@ -165,6 +167,7 @@ function World() {
       function collisionlistenerKrissy() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Krissy'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapKrissy)
@@ -173,6 +176,7 @@ function World() {
       function collisionlistenerJosh() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Josh'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJosh)
@@ -181,6 +185,7 @@ function World() {
       function collisionlistenerRohan() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Rohan'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapRohan)
@@ -189,6 +194,7 @@ function World() {
       function collisionlistenerGerard() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Gerard'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapGerard)
@@ -197,6 +203,7 @@ function World() {
       function collisionlistenerJoseph() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Joseph'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJoseph)
@@ -204,6 +211,7 @@ function World() {
       function collisionlistenerDavid() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'David'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapDavid)
@@ -211,6 +219,7 @@ function World() {
       function collisionlistenerJv() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'JV'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJv)
@@ -436,7 +445,7 @@ function World() {
           id="game-container"
           style={{ display: battle ? 'none' : null }}
         ></div>
-        {battle && <Battle battle={setBattle} />}
+        {battle && <Battle battle={setBattle} facil={facilitator} />}
       </div>
       <button onClick={themeSongPlay}>Theme Song Play</button>
       <button onClick={themeSongPause}>Stop</button>
