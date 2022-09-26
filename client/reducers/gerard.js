@@ -2,23 +2,23 @@ import { SET_GRD_HP, SET_GRD_ATK, SET_GRD_DEF } from '../actions/gerard.js'
 
 const initialState = [
   {
-    name: 'squirtle',
-    id: 7,
+    name: 'pikachu',
+    id: 25,
     stats: {
       0: {
-        base_stat: 44,
+        base_stat: 35,
         stat: {
           name: 'hp',
         },
       },
       1: {
-        base_stat: 48,
+        base_stat: 55,
         stat: {
           name: 'attack',
         },
       },
       2: {
-        base_stat: 65,
+        base_stat: 50,
         stat: {
           name: 'defense',
         },
@@ -26,14 +26,93 @@ const initialState = [
     },
     sprites: {
       back_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png',
       front_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
+    },
+    types: {
+      0: {
+        type: {
+          name: 'electric',
+        },
+      },
+    },
+  },
+  {
+    name: 'dugtrio',
+    id: 51,
+    stats: {
+      0: {
+        base_stat: 35,
+        stat: {
+          name: 'hp',
+        },
+      },
+      1: {
+        base_stat: 100,
+        stat: {
+          name: 'attack',
+        },
+      },
+      2: {
+        base_stat: 50,
+        stat: {
+          name: 'defense',
+        },
+      },
+    },
+    sprites: {
+      back_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png',
+      front_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
+    },
+    types: {
+      0: {
+        type: {
+          name: 'ground',
+        },
+      },
+    },
+  },
+  {
+    name: 'gyarados',
+    id: 130,
+    stats: {
+      0: {
+        base_stat: 95,
+        stat: {
+          name: 'hp',
+        },
+      },
+      1: {
+        base_stat: 125,
+        stat: {
+          name: 'attack',
+        },
+      },
+      2: {
+        base_stat: 100,
+        stat: {
+          name: 'defense',
+        },
+      },
+    },
+    sprites: {
+      back_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/130.png',
+      front_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png',
     },
     types: {
       0: {
         type: {
           name: 'water',
+        },
+      },
+      1: {
+        type: {
+          name: 'flying',
         },
       },
     },
