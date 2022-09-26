@@ -5,12 +5,24 @@ import { returnTeam } from '../actions/myPokemon'
 import { Link } from 'react-router-dom'
 import Team from './Team'
 import Pokemon from './Pokemon'
+
+//------------------------------------ SOCKET IO
+import Pair from './Pair'
+import io from 'socket.io-client'
+
+const socket = io.connect('http://localhost:3001')
+//------------------------------------ SOCKET IO
 const clickPop = new Audio('clickConf.mp3')
 const homeTheme = new Audio('homeTheme.mp3')
 
 import TextField from '@mui/material/TextField'
 
 export default function Home(props) {
+  //------------------------------------ SOCKET IO
+  const [username, setUsername] = useState('')
+  const [room, setRoom] = useState('')
+  const [showChat, setShowChat] = useState(false)
+  //----------------------------------------SOCKET IO
   const [pageList, setPokemonList] = useState([])
 
   const [pageLimit] = useState(151)
@@ -112,6 +124,7 @@ export default function Home(props) {
         onChange={(e) => setVolume((homeTheme.volume = e.target.value / 100))}
       ></input>
       <h1>Choose your Pokémon!</h1>
+      <Pair />
       <div className="select">
         <div className="selectTeam">
           <Team team={team} />
