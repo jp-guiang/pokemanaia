@@ -10,6 +10,7 @@ import About from './About'
 import Credits from './Credits'
 import ResponsiveAppBar from './Navbar'
 import { Routes, Route } from 'react-router-dom'
+import Pair from './Pair'
 
 const App = () => {
   const [showWorld, setShowWorld] = useState(false)
@@ -50,12 +51,8 @@ const App = () => {
         )}
         {showWorld && (
           <World gameStarted={gameStarted} showWorld={setShowWorld} />
-          // <Battle />
         )}
-
-        {/* <Battle /> */}
-        {/* <World /> */}
-
+        <Pair />
         <footer>
           <Footer />
         </footer>
