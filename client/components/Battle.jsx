@@ -20,7 +20,7 @@ const cry4 = new Audio('/fightsounds/azumarill.mp3')
 const imSad = new Audio('/fightsounds/Sad.mp3')
 
 function Battle(props) {
-  const fakeProps = 'Joseph'
+  const fakeProps = props.facil
 
   const [oppCount, setOppCount] = useState(0)
   const [myCount, setMyCount] = useState(0)
