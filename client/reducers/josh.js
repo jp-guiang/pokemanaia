@@ -80,7 +80,7 @@ const initialState = [
     id: 77,
     stats: {
       0: {
-        base_stat: 590,
+        base_stat: 90,
         stat: {
           name: 'hp',
         },

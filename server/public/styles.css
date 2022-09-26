@@ -259,6 +259,7 @@ h1 {
   top: 80px;
   left: 525px;
   visibility: hidden;
+  z-index: 4;
 }
 
 #myGrowl, #oppGrowl {

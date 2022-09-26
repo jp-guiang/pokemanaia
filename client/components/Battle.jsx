@@ -8,7 +8,7 @@ import { setSrhHp, setSrhAtk, setSrhDef } from '../actions/sarah.js'
 import { setJoeHp, setJoeAtk, setJoeDef } from '../actions/joseph.js'
 import { setGrdHp, setGrdAtk, setGrdDef } from '../actions/gerard.js'
 import { setRhnHp, setRhnAtk, setRhnDef } from '../actions/rohan.js'
-import { setPokeHp, setMyDef, setMyAtk, swapOut } from '../actions/myPokemon.js'
+import { setPokeHp, setMyDef, setMyAtk } from '../actions/myPokemon.js'
 const tackle = new Audio('/fightsounds/Tackle.mp3')
 const growl = new Audio('/fightsounds/Growl.mp3')
 const defenseCurl = new Audio('/fightsounds/DefenseCurl.mp3')
@@ -17,9 +17,10 @@ const cry1 = new Audio('/fightsounds/absol.mp3')
 const cry2 = new Audio('/fightsounds/aipom.mp3')
 const cry3 = new Audio('/fightsounds/alomomola.mp3')
 const cry4 = new Audio('/fightsounds/azumarill.mp3')
+const imSad = new Audio('/fightsounds/Sad.mp3')
 
 function Battle(props) {
-  const fakeProps = 'David'
+  const fakeProps = 'Joseph'
 
   const [oppCount, setOppCount] = useState(0)
   const [myCount, setMyCount] = useState(0)
@@ -388,45 +389,50 @@ function Battle(props) {
       random
     const finalHP = Math.round(oppPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initOppHP) * 200)
+    switch (fakeProps) {
+      case 'JV':
+        dispatch(setJVHp(finalHP, opponent))
+        break
+      case 'David':
+        dispatch(setDvdHp(finalHP, opponent))
+        break
+      case 'Krissy':
+        dispatch(setKrsHp(finalHP, opponent))
+        break
+      case 'Josh':
+        dispatch(setJshHp(finalHP, opponent))
+        break
+      case 'Sarah':
+        dispatch(setSrhHp(finalHP, opponent))
+        break
+      case 'Joseph':
+        dispatch(setJoeHp(finalHP, opponent))
+        break
+      case 'Gerard':
+        dispatch(setGrdHp(finalHP, opponent))
+        break
+      case 'Rohan':
+        dispatch(setRhnHp(finalHP, opponent))
+        break
+    }
     setTimeout(() => {
       if (finalHP > 0) {
         setOppHPBar(oppHPBar - percentDmg)
       } else {
         setOppHPBar(0)
       }
-      switch (fakeProps) {
-        case 'JV':
-          dispatch(setJVHp(finalHP, opponent))
-          break
-        case 'David':
-          dispatch(setDvdHp(finalHP, opponent))
-          break
-        case 'Krissy':
-          dispatch(setKrsHp(finalHP, opponent))
-          break
-        case 'Josh':
-          dispatch(setJshHp(finalHP, opponent))
-          break
-        case 'Sarah':
-          dispatch(setSrhHp(finalHP, opponent))
-          break
-        case 'Joseph':
-          dispatch(setJoeHp(finalHP, opponent))
-          break
-        case 'Gerard':
-          dispatch(setGrdHp(finalHP, opponent))
-          break
-        case 'Rohan':
-          dispatch(setRhnHp(finalHP, opponent))
-          break
-      }
+      setCount(count + 1)
     }, 700)
     setTimeout(() => {
       if (critRnd <= 0.0625) {
         setFightText('Critical hit!')
       } else if (multiplyer1 * multiplyer2 > 1 && critRnd > 0.0625) {
         setFightText('It was super effective!')
-      } else if (multiplyer1 * multiplyer2 < 1 && critRnd > 0.0625) {
+      } else if (
+        multiplyer1 * multiplyer2 < 1 &&
+        multiplyer1 * multiplyer2 > 0 &&
+        critRnd > 0.0625
+      ) {
         setFightText(`It wasn't very effective...`)
       } else if (multiplyer1 * multiplyer2 == 0) {
         setFightText(`It has no effect`)
@@ -434,11 +440,11 @@ function Battle(props) {
     }, 700)
     if (finalHP < 1) {
       setTimeout(() => {
-        randomCry()
         setFightText(`${oppPokemon.name.toUpperCase()} has fainted`)
+        randomCry()
         document.getElementById('oppPokemonImg').style.left = '800px'
-      }, 2500)
-    } else {
+      }, 1500)
+    } else if (finalHP > 0) {
       setTimeout(() => {
         const atkRndm = Math.random()
         if (atkRndm >= 0.3) {
@@ -502,34 +508,40 @@ function Battle(props) {
       random
     const finalHP = Math.round(myPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initMyHP) * 200)
+    dispatch(setPokeHp(finalHP, myPkmn))
     setTimeout(() => {
       if (finalHP > 0) {
         setMyHPBar(myHPBar - percentDmg)
       } else {
         setMyHPBar(0)
       }
-      dispatch(setPokeHp(finalHP, myPkmn))
+      setCount(count + 1)
     }, 700)
     setTimeout(() => {
       if (critRnd <= 0.0625) {
         setFightText('Critical hit!')
       } else if (oppMultiplyer1 * oppMultiplyer2 > 1 && critRnd > 0.0625) {
         setFightText('It was super effective!')
-      } else if (oppMultiplyer1 * oppMultiplyer2 < 1 && critRnd > 0.0625) {
+      } else if (
+        oppMultiplyer1 * oppMultiplyer2 < 1 &&
+        oppMultiplyer1 * oppMultiplyer2 > 0 &&
+        critRnd > 0.0625
+      ) {
         setFightText(`It wasn't very effective...`)
       } else if (oppMultiplyer1 * oppMultiplyer2 == 0) {
         setFightText(`It had no effect`)
       }
     }, 700)
-    setTimeout(() => {
-      setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
-    }, 1500)
     if (finalHP < 1) {
       setTimeout(() => {
-        randomCry()
         setFightText(`${myPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('myPokemonImg').style.left = '-400px'
-      }, 2500)
+        randomCry()
+      }, 1500)
+    } else if (finalHP > 0) {
+      setTimeout(() => {
+        setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+      }, 1500)
     }
   }
 
@@ -690,6 +702,14 @@ function Battle(props) {
   }
 
   useEffect(() => {
+    setInitOppHP(oppHP)
+  }, [oppIndex])
+
+  useEffect(() => {
+    setInitMyHP(myHP)
+  }, [myIndex])
+
+  useEffect(() => {
     document.getElementById('myHealthBar').style.width = myHPBar + 'px'
     if (myHPBar < 100 && myHPBar > 50) {
       document.getElementById('myHealthBar').style.backgroundColor =
@@ -715,21 +735,27 @@ function Battle(props) {
 
   useEffect(() => {
     if (oppHP <= 0) {
+      console.log('they fainted')
       setTimeout(() => {
         setOppCount(oppCount + 1)
+      }, 1000)
+      setTimeout(() => {
         if (oppCount < oppTeam - 1) {
           setOppIndex(oppIndex + 1)
           nextOppPokemon()
         }
-      }, 1000)
+      }, 2000)
     } else if (myHP <= 0) {
+      console.log('i fainted')
       setTimeout(() => {
         setMyCount(myCount + 1)
+      }, 1000)
+      setTimeout(() => {
         if (myCount < team - 1) {
           setMyIndex(myIndex + 1)
           nextPokemon()
         }
-      }, 1000)
+      }, 2000)
     }
     setCount(count + 1)
   }, [oppHP, myHP])
@@ -739,11 +765,44 @@ function Battle(props) {
       setTimeout(() => {
         setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
-          setFightText(`You won 500 Dev Academy Points`)
+          switch (fakeProps) {
+            case 'JV':
+              setFightText(`JV: I forgive you, for now.`)
+              imSad.volume = 0.4
+              imSad.currentTime = 0
+              imSad.play()
+              break
+            case 'David':
+              setFightText(`David: `)
+              break
+            case 'Krissy':
+              setFightText(`Krissy: `)
+              break
+            case 'Josh':
+              setFightText(`Josh: I'm better at golf anyway...`)
+              break
+            case 'Sarah':
+              setFightText(`Sarah: At least we had good vibes!`)
+              break
+            case 'Joseph':
+              setFightText(`I like shorts, they're comfy and easy to wear!`)
+              break
+            case 'Gerard':
+              setFightText(`Gerard: `)
+              break
+            case 'Rohan':
+              setFightText(`Rohan: `)
+              break
+            default:
+              setFightText(`You won 500 Dev Academy Points`)
+          }
         }, 2000)
         setTimeout(() => {
+          setFightText(`You won 500 Dev Academy Points`)
+        }, 4000)
+        setTimeout(() => {
           props.battle(false)
-        }, 6000)
+        }, 8000)
       }, 2000)
     } else if (myCount == team) {
       setTimeout(() => {
@@ -758,7 +817,9 @@ function Battle(props) {
 
   useEffect(() => {
     if (!fightText.includes('battle')) {
-      setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
+      setTimeout(() => {
+        setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
+      }, 500)
     }
   }, [oppPokemon])
 
@@ -773,6 +834,9 @@ function Battle(props) {
   }, [myPokemon])
 
   useEffect(() => {
+    if (fakeProps == 'Joseph') {
+      setFightText('Youngster Joseph wants to battle!')
+    }
     document.getElementById('pokeball').style.width = '0px'
     document.getElementById('pokeball').style.height = '0px'
     setTimeout(() => {
