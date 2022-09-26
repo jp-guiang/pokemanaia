@@ -138,22 +138,6 @@ function World() {
       this.physics.add.collider(player, worldLayer)
       this.physics.add.collider(player, aboveLayer)
 
-      function collisionlistener() {
-        console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
-        this.physics.world.removeCollider(testOverlap)
-      }
-
-      function collisionlistener2() {
-        console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
-        this.physics.world.removeCollider(testOverlap2)
-      }
-
       function collisionlistenerSarah() {
         console.log('action')
         // themeSongPause()
@@ -220,8 +204,6 @@ function World() {
         console.log('overlap')
       })
 
-      const zone = this.add.zone(400, 100).setSize(32, 32)
-      const zone2 = this.add.zone(500, 100).setSize(32, 32)
       const zoneSarah = this.add.zone(1200, 560).setSize(32, 32)
       const zoneKrissy = this.add.zone(1104, 80).setSize(32, 32)
       const zoneJosh = this.add.zone(80, 592).setSize(32, 32)
@@ -231,8 +213,6 @@ function World() {
       const zoneDavid = this.add.zone(464, 1904).setSize(32, 32)
       const zoneJv = this.add.zone(656, 2416).setSize(32, 32)
 
-      this.physics.world.enable(zone)
-      this.physics.world.enable(zone2)
       this.physics.world.enable(zoneSarah)
       this.physics.world.enable(zoneKrissy)
       this.physics.world.enable(zoneJosh)
@@ -241,18 +221,6 @@ function World() {
       this.physics.world.enable(zoneJoseph)
       this.physics.world.enable(zoneDavid)
       this.physics.world.enable(zoneJv)
-
-      const testOverlap = this.physics.add.overlap(
-        player,
-        zone,
-        collisionlistener.bind(this)
-      )
-
-      const testOverlap2 = this.physics.add.overlap(
-        player,
-        zone2,
-        collisionlistener2.bind(this)
-      )
 
       const testOverlapSarah = this.physics.add.overlap(
         player,
