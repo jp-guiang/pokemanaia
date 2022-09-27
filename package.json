@@ -49,15 +49,16 @@
     "express": "^4.17.1",
     "kill-port": "^2.0.1",
     "knex": "^1.0.2",
-    "pg": "^8.5.1",
+    "pg": "^8.8.0",
     "phaser": "^3.55.2",
-
     "react-router": "^6.4.1",
-
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.2",
-
     "superagent": "^6.1.0"
+  },
+  "engines": {
+    "npm": "^8.x",
+    "node": "^17.x"
   },
   "devDependencies": {
     "@babel/core": "7.12.3",

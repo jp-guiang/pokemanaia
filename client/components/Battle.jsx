@@ -896,8 +896,10 @@ function Battle(props) {
     if (fakeProps == 'Joseph') {
       setFightText('Youngster Joseph wants to battle!')
     }
-    document.getElementById('pokeball').style.width = '0px'
-    document.getElementById('pokeball').style.height = '0px'
+    setTimeout(() => {
+      document.getElementById('pokeball').style.width = '0px'
+      document.getElementById('pokeball').style.height = '0px'
+    }, 500)
     setTimeout(() => {
       randomCry()
       setTimeout(() => {
