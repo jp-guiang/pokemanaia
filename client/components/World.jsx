@@ -150,7 +150,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
 
         this.physics.world.removeCollider(testOverlapSarah)
       }
@@ -181,7 +180,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJosh)
       }
@@ -197,8 +195,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
-
         this.physics.world.removeCollider(testOverlapRohan)
       }
 
@@ -213,7 +209,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
 
         this.physics.world.removeCollider(testOverlapGerard)
       }
@@ -229,7 +224,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJoseph)
       }
@@ -244,7 +238,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
 
         this.physics.world.removeCollider(testOverlapDavid)
       }
@@ -259,7 +252,6 @@ function World() {
           document.getElementById('throwBall').style.height = '0px'
           setBattle(true)
         }, 1000)
-        setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJv)
       }
