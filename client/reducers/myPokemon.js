@@ -1,12 +1,21 @@
-import { SET_HP, SET_MY_DEF, SET_MY_ATK, SET_TEAM } from '../actions/myPokemon'
+import {
+  SET_HP,
+  SET_MY_DEF,
+  SET_MY_ATK,
+  SAVE_TEAM,
+  SET_TEAM,
+} from '../actions/myPokemon'
 
 const initialState = []
 
 const reducer = (state = initialState, action) => {
   const { type, payload, pokemon } = action
   switch (type) {
-    case SET_TEAM:
+    // case SET_TEAM:
+    //   return payload
+    case SAVE_TEAM:
       return payload
+
     case SET_HP:
       return state.map((myPokemon) => {
         if (myPokemon.id == pokemon.id) {

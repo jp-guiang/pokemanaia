@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Pokemon({ hoverData: pokemon, fn: setPokemon }) {
+export default function Pokemon({ hoverData: pokemon }) {
   const [isHovering, setIsHovering] = useState(false)
   const handleMouseOver = () => {
     setIsHovering(true)
@@ -44,6 +44,12 @@ export default function Pokemon({ hoverData: pokemon, fn: setPokemon }) {
                 )
               }
             })}
+            <p>Types:</p>
+            <div className="types">
+              {pokemon.types.map((types, index) => {
+                return <p key={types.type.name + index}>{types.type.name}</p>
+              })}
+            </div>
           </div>
         )}
       </div>

@@ -1,6 +1,8 @@
 const connection = require('./connection')
 
 function addTeam(team, db = connection) {
+  const tempString = JSON.stringify(team)
+  console.log(tempString)
   return db('teamHistory').insert(team)
 }
 
