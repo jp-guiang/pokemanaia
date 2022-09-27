@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Pokemon({ hoverData: pokemon, fn: setPokemon }) {
+export default function Pokemon({ hoverData: pokemon }) {
   const [isHovering, setIsHovering] = useState(false)
   const handleMouseOver = () => {
     setIsHovering(true)

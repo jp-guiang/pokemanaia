@@ -1,54 +1,23 @@
 import React, { useState } from 'react'
 
-import Home from './Home'
 import Start from './Start'
-import World from './World'
 import Battle from './Battle'
 import Footer from './Footer'
 import Profile from './Profile'
-import About from './About'
 import Credits from './Credits'
+import Switch from './Switch'
 import ResponsiveAppBar from './Navbar'
 import { Routes, Route } from 'react-router-dom'
 import Pair from './Pair'
 
 const App = () => {
-  const [showWorld, setShowWorld] = useState(false)
-  const [gameStarted, setGameStarted] = useState(false)
   const [start, setStart] = useState(true)
 
-  function aWholeNewWorld(event) {
-    setShowWorld(!showWorld)
-    setGameStarted(true)
-    console.log('a whole new world')
-  }
-
-<<<<<<< HEAD
-  return (
-    <div className="whole-app">
-      <ResponsiveAppBar />
-      <Routes>
-        <Route path="/" element={!showWorld && <Home fn={aWholeNewWorld} />} />
-        <Route path="Profile" element={<Profile />} />
-        <Route path="About" element={<About />} />
-        <Route path="Credits" element={<Credits />} />
-      </Routes>
-      {/* {!showWorld && (
-        <div>
-          <Home fn={aWholeNewWorld} />
-        </div>
-      )} */}
-      {showWorld && (
-        <World gameStarted={gameStarted} showWorld={setShowWorld} />
-        // <Battle />
-      )}
-=======
   function startGame() {
     setTimeout(() => {
       setStart(false)
     }, 2000)
   }
->>>>>>> origin
 
   if (start) {
     return (
@@ -61,18 +30,12 @@ const App = () => {
       <div id="whole-app">
         <ResponsiveAppBar />
         <Routes>
+          <Route path="/" element={<Switch />} />
           <Route path="Profile" element={<Profile />} />
-          <Route path="About" element={<About />} />
           <Route path="Credits" element={<Credits />} />
         </Routes>
-        {!showWorld && (
-          <div>
-            <Home fn={aWholeNewWorld} />
-          </div>
-        )}
-        {showWorld && (
-          <World gameStarted={gameStarted} showWorld={setShowWorld} />
-        )}
+
+        {/* <Home /> */}
         <Pair />
         <footer>
           <Footer />

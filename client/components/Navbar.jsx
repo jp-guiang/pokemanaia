@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 import { Link } from 'react-router-dom'
 
-const pages = ['Profile', 'Home', 'About', 'Credits']
+const pages = ['Profile', 'Credits']
 const settings = ['Logout']
 
 const ResponsiveAppBar = () => {
@@ -56,7 +56,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            TEAM ROCKET
+            PLAY
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

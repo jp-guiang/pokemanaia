@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
-import { useDispatch } from 'react-redux'
-import { saveDbTeam } from '../actions/myPokemon'
+import { useDispatch, useSelector } from 'react-redux'
+import { saveDbTeam, fetchTeam } from '../actions/myPokemon'
 import { Link } from 'react-router-dom'
 import Team from './Team'
 import Pokemon from './Pokemon'
@@ -20,6 +20,7 @@ export default function Home(props) {
   const dispatch = useDispatch()
   const mapToggle = props.fn
   const [inputText, setInputText] = useState('')
+  const tempTeam = useSelector((state) => state.myPokemon)
 
   let inputHandler = (e) => {
     //convert input text to lower case
@@ -86,10 +87,13 @@ export default function Home(props) {
     if (team.length != 0) {
       dispatch(saveDbTeam(team))
       mapToggle()
-      // themeSongPlay()
       homeTheme.pause()
-      console.log(team)
     }
+  }
+
+  function getTeam() {
+    dispatch(fetchTeam())
+    console.log(tempTeam)
   }
 
   const filteredData = pokeDex.filter((el) => {
@@ -103,6 +107,8 @@ export default function Home(props) {
     }
   })
 
+  getTeam()
+
   return (
     <div className="less-wide">
       <input
@@ -111,6 +117,13 @@ export default function Home(props) {
         max="100"
         onChange={(e) => setVolume((homeTheme.volume = e.target.value / 100))}
       ></input>
+      {tempTeam.map((oldTeam) => {
+        return (
+          <div key={oldTeam.id}>
+            <p>{oldTeam.team}</p>
+          </div>
+        )
+      })}
       <h1>Choose your Pokémon!</h1>
       <div className="select">
         <div className="selectTeam">
@@ -142,7 +155,7 @@ export default function Home(props) {
               onClick={() => setPokemon(pokemon)}
             >
               <a>
-                <Pokemon hoverData={pokemon} fn={setPokemon} />
+                <Pokemon hoverData={pokemon} />
               </a>
             </div>
           ))}
