@@ -515,3 +515,10 @@ footer {
 .chat {
   align-self: center;
 }
+#throwBall {
+  position:absolute;
+  z-index: 7;
+  height: 0px;
+  width: 0px;
+  transition: width 1s,height 1s;
+}

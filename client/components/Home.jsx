@@ -107,7 +107,7 @@ export default function Home(props) {
     }
   })
 
-  getTeam()
+  // getTeam()
 
   return (
     <div className="less-wide">
@@ -117,13 +117,13 @@ export default function Home(props) {
         max="100"
         onChange={(e) => setVolume((homeTheme.volume = e.target.value / 100))}
       ></input>
-      {tempTeam.map((oldTeam) => {
+      {/* {tempTeam.map((oldTeam) => {
         return (
           <div key={oldTeam.id}>
             <p>{oldTeam.team}</p>
           </div>
         )
-      })}
+      })} */}
       <h1>Choose your Pokémon!</h1>
       <div className="select">
         <div className="selectTeam">

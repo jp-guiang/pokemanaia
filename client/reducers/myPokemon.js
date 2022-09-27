@@ -11,10 +11,10 @@ const initialState = []
 const reducer = (state = initialState, action) => {
   const { type, payload, pokemon } = action
   switch (type) {
-    case SET_TEAM:
-      return payload
+    // case SET_TEAM:
+    //   return payload
     case SAVE_TEAM:
-      return [...state, payload]
+      return payload
 
     case SET_HP:
       return state.map((myPokemon) => {
