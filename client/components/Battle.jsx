@@ -19,9 +19,11 @@ const cry2 = new Audio('/fightsounds/aipom.mp3')
 const cry3 = new Audio('/fightsounds/alomomola.mp3')
 const cry4 = new Audio('/fightsounds/azumarill.mp3')
 const imSad = new Audio('/fightsounds/Sad.mp3')
+const victory = new Audio('/fightsounds/victory.mp3')
 
 function Battle(props) {
   const fakeProps = props.facil
+  const battlesong = props.battlesong
 
   const [oppCount, setOppCount] = useState(0)
   const [myCount, setMyCount] = useState(0)
@@ -804,7 +806,11 @@ function Battle(props) {
       document.getElementById('specialBtn').disabled = true
       document.getElementById('growlBtn').disabled = true
       document.getElementById('defCurlBtn').disabled = true
+      victory.currentTime = 0
+      victory.volume = 0.2
       setTimeout(() => {
+        battlesong.pause()
+        victory.play()
         setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
           switch (fakeProps) {
@@ -815,25 +821,25 @@ function Battle(props) {
               imSad.play()
               break
             case 'David':
-              setFightText(`David: `)
+              setFightText(`David: Oh no! Squirtle Squad!`)
               break
             case 'Krissy':
-              setFightText(`Krissy: `)
+              setFightText(`Krissy: It's okay, we're in Redux!`)
               break
             case 'Josh':
               setFightText(`Josh: I'm better at golf anyway...`)
               break
             case 'Sarah':
-              setFightText(`Sarah: At least we had good vibes!`)
+              setFightText(`Sarah: *spirit fingers* Well done team!`)
               break
             case 'Joseph':
               setFightText(`I like shorts, they're comfy and easy to wear!`)
               break
             case 'Gerard':
-              setFightText(`Gerard: `)
+              setFightText(`Gerard: gdi`)
               break
             case 'Rohan':
-              setFightText(`Rohan: `)
+              setFightText(`Rohan: I'd win if this was in Redux Toolkit...`)
               break
             default:
               setFightText(`You won 500 Dev Academy Points`)
@@ -843,6 +849,7 @@ function Battle(props) {
           setFightText(`You won 500 Dev Academy Points`)
         }, 4000)
         setTimeout(() => {
+          victory.pause()
           props.battle(false)
         }, 8000)
       }, 2000)
