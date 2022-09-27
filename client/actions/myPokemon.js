@@ -1,10 +1,10 @@
-import { getPokemon, getPokeInfo } from '../apis/apiClient'
+import { getPokemon, saveTeam } from '../apis/apiClient'
 
 export const SET_POKEMON = 'SET_POKEMON'
 export const SET_HP = 'SET_HP'
 export const SET_MY_DEF = 'SET_MY_DEF'
 export const SET_MY_ATK = 'SET_MY_ATK'
-export const SET_TEAM = 'SET_TEAM'
+export const SAVE_TEAM = 'SAVE_TEAM'
 
 export function setPokemon(pokemon) {
   return {
@@ -48,7 +48,13 @@ export function setMyAtk(attack, pokemon) {
 
 export function returnTeam(team) {
   return {
-    type: SET_TEAM,
+    type: SAVE_TEAM,
     payload: team,
+  }
+}
+
+export function saveDbTeam(team) {
+  return (dispatch) => {
+    return saveTeam(team).then(dispatch(returnTeam(team)))
   }
 }

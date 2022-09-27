@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemon, getPokeInfo } from '../apis/apiClient'
 import { useDispatch } from 'react-redux'
-import { returnTeam } from '../actions/myPokemon'
+import { saveDbTeam } from '../actions/myPokemon'
 import { Link } from 'react-router-dom'
 import Team from './Team'
 import Pokemon from './Pokemon'
@@ -84,7 +84,7 @@ export default function Home(props) {
   // }
   function confirmTeam() {
     if (team.length != 0) {
-      dispatch(returnTeam(team))
+      dispatch(saveDbTeam(team))
       mapToggle()
       // themeSongPlay()
       homeTheme.pause()
