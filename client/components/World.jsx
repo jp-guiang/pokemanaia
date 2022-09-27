@@ -4,6 +4,7 @@ import Battle from './Battle'
 var theme = new Audio('themeSong.mp3')
 var battlesong = new Audio('battleTheme.mp3')
 let game = null
+let facilitator
 
 function World() {
   const [battle, setBattle] = useState(false)
@@ -138,25 +139,10 @@ function World() {
       this.physics.add.collider(player, worldLayer)
       this.physics.add.collider(player, aboveLayer)
 
-      function collisionlistener() {
-        console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
-        this.physics.world.removeCollider(testOverlap)
-      }
-
-      function collisionlistener2() {
-        console.log('action')
-        // themeSongPause()
-        setBattle(true)
-
-        this.physics.world.removeCollider(testOverlap2)
-      }
-
       function collisionlistenerSarah() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Sarah'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapSarah)
@@ -165,6 +151,7 @@ function World() {
       function collisionlistenerKrissy() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Krissy'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapKrissy)
@@ -173,6 +160,7 @@ function World() {
       function collisionlistenerJosh() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Josh'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJosh)
@@ -181,6 +169,7 @@ function World() {
       function collisionlistenerRohan() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Rohan'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapRohan)
@@ -189,6 +178,7 @@ function World() {
       function collisionlistenerGerard() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Gerard'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapGerard)
@@ -197,6 +187,7 @@ function World() {
       function collisionlistenerJoseph() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'Joseph'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJoseph)
@@ -204,6 +195,7 @@ function World() {
       function collisionlistenerDavid() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'David'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapDavid)
@@ -211,6 +203,7 @@ function World() {
       function collisionlistenerJv() {
         console.log('action')
         // themeSongPause()
+        facilitator = 'JV'
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJv)
@@ -220,8 +213,6 @@ function World() {
         console.log('overlap')
       })
 
-      const zone = this.add.zone(400, 100).setSize(32, 32)
-      const zone2 = this.add.zone(500, 100).setSize(32, 32)
       const zoneSarah = this.add.zone(1200, 560).setSize(32, 32)
       const zoneKrissy = this.add.zone(1104, 80).setSize(32, 32)
       const zoneJosh = this.add.zone(80, 592).setSize(32, 32)
@@ -231,8 +222,6 @@ function World() {
       const zoneDavid = this.add.zone(464, 1904).setSize(32, 32)
       const zoneJv = this.add.zone(656, 2416).setSize(32, 32)
 
-      this.physics.world.enable(zone)
-      this.physics.world.enable(zone2)
       this.physics.world.enable(zoneSarah)
       this.physics.world.enable(zoneKrissy)
       this.physics.world.enable(zoneJosh)
@@ -241,18 +230,6 @@ function World() {
       this.physics.world.enable(zoneJoseph)
       this.physics.world.enable(zoneDavid)
       this.physics.world.enable(zoneJv)
-
-      const testOverlap = this.physics.add.overlap(
-        player,
-        zone,
-        collisionlistener.bind(this)
-      )
-
-      const testOverlap2 = this.physics.add.overlap(
-        player,
-        zone2,
-        collisionlistener2.bind(this)
-      )
 
       const testOverlapSarah = this.physics.add.overlap(
         player,
@@ -381,7 +358,7 @@ function World() {
     }
 
     function update(time, delta) {
-      const speed = 500
+      const speed = 200
       const prevVelocity = player.body.velocity.clone()
 
       // Stop any previous movement from the last frame
@@ -436,7 +413,7 @@ function World() {
           id="game-container"
           style={{ display: battle ? 'none' : null }}
         ></div>
-        {battle && <Battle battle={setBattle} />}
+        {battle && <Battle battle={setBattle} facil={facilitator} />}
       </div>
       <button onClick={themeSongPlay}>Theme Song Play</button>
       <button onClick={themeSongPause}>Stop</button>

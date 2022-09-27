@@ -1,41 +1,29 @@
-# Fullstack boilerplate with CSS Libraries
+# Team Rocket
 
-## Getting Started
+## Pokémanaia
 
-### From the Github UI
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
+## Objective
+This was our teams attempt at gamedev in a week. We chose to make a pokemon based game as it had a lot of learning new tech required to make it work, aswell as a lot of room for stretch and additional features we wanted to add.
 
-### From the command line
+## Meet the team
 
-```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack [your-project-name]
-cd [your-project-name]
-npm install # to install dependencies (you will need to run this again when switching into some branches)
-npm run dev # to start the dev server
-```
 
-You can find the server running on [http://localhost:3000](http://localhost:3000).
+Max (Battle team) - Co-product owner/Scrum facilitator [github](https://github.com/max-is-coding)  
+Ash (Map team) - Co-product owner [github](https://github.com/ash-fitzgibbon)  
+Aaron (Map team) - Git keeper [github](https://github.com/Aaront028)  
+JP (Homepage/Auth) - Scrum facilitator/Vibes watcher [github](https://github.com/jp-guiang)  
+Elizabeth (Homepage/Auth) - Vibes watcher [github](https://github.com/elizabeth-bing)  
 
-To use one css library for your project, merge that branch into main.
 
-```
-git checkout main
-git merge [branch-name of libray you want to use]
-```
 
-## Details
+## Steps to get the game running:
 
-This repo includes:
+* Clone the code to your local machine and open it in your chosen code editor
+* Open your terminal and enter 'npm install'
+* Enter 'npm run dev' in to your terminal
+* Open your browser and enter [localhost:3000](localhost:3000) as the url
+* Enjoy!
 
-* a single, simple API endpoint (`/api/v1/fruits`)
-* a single React component (`<App />`)
-* an example database module (`server/db/fruits.js`)
-* an API client module (`client/apis/fruits.js`)
-* Branches with CSS libraries preconfigured with sample code
-  * vanilla css  
-  * Tailwind
-  * Styled-Components
-  * Chakra-UI   
-* configuration for Jest and testing library
-* configuration for server-side debugging in VS Code
-* a single client-side test (`client/components/App.test.js`)
+### Disclaimer
+This app was made with fair use in mind for educational purposes and all rights belong to their respective owners.  
+This app is not affiliated, endorsed or supported by Nintendo in any way, some images used in this app are copyrighted and supported under fair use, Pokemon and Pokemon character names are trademarks of Nintendo.

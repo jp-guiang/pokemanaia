@@ -2,23 +2,23 @@ import { SET_JOE_HP, SET_JOE_ATK, SET_JOE_DEF } from '../actions/joseph.js'
 
 const initialState = [
   {
-    name: 'squirtle',
-    id: 7,
+    name: 'cubone',
+    id: 104,
     stats: {
       0: {
-        base_stat: 44,
+        base_stat: 50,
         stat: {
           name: 'hp',
         },
       },
       1: {
-        base_stat: 48,
+        base_stat: 50,
         stat: {
           name: 'attack',
         },
       },
       2: {
-        base_stat: 65,
+        base_stat: 95,
         stat: {
           name: 'defense',
         },
@@ -26,14 +26,93 @@ const initialState = [
     },
     sprites: {
       back_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/104.png',
       front_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png',
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png',
     },
     types: {
       0: {
         type: {
-          name: 'water',
+          name: 'ground',
+        },
+      },
+    },
+  },
+  {
+    name: 'exeggutor',
+    id: 103,
+    stats: {
+      0: {
+        base_stat: 125,
+        stat: {
+          name: 'hp',
+        },
+      },
+      1: {
+        base_stat: 95,
+        stat: {
+          name: 'attack',
+        },
+      },
+      2: {
+        base_stat: 85,
+        stat: {
+          name: 'defense',
+        },
+      },
+    },
+    sprites: {
+      back_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/103.png',
+      front_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png',
+    },
+    types: {
+      0: {
+        type: {
+          name: 'grass',
+        },
+      },
+      1: {
+        type: {
+          name: 'psychic',
+        },
+      },
+    },
+  },
+  {
+    name: 'muk',
+    id: 89,
+    stats: {
+      0: {
+        base_stat: 105,
+        stat: {
+          name: 'hp',
+        },
+      },
+      1: {
+        base_stat: 105,
+        stat: {
+          name: 'attack',
+        },
+      },
+      2: {
+        base_stat: 100,
+        stat: {
+          name: 'defense',
+        },
+      },
+    },
+    sprites: {
+      back_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/89.png',
+      front_default:
+        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png',
+    },
+    types: {
+      0: {
+        type: {
+          name: 'poison',
         },
       },
     },

@@ -10,9 +10,10 @@
     "start": "node server",
     "test": "jest",
     "test:watch": "jest --noStackTrace --watchAll",
-    "dev": "run-p dev:client dev:server",
+    "dev": "run-p dev:client dev:server dev:socket",
     "dev:client": "npm run webpack -- --watch",
-    "dev:server": "nodemon --watch server server/index.js",
+    "dev:server": "nodemon --watch server server/index.js server/socket.js",
+    "dev:socket": "nodemon --watch server server/socket.js",
     "build": "run-p build:client build:server",
     "build:client": "npm run webpack -- --mode production",
     "build:server": "npm run knex -- migrate:latest",
@@ -44,12 +45,18 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.6",
     "@vscode/sqlite3": "^5.0.7",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "kill-port": "^2.0.1",
     "knex": "^1.0.2",
     "pg": "^8.5.1",
     "phaser": "^3.55.2",
+
     "react-router": "^6.4.1",
+
+    "socket.io": "^4.5.2",
+    "socket.io-client": "^4.5.2",
+
     "superagent": "^6.1.0"
   },
   "devDependencies": {

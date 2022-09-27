@@ -8,7 +8,8 @@ import { setSrhHp, setSrhAtk, setSrhDef } from '../actions/sarah.js'
 import { setJoeHp, setJoeAtk, setJoeDef } from '../actions/joseph.js'
 import { setGrdHp, setGrdAtk, setGrdDef } from '../actions/gerard.js'
 import { setRhnHp, setRhnAtk, setRhnDef } from '../actions/rohan.js'
-import { setPokeHp, setMyDef, setMyAtk, swapOut } from '../actions/myPokemon.js'
+import { setPokeHp, setMyDef, setMyAtk } from '../actions/myPokemon.js'
+import { style } from '@mui/system'
 const tackle = new Audio('/fightsounds/Tackle.mp3')
 const growl = new Audio('/fightsounds/Growl.mp3')
 const defenseCurl = new Audio('/fightsounds/DefenseCurl.mp3')
@@ -17,9 +18,10 @@ const cry1 = new Audio('/fightsounds/absol.mp3')
 const cry2 = new Audio('/fightsounds/aipom.mp3')
 const cry3 = new Audio('/fightsounds/alomomola.mp3')
 const cry4 = new Audio('/fightsounds/azumarill.mp3')
+const imSad = new Audio('/fightsounds/Sad.mp3')
 
 function Battle(props) {
-  const fakeProps = 'David'
+  const fakeProps = props.facil
 
   const [oppCount, setOppCount] = useState(0)
   const [myCount, setMyCount] = useState(0)
@@ -337,6 +339,10 @@ function Battle(props) {
   }
 
   function attackOpponent(type, power, opponent) {
+    document.getElementById('tackleBtn').disabled = true
+    document.getElementById('specialBtn').disabled = true
+    document.getElementById('growlBtn').disabled = true
+    document.getElementById('defCurlBtn').disabled = true
     let multiplyer1 = 1
     let multiplyer2 = 1
     if (oppType2) {
@@ -388,45 +394,50 @@ function Battle(props) {
       random
     const finalHP = Math.round(oppPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initOppHP) * 200)
+    switch (fakeProps) {
+      case 'JV':
+        dispatch(setJVHp(finalHP, opponent))
+        break
+      case 'David':
+        dispatch(setDvdHp(finalHP, opponent))
+        break
+      case 'Krissy':
+        dispatch(setKrsHp(finalHP, opponent))
+        break
+      case 'Josh':
+        dispatch(setJshHp(finalHP, opponent))
+        break
+      case 'Sarah':
+        dispatch(setSrhHp(finalHP, opponent))
+        break
+      case 'Joseph':
+        dispatch(setJoeHp(finalHP, opponent))
+        break
+      case 'Gerard':
+        dispatch(setGrdHp(finalHP, opponent))
+        break
+      case 'Rohan':
+        dispatch(setRhnHp(finalHP, opponent))
+        break
+    }
     setTimeout(() => {
       if (finalHP > 0) {
         setOppHPBar(oppHPBar - percentDmg)
       } else {
         setOppHPBar(0)
       }
-      switch (fakeProps) {
-        case 'JV':
-          dispatch(setJVHp(finalHP, opponent))
-          break
-        case 'David':
-          dispatch(setDvdHp(finalHP, opponent))
-          break
-        case 'Krissy':
-          dispatch(setKrsHp(finalHP, opponent))
-          break
-        case 'Josh':
-          dispatch(setJshHp(finalHP, opponent))
-          break
-        case 'Sarah':
-          dispatch(setSrhHp(finalHP, opponent))
-          break
-        case 'Joseph':
-          dispatch(setJoeHp(finalHP, opponent))
-          break
-        case 'Gerard':
-          dispatch(setGrdHp(finalHP, opponent))
-          break
-        case 'Rohan':
-          dispatch(setRhnHp(finalHP, opponent))
-          break
-      }
+      setCount(count + 1)
     }, 700)
     setTimeout(() => {
       if (critRnd <= 0.0625) {
         setFightText('Critical hit!')
       } else if (multiplyer1 * multiplyer2 > 1 && critRnd > 0.0625) {
         setFightText('It was super effective!')
-      } else if (multiplyer1 * multiplyer2 < 1 && critRnd > 0.0625) {
+      } else if (
+        multiplyer1 * multiplyer2 < 1 &&
+        multiplyer1 * multiplyer2 > 0 &&
+        critRnd > 0.0625
+      ) {
         setFightText(`It wasn't very effective...`)
       } else if (multiplyer1 * multiplyer2 == 0) {
         setFightText(`It has no effect`)
@@ -434,11 +445,11 @@ function Battle(props) {
     }, 700)
     if (finalHP < 1) {
       setTimeout(() => {
-        randomCry()
         setFightText(`${oppPokemon.name.toUpperCase()} has fainted`)
+        randomCry()
         document.getElementById('oppPokemonImg').style.left = '800px'
-      }, 2500)
-    } else {
+      }, 1500)
+    } else if (finalHP > 0) {
       setTimeout(() => {
         const atkRndm = Math.random()
         if (atkRndm >= 0.3) {
@@ -502,38 +513,56 @@ function Battle(props) {
       random
     const finalHP = Math.round(myPokemon.stats[0].base_stat - dmg)
     const percentDmg = Math.round((dmg / initMyHP) * 200)
+    dispatch(setPokeHp(finalHP, myPkmn))
     setTimeout(() => {
       if (finalHP > 0) {
         setMyHPBar(myHPBar - percentDmg)
       } else {
         setMyHPBar(0)
       }
-      dispatch(setPokeHp(finalHP, myPkmn))
+      setCount(count + 1)
     }, 700)
     setTimeout(() => {
       if (critRnd <= 0.0625) {
         setFightText('Critical hit!')
       } else if (oppMultiplyer1 * oppMultiplyer2 > 1 && critRnd > 0.0625) {
         setFightText('It was super effective!')
-      } else if (oppMultiplyer1 * oppMultiplyer2 < 1 && critRnd > 0.0625) {
+      } else if (
+        oppMultiplyer1 * oppMultiplyer2 < 1 &&
+        oppMultiplyer1 * oppMultiplyer2 > 0 &&
+        critRnd > 0.0625
+      ) {
         setFightText(`It wasn't very effective...`)
       } else if (oppMultiplyer1 * oppMultiplyer2 == 0) {
         setFightText(`It had no effect`)
       }
     }, 700)
-    setTimeout(() => {
-      setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
-    }, 1500)
     if (finalHP < 1) {
       setTimeout(() => {
-        randomCry()
         setFightText(`${myPokemon.name.toUpperCase()} has fainted`)
         document.getElementById('myPokemonImg').style.left = '-400px'
-      }, 2500)
+        randomCry()
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
+      }, 1500)
+    } else if (finalHP > 0) {
+      setTimeout(() => {
+        setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
+      }, 1500)
     }
   }
 
   function lowerOppAtk(target) {
+    document.getElementById('tackleBtn').disabled = true
+    document.getElementById('specialBtn').disabled = true
+    document.getElementById('growlBtn').disabled = true
+    document.getElementById('defCurlBtn').disabled = true
     if (oppPokemon.stats[1].base_stat > 8) {
       growl.volume = 0.4
       growl.currentTime = 0
@@ -584,6 +613,10 @@ function Battle(props) {
   }
 
   function raiseDefense(target) {
+    document.getElementById('tackleBtn').disabled = true
+    document.getElementById('specialBtn').disabled = true
+    document.getElementById('growlBtn').disabled = true
+    document.getElementById('defCurlBtn').disabled = true
     if (myPokemon.stats[2].base_stat < 200) {
       defenseCurl.volume = 0.4
       defenseCurl.currentTime = 0
@@ -623,6 +656,10 @@ function Battle(props) {
     }
     setTimeout(() => {
       setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+      document.getElementById('tackleBtn').disabled = false
+      document.getElementById('specialBtn').disabled = false
+      document.getElementById('growlBtn').disabled = false
+      document.getElementById('defCurlBtn').disabled = false
     }, 1500)
   }
 
@@ -665,6 +702,10 @@ function Battle(props) {
       }, 1250)
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }
   }
@@ -675,6 +716,10 @@ function Battle(props) {
       document.getElementById('oppPokemonImg').style.left = '505px'
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }, 1500)
   }
@@ -685,9 +730,21 @@ function Battle(props) {
       document.getElementById('myPokemonImg').style.left = '25px'
       setTimeout(() => {
         setFightText(`What will ${myPokemon.name.toUpperCase()} do?`)
+        document.getElementById('tackleBtn').disabled = false
+        document.getElementById('specialBtn').disabled = false
+        document.getElementById('growlBtn').disabled = false
+        document.getElementById('defCurlBtn').disabled = false
       }, 1500)
     }, 1500)
   }
+
+  useEffect(() => {
+    setInitOppHP(oppHP)
+  }, [oppIndex])
+
+  useEffect(() => {
+    setInitMyHP(myHP)
+  }, [myIndex])
 
   useEffect(() => {
     document.getElementById('myHealthBar').style.width = myHPBar + 'px'
@@ -717,35 +774,83 @@ function Battle(props) {
     if (oppHP <= 0) {
       setTimeout(() => {
         setOppCount(oppCount + 1)
+      }, 1000)
+      setTimeout(() => {
         if (oppCount < oppTeam - 1) {
           setOppIndex(oppIndex + 1)
           nextOppPokemon()
         }
-      }, 1000)
+      }, 2000)
     } else if (myHP <= 0) {
       setTimeout(() => {
         setMyCount(myCount + 1)
+        document.getElementById('health').style.display = 'none'
+        dispatch(setPokeHp(initMyHP, myPokemon))
+      }, 1000)
+      setTimeout(() => {
         if (myCount < team - 1) {
+          document.getElementById('health').style.display = 'flex'
           setMyIndex(myIndex + 1)
           nextPokemon()
         }
-      }, 1000)
+      }, 2000)
     }
     setCount(count + 1)
   }, [oppHP, myHP])
 
   useEffect(() => {
     if (oppCount == oppTeam) {
+      document.getElementById('tackleBtn').disabled = true
+      document.getElementById('specialBtn').disabled = true
+      document.getElementById('growlBtn').disabled = true
+      document.getElementById('defCurlBtn').disabled = true
       setTimeout(() => {
         setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
-          setFightText(`You won 500 Dev Academy Points`)
+          switch (fakeProps) {
+            case 'JV':
+              setFightText(`JV: I forgive you, for now.`)
+              imSad.volume = 0.4
+              imSad.currentTime = 0
+              imSad.play()
+              break
+            case 'David':
+              setFightText(`David: `)
+              break
+            case 'Krissy':
+              setFightText(`Krissy: `)
+              break
+            case 'Josh':
+              setFightText(`Josh: I'm better at golf anyway...`)
+              break
+            case 'Sarah':
+              setFightText(`Sarah: At least we had good vibes!`)
+              break
+            case 'Joseph':
+              setFightText(`I like shorts, they're comfy and easy to wear!`)
+              break
+            case 'Gerard':
+              setFightText(`Gerard: `)
+              break
+            case 'Rohan':
+              setFightText(`Rohan: `)
+              break
+            default:
+              setFightText(`You won 500 Dev Academy Points`)
+          }
         }, 2000)
         setTimeout(() => {
+          setFightText(`You won 500 Dev Academy Points`)
+        }, 4000)
+        setTimeout(() => {
           props.battle(false)
-        }, 6000)
+        }, 8000)
       }, 2000)
     } else if (myCount == team) {
+      document.getElementById('tackleBtn').disabled = true
+      document.getElementById('specialBtn').disabled = true
+      document.getElementById('growlBtn').disabled = true
+      document.getElementById('defCurlBtn').disabled = true
       setTimeout(() => {
         setFightText(`You have been defeated...`)
       }, 2000)
@@ -758,7 +863,9 @@ function Battle(props) {
 
   useEffect(() => {
     if (!fightText.includes('battle')) {
-      setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
+      setTimeout(() => {
+        setFightText(`Go ${oppPokemon.name.toUpperCase()}!`)
+      }, 500)
     }
   }, [oppPokemon])
 
@@ -773,6 +880,9 @@ function Battle(props) {
   }, [myPokemon])
 
   useEffect(() => {
+    if (fakeProps == 'Joseph') {
+      setFightText('Youngster Joseph wants to battle!')
+    }
     document.getElementById('pokeball').style.width = '0px'
     document.getElementById('pokeball').style.height = '0px'
     setTimeout(() => {
@@ -788,7 +898,7 @@ function Battle(props) {
       <div className="battleScreen">
         <div className="pokemonSprites">
           <div className="myHP">
-            <span>
+            <span id="health">
               {myHP > 0 ? myHP : 0} / {initMyHP}
             </span>
           </div>
@@ -840,14 +950,22 @@ function Battle(props) {
           </div>
 
           <div className="fightButtons">
-            <button onClick={() => attackOpponent('normal', 70, oppPokemon)}>
+            <button
+              id="tackleBtn"
+              onClick={() => attackOpponent('normal', 70, oppPokemon)}
+            >
               TACKLE
             </button>
-            <button onClick={() => attackOpponent('special', 70, oppPokemon)}>
+            <button
+              id="specialBtn"
+              onClick={() => attackOpponent('special', 70, oppPokemon)}
+            >
               {myType.toUpperCase()} ATTACK
             </button>
-            <button onClick={() => lowerOppAtk(oppPokemon)}>GROWL</button>
-            <button onClick={() => raiseDefense(myPokemon)}>
+            <button id="growlBtn" onClick={() => lowerOppAtk(oppPokemon)}>
+              GROWL
+            </button>
+            <button id="defCurlBtn" onClick={() => raiseDefense(myPokemon)}>
               DEFENSE CURL
             </button>
           </div>
