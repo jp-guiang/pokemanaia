@@ -358,7 +358,7 @@ function World() {
     }
 
     function update(time, delta) {
-      const speed = 500
+      const speed = 200
       const prevVelocity = player.body.velocity.clone()
 
       // Stop any previous movement from the last frame
