@@ -203,7 +203,7 @@ h1 {
 
 .fightQuestion {
   border-right: 2px dotted black;
-
+  margin-top: -10px;
 }
 
 .fightQuestion p {

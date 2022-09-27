@@ -806,10 +806,10 @@ function Battle(props) {
       document.getElementById('specialBtn').disabled = true
       document.getElementById('growlBtn').disabled = true
       document.getElementById('defCurlBtn').disabled = true
+      victory.currentTime = 0
+      victory.volume = 0.2
       setTimeout(() => {
         battlesong.pause()
-        victory.volume = 0.2
-        victory.currentTime = 0
         victory.play()
         setFightText(`${fakeProps} has been defeated!`)
         setTimeout(() => {
