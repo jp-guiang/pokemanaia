@@ -141,8 +141,15 @@ function World() {
 
       function collisionlistenerSarah() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'Sarah'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapSarah)
@@ -150,17 +157,30 @@ function World() {
 
       function collisionlistenerKrissy() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'Krissy'
-        setBattle(true)
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
 
         this.physics.world.removeCollider(testOverlapKrissy)
       }
 
       function collisionlistenerJosh() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'Josh'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJosh)
@@ -168,8 +188,15 @@ function World() {
 
       function collisionlistenerRohan() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'Rohan'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapRohan)
@@ -177,8 +204,15 @@ function World() {
 
       function collisionlistenerGerard() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'Gerard'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapGerard)
@@ -186,24 +220,45 @@ function World() {
 
       function collisionlistenerJoseph() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'Joseph'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJoseph)
       }
       function collisionlistenerDavid() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'David'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapDavid)
       }
       function collisionlistenerJv() {
         console.log('action')
-        // themeSongPause()
         facilitator = 'JV'
+        document.getElementById('throwBall').style.width = '1800px'
+        document.getElementById('throwBall').style.height = '1800px'
+        setTimeout(() => {
+          // themeSongPause()
+          document.getElementById('throwBall').style.width = '0px'
+          document.getElementById('throwBall').style.height = '0px'
+          setBattle(true)
+        }, 1000)
         setBattle(true)
 
         this.physics.world.removeCollider(testOverlapJv)
@@ -409,11 +464,20 @@ function World() {
           <div className="batteryLight" />
           <p>BATTERY</p>
         </div>
-        <div
-          id="game-container"
-          style={{ display: battle ? 'none' : null }}
-        ></div>
-        {battle && <Battle battle={setBattle} facil={facilitator} />}
+        <div id="game-container" style={{ display: battle ? 'none' : null }}>
+          <img
+            id="throwBall"
+            src="/images/image03.gif"
+            alt="a spinning pokeball"
+          />
+        </div>
+        {battle && (
+          <Battle
+            battle={setBattle}
+            facil={facilitator}
+            battlesong={battlesong}
+          />
+        )}
       </div>
       <button onClick={themeSongPlay}>Theme Song Play</button>
       <button onClick={themeSongPause}>Stop</button>

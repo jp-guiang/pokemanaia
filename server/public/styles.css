@@ -30,6 +30,10 @@ body,
   border-radius: 5px;
 }
 
+#game-container {
+  overflow: hidden;
+}
+
 h1 {
   font-family: 'pkmn_rbygscregular';
 }
@@ -199,7 +203,7 @@ h1 {
 
 .fightQuestion {
   border-right: 2px dotted black;
-
+  margin-top: -10px;
 }
 
 .fightQuestion p {
@@ -503,4 +507,12 @@ footer {
 
 .chat {
   align-self: center;
+}
+
+#throwBall {
+  position:absolute;
+  z-index: 7;
+  height: 0px;
+  width: 0px;
+  transition: width 1s,height 1s;
 }
