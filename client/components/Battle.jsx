@@ -9,6 +9,7 @@ import { setJoeHp, setJoeAtk, setJoeDef } from '../actions/joseph.js'
 import { setGrdHp, setGrdAtk, setGrdDef } from '../actions/gerard.js'
 import { setRhnHp, setRhnAtk, setRhnDef } from '../actions/rohan.js'
 import { setPokeHp, setMyDef, setMyAtk } from '../actions/myPokemon.js'
+import Victory from './Victory.jsx'
 import { style } from '@mui/system'
 const tackle = new Audio('/fightsounds/Tackle.mp3')
 const growl = new Audio('/fightsounds/Growl.mp3')
@@ -34,6 +35,7 @@ function Battle(props) {
   const dispatch = useDispatch()
   let oppPokemon
   let oppTeam
+  const [JVDefeated, setJVDefeated] = useState(false)
 
   switch (fakeProps) {
     case 'JV':
@@ -849,8 +851,12 @@ function Battle(props) {
           setFightText(`You won 500 Dev Academy Points`)
         }, 4000)
         setTimeout(() => {
-          victory.pause()
-          props.battle(false)
+          if (fakeProps == 'JV') {
+            setJVDefeated(true)
+          } else {
+            victory.pause()
+            props.battle(false)
+          }
         }, 8000)
       }, 2000)
     } else if (myCount == team) {
@@ -900,8 +906,18 @@ function Battle(props) {
     }, 500)
   }, [])
 
+  useEffect(() => {
+    if (JVDefeated) {
+      document.getElementById('victoryPage').style.display = 'flex'
+      document.getElementById('battleScreen').style.display = 'none'
+    }
+  }, [JVDefeated])
+
   return (
     <div className="centering">
+      <div id="victoryPage">
+        <Victory />
+      </div>
       <div className="battleScreen">
         <div className="pokemonSprites">
           <div className="myHP">

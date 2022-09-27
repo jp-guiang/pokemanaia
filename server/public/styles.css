@@ -522,3 +522,37 @@ footer {
   width: 0px;
   transition: width 1s,height 1s;
 }
+
+.victoryCarpark {
+  height: 600px;
+  width: 800px;
+}
+
+.fameImg {
+  height: 250px;
+  width: auto;
+  image-rendering: pixelated;
+}
+
+.fame {
+  width: 800px;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fameBox {
+  text-align: center;
+  background-color: rgba(245, 245, 245, 0.295)
+}
+
+.hallText{
+  color: white;
+  font-size: 30px;
+}
+
+#victoryPage {
+  display: none;
+}
