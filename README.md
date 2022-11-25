@@ -43,7 +43,7 @@ npm run dev
 * open your browser
 * find the server running on [http://localhost:3000](http://localhost:3000).
 * enjoy!
-* or find it on this url https://github.com/jp-guiang/pokemanaia.git
+* or find it on this url https://pokemanaia.herokuapp.com/
 
 ### Disclaimer
 This app was made with fair use in mind for educational purposes and all rights belong to their respective owners.  
