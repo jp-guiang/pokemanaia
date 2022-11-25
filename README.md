@@ -1,6 +1,7 @@
 # Team Rocket
 
 ## Pokémanaia
+https://pokemanaia.herokuapp.com/
 
 ## Objective
 This was our teams attempt at gamedev in a week. We chose to make a pokemon based game as it had a lot of learning new tech required to make it work, aswell as a lot of room for stretch and additional features we wanted to add.
@@ -31,13 +32,18 @@ This repo includes:
 * configuration for server-side debugging in VS Code
 * a client-side tests for all components
 
-## Steps to get the game running:
+#### **From the command line**
 
-* Clone the code to your local machine and open it in your chosen code editor
-* Open your terminal and enter 'npm install'
-* Enter 'npm run dev' in to your terminal
-* Open your browser and enter [localhost:3000](localhost:3000) as the url
-* Enjoy!
+```
+git clone https://github.com/jp-guiang/pokemanaia.git
+cd pokemanaia
+npm install
+npm run dev
+```
+* open your browser
+* find the server running on [http://localhost:3000](http://localhost:3000).
+* enjoy!
+* or find it on this url https://github.com/jp-guiang/pokemanaia.git
 
 ### Disclaimer
 This app was made with fair use in mind for educational purposes and all rights belong to their respective owners.  
